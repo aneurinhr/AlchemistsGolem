@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Camera look;
+    public float maxLookDistance = 5.0f;
 
     public int money;
     //public Inventory inventory
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
                 highlightedPlot.Highlight(false);
             }
 
-            if (lookingAt.GetComponent<Plot>())
+            if (lookingAt.GetComponent<Plot>() && (hit.distance <= maxLookDistance))
             {
                 highlightedPlot = lookingAt.GetComponent<Plot>();
                 highlightedPlot.Highlight(true);

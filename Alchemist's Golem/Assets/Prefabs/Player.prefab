@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: {fileID: 3748952021830979862}
+  maxLookDistance: 15
   money: 0
   isPlotHightlighted: 0
   highlightedPlot: {fileID: 0}

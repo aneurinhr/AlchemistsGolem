@@ -14,16 +14,31 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject cameraCenter;
 
+    private Rigidbody rb;
+
     private void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        float x = 0;
+        float z = 0;
+
+        if (Input.GetButton("Sprint"))
+        {
+            x = Input.GetAxis("Horizontal") * Time.deltaTime * sprintSpeed;
+            z = Input.GetAxis("Vertical") * Time.deltaTime * sprintSpeed;
+        }
+        else
+        {
+            x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+            z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        }
 
         float horizontal = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         float vertical = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
@@ -47,25 +62,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
-            //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
+            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.blue);
             //Debug.Log(hit.distance + " => " + hit.collider.name);
         }
 
         float heightDif = floatHeight - hit.distance;
-        float moveUp = heightDif * Time.deltaTime;
 
-        if ((gameObject.GetComponent<Rigidbody>().velocity.y > 0) && (hit.distance > floatHeight))
+        if ((rb.velocity.y > 0) && (hit.distance > floatHeight))
         {
-            gameObject.GetComponent<Rigidbody>().drag = overShootDrag;
+            rb.drag = overShootDrag;
         }
         else
         {
-            gameObject.GetComponent<Rigidbody>().drag = 0;
+            rb.drag = 0;
         }
 
         if (heightDif >= 0)
         {
-            gameObject.GetComponent<Rigidbody>().AddForce(0, floatStrenght, 0);
+            rb.AddForce(0, heightDif*floatStrenght, 0);
         }
     }
 }

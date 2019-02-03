@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float floatStrenght = 30.0f;
     public float overShootDrag = 5.0f;
 
+    public GameObject cameraCenter;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -24,9 +26,16 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
         float horizontal = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        float vertical = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 
         transform.Translate(x, 0, z);
         transform.Rotate(0, horizontal, 0);
+
+        float nextRotation = cameraCenter.gameObject.transform.eulerAngles.x + vertical;
+        if (((nextRotation <= 80) && (nextRotation >= -80)) || ((nextRotation <= 440) && (nextRotation >= 280)))
+        {
+            cameraCenter.gameObject.transform.Rotate(vertical, 0, 0);
+        }
 
         Floating();
     }
@@ -38,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
-            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
-            Debug.Log(hit.distance + " => " + hit.collider.name);
+            //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
+            //Debug.Log(hit.distance + " => " + hit.collider.name);
         }
 
         float heightDif = floatHeight - hit.distance;

@@ -12,7 +12,30 @@ public class Player : MonoBehaviour
     public bool isPlotHightlighted = false;
     public Plot highlightedPlot = null;
 
+    //TEMP whilst no inventory in place
+    public CropMother tempPlanting;
+    //TEMP
+
+    public void UseItemOnPlot()
+    {
+        //Uses default item, change when inventory is introduced. 
+        tempPlanting.NewPlant(highlightedPlot);
+    }
+
     private void Update()
+    {
+        Look();
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if ((isPlotHightlighted == true) && (highlightedPlot.Occupied == false))//And valid item is selected
+            {
+                UseItemOnPlot();
+            }
+        }
+    }
+
+    private void Look()
     {
         Ray ray = look.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
@@ -24,13 +47,16 @@ public class Player : MonoBehaviour
             if (highlightedPlot != null)
             {
                 highlightedPlot.Highlight(false);
+                isPlotHightlighted = false;
             }
 
             if (lookingAt.GetComponent<Plot>() && (hit.distance <= maxLookDistance))
             {
                 highlightedPlot = lookingAt.GetComponent<Plot>();
                 highlightedPlot.Highlight(true);
+                isPlotHightlighted = true;
             }
         }
     }
+
 }

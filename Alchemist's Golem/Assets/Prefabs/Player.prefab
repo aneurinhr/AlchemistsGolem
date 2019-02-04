@@ -323,6 +323,7 @@ MonoBehaviour:
   money: 0
   isPlotHightlighted: 0
   highlightedPlot: {fileID: 0}
+  tempPlanting: {fileID: 0}
 --- !u!54 &3748952022168617281
 Rigidbody:
   m_ObjectHideFlags: 0

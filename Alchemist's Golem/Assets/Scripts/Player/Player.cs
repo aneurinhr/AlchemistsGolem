@@ -22,15 +22,32 @@ public class Player : MonoBehaviour
         tempPlanting.NewPlant(highlightedPlot);
     }
 
+    public void Harvest()
+    {
+        bool tryHarvestCrop = highlightedPlot.crop.Harvest();
+
+        if (tryHarvestCrop == false)
+        {
+            Debug.Log("Failed Harvest");
+        }
+    }
+
     private void Update()
     {
         Look();
 
         if (Input.GetButtonUp("Fire1"))
         {
-            if ((isPlotHightlighted == true) && (highlightedPlot.Occupied == false))//And valid item is selected
+            if (isPlotHightlighted == true)//And valid item is selected
             {
-                UseItemOnPlot();
+                if (highlightedPlot.Occupied == false)
+                {
+                    UseItemOnPlot();
+                }
+                else if (highlightedPlot.Occupied == true)
+                {
+                    Harvest();
+                }
             }
         }
     }

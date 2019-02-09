@@ -10,14 +10,36 @@ public class Plot : MonoBehaviour
 
     public GameObject hightlight;
 
-    public void ChangeNutrients(int nutrient, int quantity)
+    public Crop crop;
+
+    public bool ChangeNutrients(int nutrient, int quantity)
     {
-        QuantNutrients[nutrient] = quantity;
+        int tempNut = QuantNutrients[nutrient] + quantity;
+
+        if (tempNut >= 0)
+        {
+            QuantNutrients[nutrient] = QuantNutrients[nutrient] + quantity;
+            return true; // worked
+        }
+        else
+        {
+            return false; // failed
+        }
     }
 
-    public void ChangeWaterContent(int waterQuant)
+    public bool ChangeWaterContent(int waterQuant)
     {
-        WaterContent = WaterContent + waterQuant;
+        int tempWater = WaterContent + waterQuant;
+
+        if (tempWater >= 0)
+        {
+            WaterContent = WaterContent + waterQuant;
+            return true; // worked
+        }
+        else
+        {
+            return false; // failed
+        }
     }
 
     public void Highlight(bool highlight)

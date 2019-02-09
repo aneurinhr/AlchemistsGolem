@@ -6,7 +6,8 @@ public class Crop : MonoBehaviour
 {
     [SerializeField]//temp serialization
     private int p_currentTickToHarvest = 0;
-    private int p_baseQuality;
+    [SerializeField]
+    private int p_baseQuality = 5;//make sure this the the value to keep
 
     public CropMother mother;
     public int quality = 5; //Changes Based of how long it was dying
@@ -26,19 +27,28 @@ public class Crop : MonoBehaviour
 
     //Inventory
 
-    private void Start()
-    {
-        p_baseQuality = quality;
-
-    }
-
     private void OnEnable()
     {
         p_currentTickToHarvest = 0;
+        currentPhase = 0;
         quality = p_baseQuality;
 
-        currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+        canBeHarvested = false;
+        dead = false;
+        dying = false;
+
         //Disable all apart from correct phase
+        for (int i = 0; i < phases.Length; i++)
+        {
+            if (currentPhase == i)
+            {
+                phases[i].SetActive(true);
+            }
+            else
+            {
+                phases[i].SetActive(false);
+            }
+        }
     }
 
     //This will edit p_quality, detect if the plant is dying or dead
@@ -46,31 +56,117 @@ public class Crop : MonoBehaviour
     //Should also take nutrients and water from the plot
     public void Tick()
     {
-        bool healthy = false;
-
-        //Get nutrients and water from plot using values in Mother
-
-        //Check if unhealthy
-
-        //If quality hits 0 plant is dead
-
-        if (healthy == true)// if healthy tick up and check phase
+        if (dead == false)
         {
-            p_currentTickToHarvest = p_currentTickToHarvest + 1;
-            currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+            bool healthy = true;//to check if healthy
 
-            //Disable all apart from correct phase
+            //Get nutrients and water from plot using values in Mother
+            bool neWater = plotOn.ChangeWaterContent(mother.RequiredWaterContent);//water
 
-            //if last stage, become harvestable
-        }
+            int[] NutrientsNeeded = mother.NutrientsNeeded;
+            int[] NutrientQuant = mother.QuantityNutrients;
+
+            bool neNutrients = true;
+
+            for (int i = 0; i < NutrientsNeeded.Length; i++)//nutrients
+            {
+                bool temp = plotOn.ChangeNutrients(NutrientsNeeded[i], NutrientQuant[i]);
+
+                if (temp == false)
+                {
+                    neNutrients = false;
+                }
+            }
+
+            if ((neNutrients == false) || (neWater == false))
+            {
+                healthy = false;
+                quality = quality - 1;
+            }
+
+            //If quality hits 0 plant is dead
+            if (quality <= 0)
+            {
+                dead = true;
+                canBeHarvested = false;
+
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(true);
+            }
+
+
+            // if healthy tick up and check phase
+            if ((healthy == true) && (canBeHarvested != true))
+            {
+                int oldPhase = currentPhase;
+                p_currentTickToHarvest = p_currentTickToHarvest + 1;
+                currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+
+                if (oldPhase != currentPhase)
+                {
+                    dyingPhase.SetActive(false);
+
+                    //Disable all apart from correct phase
+                    for (int i = 0; i < phases.Length; i++)
+                    {
+                        if (currentPhase == i)
+                        {
+                            phases[i].SetActive(true);
+                        }
+                        else
+                        {
+                            phases[i].SetActive(false);
+                        }
+                    }
+
+                }
+
+                //if last stage, become harvestable
+                if (currentPhase == (phases.Length - 1))
+                {
+                    canBeHarvested = true;
+                }
+
+            }
+            else if (healthy == false)// unhealthy
+            {
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(true);
+            }
+        }//not dead
     }
 
-    public void Harvest() //Should directly deposite to inventory
+    public bool Harvest() //Should directly deposite to inventory
     {
-        int num = baseHarvestNum;
-        num = num + quality;//Add quality to up or decrease the num harvested
+        if (canBeHarvested == true)
+        {
+            int num = baseHarvestNum;
+            num = num + quality;//Add quality to up or decrease the num harvested
 
-        Debug.Log("Harvest " + gameObject.name + " for " + num);
-        gameObject.SetActive(false);
+            Debug.Log("Harvest " + gameObject.name + " for " + num);
+
+            plotOn.crop = null;
+            plotOn.Occupied = false;
+            gameObject.SetActive(false);
+
+            return true;
+        }
+        else if (dead == true)
+        {
+            plotOn.crop = null;
+            plotOn.Occupied = false;
+            gameObject.SetActive(false);
+        }
+
+        return false;
     }
 }

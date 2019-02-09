@@ -44,60 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TicksPerPhase: 00000000010000000200000003000000
-  NutrientsNeeded: 
-  QuantityNutrients: 
-  RequiredWaterContentRange: 
+  NutrientsNeeded: 000000000100000002000000
+  QuantityNutrients: ffffffffffffffffffffffff
+  RequiredWaterContent: -1
   RequirementsSensitivity: 0
   Crop: {fileID: 448636224672682958, guid: 9d10a2152d444124abd0a77a963af201, type: 3}
   cropPoolSize: 50
-  p_cropPool:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

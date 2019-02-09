@@ -9,7 +9,7 @@ public class CropMother : MonoBehaviour
 
     public int[] NutrientsNeeded;
     public int[] QuantityNutrients;
-    public int[] RequiredWaterContentRange;
+    public int RequiredWaterContent;
     public int RequirementsSensitivity = 3; //Used to see how much less nutrients it
                                             //can take and still grow
 
@@ -39,6 +39,7 @@ public class CropMother : MonoBehaviour
                 p_cropPool[i].transform.position = plantingArea.transform.position;
                 p_cropPool[i].GetComponent<Crop>().plotOn = plantingArea;
                 p_cropPool[i].GetComponent<Crop>().mother = this;
+                plantingArea.crop = p_cropPool[i].GetComponent<Crop>();
 
                 p_cropPool[i].SetActive(true);
 

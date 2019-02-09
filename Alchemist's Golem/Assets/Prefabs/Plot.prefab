@@ -279,6 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Occupied: 0
-  QuantNutrients: 050000000500000005000000
-  WaterContent: 3
+  QuantNutrients: 0a0000000a0000000a000000
+  WaterContent: 10
   hightlight: {fileID: 1563612700}

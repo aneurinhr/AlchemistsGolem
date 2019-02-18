@@ -717,6 +717,7 @@ MonoBehaviour:
   NutrientMax: 070000000700000007000000
   WaterMax: 7
   DiffuseLimit: 1
+  minDifToDiffuse: 2
 --- !u!4 &790182841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8421016026826380686, guid: 5c51e8f6158c1b84384fe3bf73c35984,
@@ -989,6 +990,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 1898454108, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
+      propertyPath: QuantNutrients.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898454108, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
+      propertyPath: QuantNutrients.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898454108, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
+      propertyPath: QuantNutrients.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898454108, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
+      propertyPath: WaterContent
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &1455433095 stripped

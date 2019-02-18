@@ -13,7 +13,7 @@ public class TickAll : MonoBehaviour
         if (Input.GetKey("left ctrl") && Input.GetKeyDown("d"))
         {
             TickForAll();
-            //UpdatePlots();
+            UpdatePlots();
         }
     }
 
@@ -21,8 +21,8 @@ public class TickAll : MonoBehaviour
     {
         for (int i = 0; i < plots.Length; i++)
         {
-            plots[i].NaturalPlotIncrease();
-            //plots[i].PlotDiffuse();
+            //plots[i].NaturalPlotIncrease();
+            plots[i].PlotDiffuse();
         }
     }
 

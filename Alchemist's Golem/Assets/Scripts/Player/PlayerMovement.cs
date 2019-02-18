@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         float heightDif = floatHeight - hit.distance;
 
-        if ((rb.velocity.y > 0) && (hit.distance > floatHeight))
+        if ((rb.velocity.y > 0) && (hit.distance > floatHeight))//checks if overshooting
         {
             rb.drag = overShootDrag;
         }

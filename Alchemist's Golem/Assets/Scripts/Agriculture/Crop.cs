@@ -19,8 +19,6 @@ public class Crop : MonoBehaviour
     public GameObject dyingPhase;
     public bool canBeHarvested;
     public bool dead;
-    public bool dying;
-
     public int baseHarvestNum = 3;
 
     public Plot plotOn;
@@ -35,8 +33,6 @@ public class Crop : MonoBehaviour
 
         canBeHarvested = false;
         dead = false;
-        dying = false;
-
         //Disable all apart from correct phase
         for (int i = 0; i < phases.Length; i++)
         {
@@ -101,29 +97,29 @@ public class Crop : MonoBehaviour
 
 
             // if healthy tick up and check phase
-            if ((healthy == true) && (canBeHarvested != true))
+            if (healthy == true)
             {
+                if (canBeHarvested != true)
+                {
+                    p_currentTickToHarvest = p_currentTickToHarvest + 1;
+                }
+
                 int oldPhase = currentPhase;
-                p_currentTickToHarvest = p_currentTickToHarvest + 1;
                 currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
 
-                if (oldPhase != currentPhase)
+                dyingPhase.SetActive(false);
+
+                //Disable all apart from correct phase
+                for (int i = 0; i < phases.Length; i++)
                 {
-                    dyingPhase.SetActive(false);
-
-                    //Disable all apart from correct phase
-                    for (int i = 0; i < phases.Length; i++)
+                    if (currentPhase == i)
                     {
-                        if (currentPhase == i)
-                        {
-                            phases[i].SetActive(true);
-                        }
-                        else
-                        {
-                            phases[i].SetActive(false);
-                        }
+                        phases[i].SetActive(true);
                     }
-
+                    else
+                    {
+                        phases[i].SetActive(false);
+                    }
                 }
 
                 //if last stage, become harvestable
@@ -133,7 +129,7 @@ public class Crop : MonoBehaviour
                 }
 
             }
-            else if (healthy == false)// unhealthy
+            else if ((healthy == false) && (dead == false))// unhealthy
             {
                 for (int i = 0; i < phases.Length; i++)// disable all
                 {

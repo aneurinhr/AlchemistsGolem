@@ -189,6 +189,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &94131007 stripped
@@ -335,6 +380,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &117351382 stripped
@@ -432,6 +522,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &161259480 stripped
@@ -529,6 +664,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &267622363 stripped
@@ -626,6 +806,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &299276794 stripped
@@ -935,6 +1160,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &1420318135 stripped
@@ -1135,6 +1405,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &1926700922 stripped
@@ -1301,6 +1616,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!4 &2077257274 stripped
@@ -1477,6 +1837,51 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 3748952020721577449}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599436040925655330, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009002711919425293, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432894457650995148, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208569259925456006, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208722904854043178, guid: 95de85e1c0e259c4dbf7024dc6bbab98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95de85e1c0e259c4dbf7024dc6bbab98, type: 3}
 --- !u!114 &6637453789469715480 stripped

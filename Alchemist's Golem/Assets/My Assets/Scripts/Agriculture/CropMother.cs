@@ -40,6 +40,7 @@ public class CropMother : MonoBehaviour
                 p_cropPool[i].GetComponent<Crop>().plotOn = plantingArea;
                 p_cropPool[i].GetComponent<Crop>().mother = this;
                 plantingArea.crop = p_cropPool[i].GetComponent<Crop>();
+                plantingArea.NewCrop(NutrientsNeeded, QuantityNutrients, RequiredWaterContent);
 
                 p_cropPool[i].SetActive(true);
 

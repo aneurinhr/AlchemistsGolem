@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Failed Harvest");
         }
+        else
+        {
+            highlightedPlot.NoCrop();
+        }
     }
 
     private void Update()

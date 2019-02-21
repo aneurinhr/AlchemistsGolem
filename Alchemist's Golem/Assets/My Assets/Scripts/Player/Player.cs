@@ -12,14 +12,11 @@ public class Player : MonoBehaviour
     public bool isPlotHightlighted = false;
     public Plot highlightedPlot = null;
 
-    //TEMP whilst no inventory in place
-    public CropMother tempPlanting;
-    //TEMP
+    public Item selectedItem = null;
 
     public void UseItemOnPlot()
     {
-        //Uses default item, change when inventory is introduced. 
-        tempPlanting.NewPlant(highlightedPlot);
+        selectedItem.UseItemOnPlot(highlightedPlot);
     }
 
     public void Harvest()
@@ -42,13 +39,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
-            if (isPlotHightlighted == true)//And valid item is selected
+            if (isPlotHightlighted == true)//If plot is highlighted
             {
-                if (highlightedPlot.Occupied == false)
+                if (selectedItem != null)//if item is selected try using it
                 {
                     UseItemOnPlot();
                 }
-                else if (highlightedPlot.Occupied == true)
+                else if (highlightedPlot.Occupied == true)//else try to harvest
                 {
                     Harvest();
                 }

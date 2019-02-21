@@ -1829,8 +1829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Occupied: 0
-  QuantNutrients: 0a0000000a0000000a000000
-  WaterContent: 10
+  QuantNutrients: 070000000700000007000000
+  WaterContent: 7
   hightlight: {fileID: 8318737330995502463}
   crop: {fileID: 0}
   frostSlider: {fileID: 6180234116669569941}

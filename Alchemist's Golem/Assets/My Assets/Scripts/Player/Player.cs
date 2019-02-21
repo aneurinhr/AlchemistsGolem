@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Plot highlightedPlot = null;
 
     public Item selectedItem = null;
+    public bool pause = false;
 
     public void UseItemOnPlot()
     {
@@ -35,19 +36,22 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Look();
-
-        if (Input.GetButtonUp("Fire1"))
+        if (pause == false)
         {
-            if (isPlotHightlighted == true)//If plot is highlighted
+            Look();
+
+            if (Input.GetButtonUp("Fire1"))
             {
-                if (selectedItem != null)//if item is selected try using it
+                if (isPlotHightlighted == true)//If plot is highlighted
                 {
-                    UseItemOnPlot();
-                }
-                else if (highlightedPlot.Occupied == true)//else try to harvest
-                {
-                    Harvest();
+                    if (selectedItem != null)//if item is selected try using it
+                    {
+                        UseItemOnPlot();
+                    }
+                    else if (highlightedPlot.Occupied == true)//else try to harvest
+                    {
+                        Harvest();
+                    }
                 }
             }
         }

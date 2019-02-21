@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
+  itemImage: {fileID: 21300000, guid: 6091fbad77ae18d429d8472d399fcf20, type: 3}
+  description: Sprite Dust
   PurchasePrice: 3
   sellPrice: 1
   nutrient: 2

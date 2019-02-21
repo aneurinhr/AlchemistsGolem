@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float overShootDrag = 5.0f;
 
     public GameObject cameraCenter;
+    public bool pauseMovement = false;
 
     private Rigidbody rb;
 
@@ -26,30 +27,33 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float x = 0;
-        float z = 0;
-
-        if (Input.GetButton("Sprint"))
+        if (pauseMovement == false)
         {
-            x = Input.GetAxis("Horizontal") * Time.deltaTime * sprintSpeed;
-            z = Input.GetAxis("Vertical") * Time.deltaTime * sprintSpeed;
-        }
-        else
-        {
-            x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-            z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
-        }
+            float x = 0;
+            float z = 0;
 
-        float horizontal = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-        float vertical = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+            if (Input.GetButton("Sprint"))
+            {
+                x = Input.GetAxis("Horizontal") * Time.deltaTime * sprintSpeed;
+                z = Input.GetAxis("Vertical") * Time.deltaTime * sprintSpeed;
+            }
+            else
+            {
+                x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+                z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+            }
 
-        transform.Translate(x, 0, z);
-        transform.Rotate(0, horizontal, 0);
+            float horizontal = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+            float vertical = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 
-        float nextRotation = cameraCenter.gameObject.transform.eulerAngles.x + vertical;
-        if (((nextRotation <= 80) && (nextRotation >= -80)) || ((nextRotation <= 440) && (nextRotation >= 280)))
-        {
-            cameraCenter.gameObject.transform.Rotate(vertical, 0, 0);
+            transform.Translate(x, 0, z);
+            transform.Rotate(0, horizontal, 0);
+
+            float nextRotation = cameraCenter.gameObject.transform.eulerAngles.x + vertical;
+            if (((nextRotation <= 80) && (nextRotation >= -80)) || ((nextRotation <= 440) && (nextRotation >= 280)))
+            {
+                cameraCenter.gameObject.transform.Rotate(vertical, 0, 0);
+            }
         }
 
         Floating();

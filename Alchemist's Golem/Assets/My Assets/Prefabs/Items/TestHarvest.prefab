@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
+  itemImage: {fileID: 21300370, guid: 09887104b27c9754eb0dd87d37362b31, type: 3}
+  description: TEST HARVEST
   PurchasePrice: 0
   sellPrice: 5

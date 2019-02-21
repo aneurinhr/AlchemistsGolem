@@ -5,6 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public bool usable;
+    public Sprite itemImage;
+    public string description = "temp";
 
     public int PurchasePrice = 0;
     public int sellPrice = 0;

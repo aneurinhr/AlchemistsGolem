@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
+  itemImage: {fileID: 21300000, guid: ca2d89138afa21b47944ae4079b2d50d, type: 3}
+  description: Salamander Breath
   PurchasePrice: 3
   sellPrice: 1
   nutrient: 1

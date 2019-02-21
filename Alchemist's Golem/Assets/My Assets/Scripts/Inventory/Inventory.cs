@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     public Slot highlightedSlot = null;
     public GameObject inventoryUI;
     public bool inventoryOpen = false;
+    public int maxStack = 99;
 
     public ItemDatabase database;
     public PlayerMovement playerMovement;
@@ -28,6 +29,87 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        UpdateInventory();
+    }
+
+    public void AddItem(int item, int quant)
+    {
+        int leftOver = quant;
+
+        //Hotbar - looking to stack
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            if (hotbarSlots[i].hotBarPointers == item)
+            {
+                int temp = hotbarSlots[i].hotBarQuant;
+                temp = temp + leftOver;
+
+                if (temp > maxStack)//if over max stack
+                {
+                    hotbarSlots[i].hotBarQuant = maxStack;
+                    leftOver = temp - maxStack;
+                }
+                else
+                {
+                    hotbarSlots[i].hotBarQuant = temp;
+                    leftOver = 0;
+                }
+            }
+        }
+        //Hotbar - looking to stack
+
+        if (leftOver > 0)
+        {
+            //Inventory - looking to stack
+            //INSERT CODE
+            //Inventory - looking to stack
+        }
+
+        //Here is for if fully stacked stuff
+
+        if (leftOver > 0)
+        {
+            //Hotbar - looking for empty
+            for (int i = 0; i < hotbarSlots.Length; i++)
+            {
+                if (hotbarSlots[i].hotBarPointers == 999)
+                {
+                    hotbarSlots[i].hotBarPointers = item;
+                    if (leftOver >= 99)
+                    {
+                        hotbarSlots[i].hotBarQuant = 99;
+                        leftOver = leftOver - 99;
+                    }
+                    else
+                    {
+                        hotbarSlots[i].hotBarQuant = leftOver;
+                        leftOver = 0;
+                    }
+                }
+            }
+            //Hotbar - looking for empty
+        }
+
+        if (leftOver > 0)
+        {
+            //Inventory - looking for empty
+            //INSERT CODE
+            //Inventory
+        }
+
+        UsedSelectedItem();
+    }
+
+    public void UsedSelectedItem()
+    {
+        int temp = hotbarSlots[highlightedHotbarSlot].hotBarQuant;
+        hotbarSlots[highlightedHotbarSlot].hotBarQuant = temp - 1;
+
+        if (hotbarSlots[highlightedHotbarSlot].hotBarQuant <= 0)
+        {
+            player.selectedItem = null;
+        }
+
         UpdateInventory();
     }
 

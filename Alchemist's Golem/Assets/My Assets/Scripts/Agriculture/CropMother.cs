@@ -17,6 +17,9 @@ public class CropMother : MonoBehaviour
     public int cropPoolSize = 50;
     private List<GameObject> p_cropPool;//As a list for overflow
 
+    public int harvestItemID = 999;
+    public Inventory inventory;
+
     public void Start()
     {
         //initialize crop pool
@@ -27,6 +30,11 @@ public class CropMother : MonoBehaviour
 
             p_cropPool.Add(tempCrop);
         }
+    }
+
+    public void NewHarvest(int quant)
+    {
+        inventory.AddItem(harvestItemID, quant);
     }
 
     public void NewPlant(Plot plantingArea) //Change from uml as the crop is not information the player script needs.

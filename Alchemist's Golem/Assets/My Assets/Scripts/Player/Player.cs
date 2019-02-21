@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float maxLookDistance = 5.0f;
 
     public int money;
-    //public Inventory inventory
+    public Inventory inventory;
     public bool isPlotHightlighted = false;
     public Plot highlightedPlot = null;
 
@@ -17,7 +17,11 @@ public class Player : MonoBehaviour
 
     public void UseItemOnPlot()
     {
-        selectedItem.UseItemOnPlot(highlightedPlot);
+        if (selectedItem.usable == true)
+        {
+            selectedItem.UseItemOnPlot(highlightedPlot);
+            inventory.UsedSelectedItem();
+        }
     }
 
     public void Harvest()
@@ -36,6 +40,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    inventory.AddItem(1, 200);
+        //}
+
         if (pause == false)
         {
             Look();

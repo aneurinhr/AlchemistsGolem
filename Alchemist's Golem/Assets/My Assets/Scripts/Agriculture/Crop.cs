@@ -148,7 +148,7 @@ public class Crop : MonoBehaviour
             int num = baseHarvestNum;
             num = num + quality;//Add quality to up or decrease the num harvested
 
-            Debug.Log("Harvest " + gameObject.name + " for " + num);
+            mother.NewHarvest(num);
 
             plotOn.crop = null;
             plotOn.Occupied = false;

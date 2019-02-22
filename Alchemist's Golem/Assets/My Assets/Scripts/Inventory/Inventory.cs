@@ -61,7 +61,28 @@ public class Inventory : MonoBehaviour
         if (leftOver > 0)
         {
             //Inventory - looking to stack
-            //INSERT CODE
+            for (int i = 0; i < inventorySlotRows.Length; i++)
+            {
+                for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++) //inventorySlotRows[i].rowSlots[k]
+                {
+                    if (inventorySlotRows[i].rowSlots[k].hotBarPointers == item)
+                    {
+                        int temp = inventorySlotRows[i].rowSlots[k].hotBarQuant;
+                        temp = temp + leftOver;
+
+                        if (temp > maxStack)//if over max stack
+                        {
+                            inventorySlotRows[i].rowSlots[k].hotBarQuant = maxStack;
+                            leftOver = temp - maxStack;
+                        }
+                        else
+                        {
+                            inventorySlotRows[i].rowSlots[k].hotBarQuant = temp;
+                            leftOver = 0;
+                        }
+                    }
+                }
+            }
             //Inventory - looking to stack
         }
 
@@ -93,7 +114,26 @@ public class Inventory : MonoBehaviour
         if (leftOver > 0)
         {
             //Inventory - looking for empty
-            //INSERT CODE
+            for (int i = 0; i < inventorySlotRows.Length; i++)
+            {
+                for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++) //inventorySlotRows[i].rowSlots[k]
+                {
+                    if (inventorySlotRows[i].rowSlots[k].hotBarPointers == 999)
+                    {
+                        inventorySlotRows[i].rowSlots[k].hotBarPointers = item;
+                        if (leftOver >= 99)
+                        {
+                            inventorySlotRows[i].rowSlots[k].hotBarQuant = 99;
+                            leftOver = leftOver - 99;
+                        }
+                        else
+                        {
+                            inventorySlotRows[i].rowSlots[k].hotBarQuant = leftOver;
+                            leftOver = 0;
+                        }
+                    }
+                }
+            }
             //Inventory
         }
 
@@ -145,7 +185,35 @@ public class Inventory : MonoBehaviour
         //Hotbar
 
         //Inventory
-        //INSERT CODE
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++) //inventorySlotRows[i].rowSlots[k]
+            {
+                if (inventorySlotRows[i].rowSlots[k].hotBarQuant <= 0)
+                {
+                    inventorySlotRows[i].rowSlots[k].hotBarPointers = 999;
+                }
+
+                if (inventorySlotRows[i].rowSlots[k].hotBarPointers == 999)
+                {
+                    inventorySlotRows[i].rowSlots[k].HighlightDescription.text = "";
+                    inventorySlotRows[i].rowSlots[k].hotBarDisplay.gameObject.SetActive(false);
+                    inventorySlotRows[i].rowSlots[k].hotBarQuantDisplay.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Sprite temp = null;
+                    Item forSprite = GetItemFromInventory(i, k);
+                    temp = forSprite.itemImage;
+
+                    inventorySlotRows[i].rowSlots[k].HighlightDescription.text = forSprite.description;
+                    inventorySlotRows[i].rowSlots[k].hotBarDisplay.sprite = temp;
+                    inventorySlotRows[i].rowSlots[k].hotBarQuantDisplay.text = inventorySlotRows[i].rowSlots[k].hotBarQuant.ToString();
+                    inventorySlotRows[i].rowSlots[k].hotBarDisplay.gameObject.SetActive(true);
+                    inventorySlotRows[i].rowSlots[k].hotBarQuantDisplay.gameObject.SetActive(true);
+                }
+            }
+        }
         //Inventory
     }
 
@@ -154,9 +222,9 @@ public class Inventory : MonoBehaviour
         return database.GetItem(hotbarSlots[pointer].hotBarPointers);
     }
 
-    public Item GetItemFromInventory(int rowPointer, int colPointer)//Middle Man
+    public Item GetItemFromInventory(int i, int k)//Middle Man
     {
-        return null;
+        return database.GetItem(inventorySlotRows[i].rowSlots[k].hotBarPointers);
     }
 
     private void Update()

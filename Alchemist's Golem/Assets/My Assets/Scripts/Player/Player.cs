@@ -75,6 +75,11 @@ public class Player : MonoBehaviour
         {
             GameObject lookingAt = hit.collider.gameObject;
 
+            if ((lookingAt.GetComponent<Storage>()) && (hit.distance <= maxLookDistance))
+            {
+                lookingAt.GetComponent<Storage>().BeingLookedAt();
+            }
+
             if (highlightedPlot != null)
             {
                 highlightedPlot.Highlight(false);

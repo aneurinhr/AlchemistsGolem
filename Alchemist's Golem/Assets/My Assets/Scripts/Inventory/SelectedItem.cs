@@ -9,6 +9,7 @@ public class SelectedItem : MonoBehaviour
 {
     public Slot selectedSlot;
     public Inventory inventory;
+    public Storage storage;
 
     public int tempSlotPointers = 999;
     public int tempSlotQuant = 0;
@@ -39,9 +40,17 @@ public class SelectedItem : MonoBehaviour
 
         //After the other so it is not changed before hand
         toSwapWith.newValues(tempSlotPointers, tempSlotQuant);
-
-        inventory.UpdateInventory();
         dragImage.enabled = false;
+
+        if ((toSwapWith.inventSlot == true) || (selectedSlot.inventSlot == true))
+        {
+            inventory.UpdateInventory();
+        }
+
+        if ((toSwapWith.inventSlot == false) || (selectedSlot.inventSlot == false))
+        {
+            storage.UpdateStorage();
+        }
     }
 
     private void Update()
@@ -53,7 +62,6 @@ public class SelectedItem : MonoBehaviour
         if (inventory.inventoryOpen == true) {
             if (Input.GetButtonDown("Fire1"))
             {
-                Debug.Log("PointerDown");
                 if ((inventory.highlightedSlot != null) && (inventory.highlightedSlot.hotBarPointers != 999))
                 {
                     newSelected(inventory.highlightedSlot);
@@ -61,7 +69,6 @@ public class SelectedItem : MonoBehaviour
             }
             else if (Input.GetButtonUp("Fire1"))
             {
-                Debug.Log("PointerUp");
                 if ((inventory.highlightedSlot != null) && (tempSlotPointers != 999))
                 {
                     swapSlots(inventory.highlightedSlot);

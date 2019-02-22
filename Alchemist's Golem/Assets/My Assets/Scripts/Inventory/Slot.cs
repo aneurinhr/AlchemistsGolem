@@ -29,8 +29,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void newValues(int newPointer, int newQuant)
     {
-        Debug.Log("Got to newValues(): " + gameObject.name);
-
         hotBarPointers = newPointer;
         hotBarQuant = newQuant;
     }
@@ -39,20 +37,14 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         HighlightDisplay.SetActive(true);
 
-        if (inventSlot == true)
-        {
-            GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = this;
-        }
+        GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = this;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         HighlightDisplay.SetActive(false);
 
-        if (inventSlot == true)
-        {
-            GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = null;
-        }
+        GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = null;
     }
 
 }

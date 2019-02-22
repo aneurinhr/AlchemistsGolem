@@ -26,10 +26,12 @@ public class Inventory : MonoBehaviour
 
     public float delay = 0.3f;
     private bool scroll = true;
+    public bool canChange = true;
 
     private void Start()
     {
         UpdateInventory();
+        highlightedSlot = null;
     }
 
     public void AddItem(int item, int quant)
@@ -229,34 +231,48 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if ((Input.GetButtonDown("Inventory")) && (canChange == true))
         {
             inventoryOpen = !inventoryOpen;
 
             if (inventoryOpen == true)
             {
-                for (int i = 0; i < hotbarSlots.Length; i++)
-                {
-                    hotbarSlots[i].HighlightDisplay.SetActive(false);
-                }
-
-                playerMovement.pauseMovement = true;
-                inventoryUI.SetActive(true);
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-
-                player.selectedItem = null;
+                uiON();
             }
             else
             {
-                playerMovement.pauseMovement = false;
-                inventoryUI.SetActive(false);
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                uiOFF();
             }
         }
 
         Scroll();
+    }
+
+    public void uiON()
+    {
+        inventoryOpen = true;
+
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            hotbarSlots[i].HighlightDisplay.SetActive(false);
+        }
+
+        playerMovement.pauseMovement = true;
+        inventoryUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        player.selectedItem = null;
+    }
+
+    public void uiOFF()
+    {
+        inventoryOpen = false;
+
+        playerMovement.pauseMovement = false;
+        inventoryUI.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Scroll()

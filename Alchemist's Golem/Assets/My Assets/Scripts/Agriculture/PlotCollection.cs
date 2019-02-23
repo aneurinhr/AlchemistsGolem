@@ -18,22 +18,24 @@ public class PlotCollection : MonoBehaviour
 
     public void NaturalPlotIncrease()
     {
-        for (int i = 0; i < map.Length; i++)
+        //Check for each plot in the map
+        for (int i = 0; i < map.Length; i++)//row
         {
-            for (int j = 0; j < map[i].mapCol.Length; j++)
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
             {
                 //For each nutrient
                 for (int k = 0; k < NutrientIncrease.Length; k++)
                 {
-                    if (map[i].mapCol[j].QuantNutrients[k] <= NutrientMax[k])
+                    if (map[i].mapCol[j].QuantNutrients[k] <= NutrientMax[k])//if not greater than of equal to max limit
                     {
-                        map[i].mapCol[j].ChangeNutrients(k, NutrientIncrease[k]);
+                        map[i].mapCol[j].ChangeNutrients(k, NutrientIncrease[k]);//increase
                     }
                 }
 
-                if (map[i].mapCol[j].WaterContent <= WaterMax)
+                //water
+                if (map[i].mapCol[j].WaterContent <= WaterMax)//if not greater than of equal to max limit
                 {
-                    map[i].mapCol[j].ChangeWaterContent(WaterIncrease);
+                    map[i].mapCol[j].ChangeWaterContent(WaterIncrease);//increase
                 }
             }
         }
@@ -41,13 +43,13 @@ public class PlotCollection : MonoBehaviour
 
     public void PlotDiffuse()
     {
-        for (int i = 0; i < map.Length; i++)
+        for (int i = 0; i < map.Length; i++)//Row
         {
-            for (int j = 0; j < map[i].mapCol.Length; j++)//Each plot should only take.  Start from highest
+            for (int j = 0; j < map[i].mapCol.Length; j++)//Col
             {
                 WaterDiffuse(i, j);
 
-                for (int val = 0; val < map[i].mapCol[j].QuantNutrients.Length; val++)
+                for (int val = 0; val < map[i].mapCol[j].QuantNutrients.Length; val++)//Nutrient diffuse for each nutrient
                 {
                     NutrientDiffuse(i, j, val);
                 }

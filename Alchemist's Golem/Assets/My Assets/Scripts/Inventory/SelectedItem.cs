@@ -75,6 +75,12 @@ public class SelectedItem : MonoBehaviour
                     tempSlotPointers = 999;
                     tempSlotQuant = 0;
                 }
+                else
+                {
+                    tempSlotPointers = 999;
+                    tempSlotQuant = 0;
+                    dragImage.enabled = false;
+                }
             }
         }
     }

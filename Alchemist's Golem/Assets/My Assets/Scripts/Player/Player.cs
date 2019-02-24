@@ -15,12 +15,15 @@ public class Player : MonoBehaviour
     public Item selectedItem = null;
     public bool pause = false;
 
+    public AudioSource interact;
+
     public void UseItemOnPlot()
     {
         if (selectedItem.usable == true)
         {
             selectedItem.UseItemOnPlot(highlightedPlot);
             inventory.UsedSelectedItem();
+            interact.Play();
         }
     }
 
@@ -35,10 +38,11 @@ public class Player : MonoBehaviour
         else
         {
             highlightedPlot.NoCrop();
+            interact.Play();
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         //if (Input.GetKeyDown("space"))
         //{
@@ -73,9 +77,10 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            GameObject lookingAt = hit.collider.gameObject;
+            Debug.DrawRay(ray.origin, ray.direction* maxLookDistance, Color.blue);
 
-            if ((lookingAt.GetComponent<Storage>()) && (hit.distance <= maxLookDistance))
+            GameObject lookingAt = hit.collider.gameObject;
+            if ((lookingAt.tag == "Chest") && (hit.distance <= maxLookDistance))
             {
                 lookingAt.GetComponent<Storage>().BeingLookedAt();
             }

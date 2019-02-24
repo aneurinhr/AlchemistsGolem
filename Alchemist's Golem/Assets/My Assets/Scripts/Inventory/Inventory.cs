@@ -28,6 +28,9 @@ public class Inventory : MonoBehaviour
     private bool scroll = true;
     public bool canChange = true;
 
+    public AudioSource scrollInteraction;
+    public AudioSource openClose;
+
     private void Start()
     {
         UpdateInventory();
@@ -243,6 +246,8 @@ public class Inventory : MonoBehaviour
             {
                 uiOFF();
             }
+
+            openClose.Play();
         }
 
         Scroll();
@@ -305,6 +310,8 @@ public class Inventory : MonoBehaviour
                             hotbarSlots[i].HighlightDisplay.SetActive(false);
                         }
                     }
+
+                    scrollInteraction.Play();
                 }
                 else if (scrollWheel < 0f)
                 {
@@ -328,6 +335,8 @@ public class Inventory : MonoBehaviour
                             hotbarSlots[i].HighlightDisplay.SetActive(false);
                         }
                     }
+
+                    scrollInteraction.Play();
                 }
             }
         }

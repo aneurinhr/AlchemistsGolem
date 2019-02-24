@@ -18,6 +18,8 @@ public class SelectedItem : MonoBehaviour
     public Camera myCamera;
     public Canvas myCanvas;
 
+    public AudioSource interaction;
+
     private void Start()
     {
         dragImage = gameObject.GetComponent<Image>();
@@ -65,6 +67,8 @@ public class SelectedItem : MonoBehaviour
                 if ((inventory.highlightedSlot != null) && (inventory.highlightedSlot.hotBarPointers != 999))
                 {
                     newSelected(inventory.highlightedSlot);
+
+                    interaction.Play();
                 }
             }
             else if (Input.GetButtonUp("Fire1"))
@@ -74,6 +78,8 @@ public class SelectedItem : MonoBehaviour
                     swapSlots(inventory.highlightedSlot);
                     tempSlotPointers = 999;
                     tempSlotQuant = 0;
+
+                    interaction.Play();
                 }
                 else
                 {

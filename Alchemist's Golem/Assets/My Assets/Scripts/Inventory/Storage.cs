@@ -15,6 +15,8 @@ public class Storage : MonoBehaviour
     public ItemDatabase database;
     public Inventory inventory;
 
+    public AudioSource openChest;
+
     private void Start()
     {
         UpdateStorage();
@@ -29,7 +31,6 @@ public class Storage : MonoBehaviour
     private void Update()
     {
         highlight.SetActive(false);
-        beingLookedAt = false;
     }
 
     private void LateUpdate()
@@ -43,6 +44,7 @@ public class Storage : MonoBehaviour
                 storageUI.SetActive(true);
                 inventory.uiON();
                 inventory.canChange = false;
+                openChest.Play();
             }
             else if (storageOpen == true)
             {
@@ -51,8 +53,11 @@ public class Storage : MonoBehaviour
                 storageUI.SetActive(false);
                 inventory.uiOFF();
                 inventory.canChange = true;
+                openChest.Play();
             }
         }
+
+        beingLookedAt = false;
     }
 
     public void UpdateStorage()

@@ -6,7 +6,7 @@ public class CameraBillboard : MonoBehaviour
 {
     public Camera camera;
 
-    private void LateUpdate()
+    private void Update()
     {
         transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
     }

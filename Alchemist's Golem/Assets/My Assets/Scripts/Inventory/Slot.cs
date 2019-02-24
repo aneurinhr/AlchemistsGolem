@@ -33,6 +33,11 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         hotBarQuant = newQuant;
     }
 
+    private void OnDisable()
+    {
+        HighlightDisplay.SetActive(false);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         HighlightDisplay.SetActive(true);

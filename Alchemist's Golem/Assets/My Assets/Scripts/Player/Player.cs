@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
         {
             selectedItem.UseItemOnPlot(highlightedPlot);
             inventory.UsedSelectedItem();
-            interact.Play();
         }
     }
 

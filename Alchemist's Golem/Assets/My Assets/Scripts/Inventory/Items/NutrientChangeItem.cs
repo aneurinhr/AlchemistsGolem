@@ -6,9 +6,11 @@ public class NutrientChangeItem : Item
 {
     public int nutrient = 100;
     public int nutrientChange = 0;
+    public AudioSource useSound;
 
     public override void UseItemOnPlot(Plot plot)
     {
         plot.ChangeNutrients(nutrient, nutrientChange);
+        useSound.Play();
     }
 }

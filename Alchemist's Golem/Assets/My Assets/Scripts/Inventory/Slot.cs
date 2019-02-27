@@ -19,6 +19,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Text hotBarQuantDisplay;
 
     public bool inventSlot = true;
+    public bool hoveredOver = false;
 
     private Button p_meButton;
 
@@ -31,6 +32,12 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         hotBarPointers = newPointer;
         hotBarQuant = newQuant;
+
+        Additional();
+    }
+
+    public virtual void Additional()
+    {
     }
 
     private void OnDisable()
@@ -43,6 +50,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         HighlightDisplay.SetActive(true);
 
         GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = this;
+        hoveredOver = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -50,6 +58,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         HighlightDisplay.SetActive(false);
 
         GameObject.FindGameObjectWithTag(inventoryTag).GetComponent<Inventory>().highlightedSlot = null;
+        hoveredOver = false;
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class Inventory : MonoBehaviour
 
     public AudioSource scrollInteraction;
     public AudioSource openClose;
+
+    public EventSystem m_EventSystem;
 
     private void Start()
     {
@@ -268,6 +271,9 @@ public class Inventory : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         player.selectedItem = null;
+
+        GameObject temp = hotbarSlots[0].gameObject;
+        m_EventSystem.SetSelectedGameObject(temp);
     }
 
     public void uiOFF()

@@ -13,6 +13,11 @@ public class Shop : MonoBehaviour
 
     public bool open = false;
 
+    private void Start()
+    {
+        shop.SetActive(false);//needs to be on in editor to generate buttons correctly
+    }
+
     public void BeingLookedAt()
     {
         highlight.SetActive(true);

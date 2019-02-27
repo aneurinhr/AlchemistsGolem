@@ -13,10 +13,20 @@ public class Bank : MonoBehaviour
         display.text = money.ToString();
     }
 
-    public void ChangeMoney(int change)
+    public bool ChangeMoney(int change)
     {
-        money = money + change;
-        display.text = money.ToString();
+        int temp = money + change;
+
+        if (temp < 0)
+        {
+            return false;
+        }
+        else
+        {
+            money = temp;
+            display.text = money.ToString();
+            return true;
+        }
     }
 
 }

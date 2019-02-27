@@ -3150,6 +3150,7 @@ MonoBehaviour:
   sellPrice: {fileID: 882079417}
   database: {fileID: 434423576}
   bank: {fileID: 216543831}
+  sell: {fileID: 0}
 --- !u!114 &104819316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20674,6 +20675,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1204528458}
+  - {fileID: 755416975}
   - {fileID: 2139829265}
   m_Father: {fileID: 169423214}
   m_RootOrder: 0
@@ -20707,15 +20709,15 @@ RectTransform:
   m_GameObject: {fileID: 755416974}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.010000007}
+  m_LocalScale: {x: 0.01000001, y: 0.01, z: 0.010000011}
   m_Children:
   - {fileID: 958352391}
-  m_Father: {fileID: 2139829265}
-  m_RootOrder: 0
+  m_Father: {fileID: 755142468}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_AnchoredPosition: {x: 10, y: 2.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755416976
@@ -32985,7 +32987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1204528458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63385,7 +63387,7 @@ GameObject:
   - component: {fileID: 2139829269}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Shop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63400,10 +63402,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2}
-  m_Children:
-  - {fileID: 755416975}
+  m_Children: []
   m_Father: {fileID: 755142468}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2139829266
 CapsuleCollider:
@@ -63476,6 +63477,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6110fbc58f8f7439aa1ba8c251338e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beingLookedAt: 0
+  openShop: {fileID: 0}
+  inventory: {fileID: 280113198}
+  highlight: {fileID: 958352390}
+  shop: {fileID: 1204528457}
+  open: 0
 --- !u!1 &2140902172
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ TagManager:
   - Crop
   - Inventory
   - Chest
+  - Shop
   layers:
   - Default
   - TransparentFX

@@ -4,15 +4,48 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool beingLookedAt = false;
+    public AudioSource openShop;
+
+    public Inventory inventory;
+    public GameObject highlight;
+    public GameObject shop;
+
+    public bool open = false;
+
+    public void BeingLookedAt()
     {
-        
+        highlight.SetActive(true);
+        beingLookedAt = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        highlight.SetActive(false);
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            if ((inventory.inventoryOpen == false) && (open == false) && (beingLookedAt == true))
+            {
+                open = true;
+                shop.SetActive(true);
+                inventory.uiON();
+                inventory.canChange = false;
+                //openShop.Play();
+            }
+            else if (open == true)
+            {
+                open = false;
+                shop.SetActive(false);
+                inventory.uiOFF();
+                inventory.canChange = true;
+                //openShop.Play();
+            }
+        }
+
+        beingLookedAt = false;
     }
 }

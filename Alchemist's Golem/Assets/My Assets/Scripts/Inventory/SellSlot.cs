@@ -11,6 +11,7 @@ public class SellSlot : Slot
     public Text sellPrice;
     public ItemDatabase database;
     public Bank bank;
+    public AudioSource sell;
 
     private bool hovered = false;
 
@@ -18,6 +19,7 @@ public class SellSlot : Slot
     {
         int temp = selected.tempSlotPointers;
         int price = database.GetItem(temp).sellPrice;
+        price = price * selected.tempSlotQuant;
 
         //Add price from money
         bank.ChangeMoney(price);
@@ -25,6 +27,8 @@ public class SellSlot : Slot
         //Reset
         hotBarPointers = 999;//999 mean no item
         hotBarQuant = 0;//max stack 99
+
+        //sell.Play();
     }
 
     private void Update()
@@ -38,6 +42,8 @@ public class SellSlot : Slot
                 if (temp != 999)
                 {
                     int price = database.GetItem(temp).sellPrice;
+                    price = price * selected.tempSlotQuant;
+
                     sellPrice.text = price.ToString();
                 }
             }

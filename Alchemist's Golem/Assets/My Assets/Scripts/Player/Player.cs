@@ -79,9 +79,15 @@ public class Player : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction* maxLookDistance, Color.blue);
 
             GameObject lookingAt = hit.collider.gameObject;
-            if ((lookingAt.tag == "Chest") && (hit.distance <= maxLookDistance))
-            {
-                lookingAt.GetComponent<Storage>().BeingLookedAt();
+            if (hit.distance <= maxLookDistance) {
+                if (lookingAt.tag == "Chest")
+                {
+                    lookingAt.GetComponent<Storage>().BeingLookedAt();
+                }
+                else if (lookingAt.tag == "Shop")
+                {
+                    lookingAt.GetComponent<Shop>().BeingLookedAt();
+                }
             }
 
             if (highlightedPlot != null)

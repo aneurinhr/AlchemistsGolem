@@ -13,6 +13,8 @@ public class BuyItem : MonoBehaviour
     public int itemPointer;
     public int price;
 
+    public AudioSource buySound;
+
     public void Setup(Sprite image, string text, int item, int value)
     {
         myImage.sprite = image;
@@ -28,6 +30,7 @@ public class BuyItem : MonoBehaviour
         if (worked == true)
         {
             invent.AddItem(itemPointer, 1);
+            buySound.Play();
         }
     }
 }

@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
                 shop.SetActive(true);
                 inventory.uiON();
                 inventory.canChange = false;
-                //openShop.Play();
+                openShop.Play();
             }
             else if (open == true)
             {
@@ -47,7 +47,7 @@ public class Shop : MonoBehaviour
                 shop.SetActive(false);
                 inventory.uiOFF();
                 inventory.canChange = true;
-                //openShop.Play();
+                openShop.Play();
             }
         }
 

@@ -28,7 +28,7 @@ public class SellSlot : Slot
         hotBarPointers = 999;//999 mean no item
         hotBarQuant = 0;//max stack 99
 
-        //sell.Play();
+        sell.Play();
     }
 
     private void Update()

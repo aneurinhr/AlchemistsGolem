@@ -34,6 +34,14 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(dir * collisionRepel, ForceMode.Force);
     }
 
+    private void OnCollisionStay(Collision c)
+    {
+        Vector3 dir = c.contacts[0].point - transform.position;
+        dir = -dir.normalized;
+        rb.AddForce(dir * collisionRepel, ForceMode.Impulse);
+        rb.AddForce(dir * collisionRepel, ForceMode.Force);
+    }
+
     void Update()
     {
         if (pauseMovement == false)

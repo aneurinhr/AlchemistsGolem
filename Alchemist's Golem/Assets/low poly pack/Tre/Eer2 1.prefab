@@ -194,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4957266641142480}
+  - component: {fileID: 176915778524878110}
   m_Layer: 0
   m_Name: Eer2 1
   m_TagString: Untagged
@@ -219,6 +220,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &176915778524878110
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436394933191354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.32
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 6.35, y: 2, z: -3.87}
 --- !u!1 &1646232996334754
 GameObject:
   m_ObjectHideFlags: 0

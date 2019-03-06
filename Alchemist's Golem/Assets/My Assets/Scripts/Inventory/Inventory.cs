@@ -145,7 +145,7 @@ public class Inventory : MonoBehaviour
             //Inventory
         }
 
-        UsedSelectedItem();
+        UpdateInventory();
     }
 
     public void UsedSelectedItem()

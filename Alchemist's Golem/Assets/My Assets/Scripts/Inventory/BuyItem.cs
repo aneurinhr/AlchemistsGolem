@@ -7,6 +7,7 @@ public class BuyItem : MonoBehaviour
 {
     public Image myImage;
     public Text myText;
+    public Text myCost;
 
     public Inventory invent;
     public Bank bank;
@@ -21,6 +22,7 @@ public class BuyItem : MonoBehaviour
         myText.text = text;
         itemPointer = item;
         price = value;
+        myCost.text = price.ToString();
     }
 
     public void BuyItemOnPress()

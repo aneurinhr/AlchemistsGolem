@@ -21,8 +21,9 @@ public class Player : MonoBehaviour
     {
         if (selectedItem.usable == true)
         {
-            selectedItem.UseItemOnPlot(highlightedPlot);
-            inventory.UsedSelectedItem();
+            bool used = selectedItem.UseItemOnPlot(highlightedPlot);
+
+            if (used == true) { inventory.UsedSelectedItem(); }
         }
     }
 

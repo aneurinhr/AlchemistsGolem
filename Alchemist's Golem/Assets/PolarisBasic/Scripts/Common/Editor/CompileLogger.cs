@@ -38,7 +38,7 @@ namespace Pinwheel.PolarisBasic
                     .Replace(PACKAGE_NAME_PLACEHOLDER, VersionInfo.ProductNameAndVersion)
                     .Replace(WEBSITE_PLACEHOLDER, WEBSITE)
                     .Replace(LINK_COLOR_PLACEHOLDER, LINK_COLOR);
-                Debug.Log(msg);
+                //Debug.Log(msg);
             }
         }
 

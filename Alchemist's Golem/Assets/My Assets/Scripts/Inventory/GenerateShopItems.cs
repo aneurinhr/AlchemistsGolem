@@ -23,10 +23,10 @@ public class GenerateShopItems : MonoBehaviour
             if (temp.usable == true)//if true it is also a buyable item
             {
                 float y = startY - (yDif * numUsable);
-                Vector3 newPosition = parent.transform.position + new Vector3(0, y, 0);
+                Vector3 newPosition = new Vector3(0, y, 0);
 
                 GameObject shopItem = Instantiate(itemTemplate, newPosition, parent.transform.rotation);
-                shopItem.transform.SetParent(parent.transform);
+                shopItem.transform.SetParent(parent.transform, false);
                 shopItem.GetComponent<BuyItem>().Setup(temp.itemImage, temp.description, i, temp.PurchasePrice);
 
                 shopItem.SetActive(true);

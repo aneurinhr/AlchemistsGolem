@@ -7,9 +7,16 @@ public class WaterChangeItem : Item
     public int waterChange = 0;
     public AudioSource useSound;
 
-    public override void UseItemOnPlot(Plot plot)
+    public override bool UseItemOnPlot(Plot plot)
     {
-        plot.ChangeWaterContent(waterChange);
-        useSound.Play();
+        int waterContent = plot.WaterContent;
+
+        if (waterContent < 10)
+        {
+            plot.ChangeWaterContent(waterChange);
+            useSound.Play();
+            return true;
+        }
+        return false;
     }
 }

@@ -17,6 +17,8 @@ public class Storage : MonoBehaviour
 
     public AudioSource openChest;
 
+    public bool canChange = true;
+
     private void Start()
     {
         UpdateStorage();
@@ -37,7 +39,7 @@ public class Storage : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if ((inventory.inventoryOpen == false) && (storageOpen == false) && (beingLookedAt == true))
+            if ((canChange == true) && (inventory.inventoryOpen == false) && (storageOpen == false) && (beingLookedAt == true))
             {
                 //Open invent and storage
                 storageOpen = true;
@@ -49,15 +51,21 @@ public class Storage : MonoBehaviour
             else if (storageOpen == true)
             {
                 //Close invent and storage
-                storageOpen = false;
-                storageUI.SetActive(false);
+                StorageOff();
                 inventory.uiOFF();
-                inventory.canChange = true;
                 openChest.Play();
             }
         }
 
         beingLookedAt = false;
+    }
+
+    public void StorageOff()
+    {
+        //Close invent and storage
+        storageOpen = false;
+        storageUI.SetActive(false);
+        inventory.canChange = true;
     }
 
     public void UpdateStorage()

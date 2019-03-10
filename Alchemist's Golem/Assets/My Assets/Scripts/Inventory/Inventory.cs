@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
     public Player player;
 
     public float delay = 0.3f;
-    private bool scroll = true;
+    public bool scroll = true;
     public bool canChange = true;
 
     public AudioSource scrollInteraction;

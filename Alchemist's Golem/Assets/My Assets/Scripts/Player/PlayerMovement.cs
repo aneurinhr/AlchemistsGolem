@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraCenter;
     public bool pauseMovement = false;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     private void Start()
     {

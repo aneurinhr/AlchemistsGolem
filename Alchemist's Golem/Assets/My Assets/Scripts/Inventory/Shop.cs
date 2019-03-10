@@ -12,6 +12,7 @@ public class Shop : MonoBehaviour
     public GameObject shop;
 
     public bool open = false;
+    public bool canChange = true;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class Shop : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if ((inventory.inventoryOpen == false) && (open == false) && (beingLookedAt == true))
+            if ((canChange == true) && (inventory.inventoryOpen == false) && (open == false) && (beingLookedAt == true))
             {
                 open = true;
                 shop.SetActive(true);
@@ -43,14 +44,19 @@ public class Shop : MonoBehaviour
             }
             else if (open == true)
             {
-                open = false;
-                shop.SetActive(false);
+                ShopOff();
                 inventory.uiOFF();
-                inventory.canChange = true;
                 openShop.Play();
             }
         }
 
         beingLookedAt = false;
+    }
+
+    public void ShopOff()
+    {
+        open = false;
+        shop.SetActive(false);
+        inventory.canChange = true;
     }
 }

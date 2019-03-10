@@ -8,6 +8,7 @@ TagManager:
   - Inventory
   - Chest
   - Shop
+  - Charging
   layers:
   - Default
   - TransparentFX

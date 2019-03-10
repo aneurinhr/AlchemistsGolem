@@ -89,6 +89,10 @@ public class Player : MonoBehaviour
                 {
                     lookingAt.GetComponent<Shop>().BeingLookedAt();
                 }
+                else if (lookingAt.tag == "Charging")
+                {
+                    lookingAt.GetComponent<TickAll>().BeingLookedAt();
+                }
             }
 
             if (highlightedPlot != null)

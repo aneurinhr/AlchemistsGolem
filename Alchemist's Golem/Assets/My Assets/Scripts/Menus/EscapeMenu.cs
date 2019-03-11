@@ -15,6 +15,8 @@ public class EscapeMenu : MonoBehaviour
     public Storage storage;
     public Shop shop;
 
+    public Options options;
+
     public PlayerMovement rb;
 
     public void ToggleOn()
@@ -50,6 +52,8 @@ public class EscapeMenu : MonoBehaviour
 
         EscapeMenuUI.SetActive(false);
         UIon = false;
+
+        options.ToggleOff();
     }
 
     void Update()

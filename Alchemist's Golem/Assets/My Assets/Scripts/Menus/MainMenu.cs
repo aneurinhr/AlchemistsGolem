@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public Inventory invent;
     public EscapeMenu escapeMenu;
+    public TickAll dayChange;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         escapeMenu.prevent = true;
+        dayChange.pauseTimer = true;
     }
 
     public void ToggleOff()
@@ -60,6 +62,7 @@ public class MainMenu : MonoBehaviour
         escapeMenu.prevent = false;
 
         invent.canChange = true;
+        dayChange.pauseTimer = false;
     }
 
     public void ExitGame()

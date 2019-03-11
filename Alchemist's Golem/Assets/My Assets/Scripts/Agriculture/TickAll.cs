@@ -21,6 +21,19 @@ public class TickAll : MonoBehaviour
 
     public PlayerMovement player;
 
+    public Image battery;
+    public float timeLimit = 300.0f;
+    public float currentTime = 1.0f;
+    public bool pauseTimer = true;
+    public bool punish = false;
+    public float punishmentVal = 0.3f;
+
+    private void Start()
+    {
+        currentTime = 1.0f;
+        pauseTimer = true;
+    }
+
     public void BeingLookedAt()
     {
         highlight.SetActive(true);
@@ -48,12 +61,12 @@ public class TickAll : MonoBehaviour
 
             alpha = fadeTo.color.a;
 
-            Debug.Log(alpha);
-
             if (alpha <= 0.0f)//Faded Out
             {
                 fade = false;
                 player.pauseMovement = false;
+
+                pauseTimer = false;
             }
             else if (alpha >= 1.0f)//Faded In
             {
@@ -65,6 +78,14 @@ public class TickAll : MonoBehaviour
                     TickForAll();
                     UpdatePlots();
                     ticked = true;
+
+                    currentTime = 1.0f;
+                    if (punish == true)
+                    {
+                        currentTime = currentTime - punishmentVal;
+                        punish = false;
+                    }
+                    battery.fillAmount = currentTime;
                 }
 
                 StartCoroutine(FadeAway());
@@ -74,15 +95,33 @@ public class TickAll : MonoBehaviour
 
     IEnumerator FadeAway()
     {
-        print("Hey");
         yield return new WaitForSecondsRealtime(0.3f);
-        print("fade");
         fade = true;
     }
 
     private void Update()
     {
         Fade();
+
+        if (pauseTimer == false)
+        {
+            currentTime = currentTime - ((1.0f / timeLimit) * Time.deltaTime);
+            battery.fillAmount = currentTime;
+        }
+
+        if (currentTime <= 0.0f)
+        {
+            LatePunishment();
+        }
+    }
+
+    public void LatePunishment()
+    {
+        unfade = true;
+        player.pauseMovement = true;
+        ticked = false;
+        pauseTimer = true;
+        punish = true;
     }
 
     private void LateUpdate()
@@ -93,6 +132,8 @@ public class TickAll : MonoBehaviour
             unfade = true;
             player.pauseMovement = true;
             ticked = false;
+            pauseTimer = true;
+            punish = false;
         }
 
         highlight.SetActive(false);

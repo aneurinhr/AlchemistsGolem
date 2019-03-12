@@ -67,6 +67,7 @@ public class TickAll : MonoBehaviour
                 player.pauseMovement = false;
 
                 pauseTimer = false;
+                f = 0.0f;
             }
             else if (alpha >= 1.0f)//Faded In
             {
@@ -109,7 +110,7 @@ public class TickAll : MonoBehaviour
             battery.fillAmount = currentTime;
         }
 
-        if (currentTime <= 0.0f)
+        if (currentTime < 0.0f)
         {
             LatePunishment();
         }

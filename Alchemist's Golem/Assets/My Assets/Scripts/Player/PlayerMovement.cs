@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(pauseMovement);
         if (pauseMovement == false)
         {
             float x = 0;

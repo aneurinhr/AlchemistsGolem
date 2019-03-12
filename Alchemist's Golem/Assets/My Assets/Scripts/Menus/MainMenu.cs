@@ -42,8 +42,8 @@ public class MainMenu : MonoBehaviour
         MainMenuUI.SetActive(true);
         invent.scroll = false;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         escapeMenu.prevent = true;
         dayChange.pauseTimer = true;
     }

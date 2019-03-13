@@ -11,9 +11,10 @@ public class Item : MonoBehaviour
     public int PurchasePrice = 0;
     public int sellPrice = 0;
 
-    public virtual void UseItemOnPlot(Plot plot)
+    public virtual bool UseItemOnPlot(Plot plot)
     {
         Debug.Log("Not meant to be here");
+        return false;
     }
 
 }

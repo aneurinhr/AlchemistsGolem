@@ -15,6 +15,10 @@ public class Storage : MonoBehaviour
     public ItemDatabase database;
     public Inventory inventory;
 
+    public AudioSource openChest;
+
+    public bool canChange = true;
+
     private void Start()
     {
         UpdateStorage();
@@ -29,30 +33,39 @@ public class Storage : MonoBehaviour
     private void Update()
     {
         highlight.SetActive(false);
-        beingLookedAt = false;
     }
 
     private void LateUpdate()
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if ((inventory.inventoryOpen == false) && (storageOpen == false) && (beingLookedAt == true))
+            if ((canChange == true) && (inventory.inventoryOpen == false) && (storageOpen == false) && (beingLookedAt == true))
             {
                 //Open invent and storage
                 storageOpen = true;
                 storageUI.SetActive(true);
                 inventory.uiON();
                 inventory.canChange = false;
+                openChest.Play();
             }
             else if (storageOpen == true)
             {
                 //Close invent and storage
-                storageOpen = false;
-                storageUI.SetActive(false);
+                StorageOff();
                 inventory.uiOFF();
-                inventory.canChange = true;
+                openChest.Play();
             }
         }
+
+        beingLookedAt = false;
+    }
+
+    public void StorageOff()
+    {
+        //Close invent and storage
+        storageOpen = false;
+        storageUI.SetActive(false);
+        inventory.canChange = true;
     }
 
     public void UpdateStorage()

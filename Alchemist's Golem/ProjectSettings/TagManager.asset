@@ -7,6 +7,8 @@ TagManager:
   - Crop
   - Inventory
   - Chest
+  - Shop
+  - Charging
   layers:
   - Default
   - TransparentFX

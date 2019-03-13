@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -25,8 +26,13 @@ public class Inventory : MonoBehaviour
     public Player player;
 
     public float delay = 0.3f;
-    private bool scroll = true;
+    public bool scroll = true;
     public bool canChange = true;
+
+    public AudioSource scrollInteraction;
+    public AudioSource openClose;
+
+    public EventSystem m_EventSystem;
 
     private void Start()
     {
@@ -139,7 +145,7 @@ public class Inventory : MonoBehaviour
             //Inventory
         }
 
-        UsedSelectedItem();
+        UpdateInventory();
     }
 
     public void UsedSelectedItem()
@@ -243,6 +249,8 @@ public class Inventory : MonoBehaviour
             {
                 uiOFF();
             }
+
+            openClose.Play();
         }
 
         Scroll();
@@ -263,6 +271,9 @@ public class Inventory : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         player.selectedItem = null;
+
+        GameObject temp = hotbarSlots[0].gameObject;
+        m_EventSystem.SetSelectedGameObject(temp);
     }
 
     public void uiOFF()
@@ -305,6 +316,8 @@ public class Inventory : MonoBehaviour
                             hotbarSlots[i].HighlightDisplay.SetActive(false);
                         }
                     }
+
+                    scrollInteraction.Play();
                 }
                 else if (scrollWheel < 0f)
                 {
@@ -328,6 +341,8 @@ public class Inventory : MonoBehaviour
                             hotbarSlots[i].HighlightDisplay.SetActive(false);
                         }
                     }
+
+                    scrollInteraction.Play();
                 }
             }
         }

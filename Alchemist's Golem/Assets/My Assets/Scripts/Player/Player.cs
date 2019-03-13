@@ -15,12 +15,15 @@ public class Player : MonoBehaviour
     public Item selectedItem = null;
     public bool pause = false;
 
+    public AudioSource interact;
+
     public void UseItemOnPlot()
     {
         if (selectedItem.usable == true)
         {
-            selectedItem.UseItemOnPlot(highlightedPlot);
-            inventory.UsedSelectedItem();
+            bool used = selectedItem.UseItemOnPlot(highlightedPlot);
+
+            if (used == true) { inventory.UsedSelectedItem(); }
         }
     }
 
@@ -35,10 +38,11 @@ public class Player : MonoBehaviour
         else
         {
             highlightedPlot.NoCrop();
+            interact.Play();
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         //if (Input.GetKeyDown("space"))
         //{
@@ -73,11 +77,22 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            GameObject lookingAt = hit.collider.gameObject;
+            Debug.DrawRay(ray.origin, ray.direction* maxLookDistance, Color.blue);
 
-            if ((lookingAt.GetComponent<Storage>()) && (hit.distance <= maxLookDistance))
-            {
-                lookingAt.GetComponent<Storage>().BeingLookedAt();
+            GameObject lookingAt = hit.collider.gameObject;
+            if (hit.distance <= maxLookDistance) {
+                if (lookingAt.tag == "Chest")
+                {
+                    lookingAt.GetComponent<Storage>().BeingLookedAt();
+                }
+                else if (lookingAt.tag == "Shop")
+                {
+                    lookingAt.GetComponent<Shop>().BeingLookedAt();
+                }
+                else if (lookingAt.tag == "Charging")
+                {
+                    lookingAt.GetComponent<TickAll>().BeingLookedAt();
+                }
             }
 
             if (highlightedPlot != null)

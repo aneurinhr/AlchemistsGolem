@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
     public float sprintSpeed = 20.0f;
+    public float collisionRepel = 10.0f;
 
     public float floatHeight = 2.0f;
     public float floatStrenght = 30.0f;
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cameraCenter;
     public bool pauseMovement = false;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     private void Start()
     {
@@ -25,8 +26,25 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void OnCollisionEnter(Collision c)
+    {
+        Vector3 dir = c.contacts[0].point - transform.position;
+        dir = -dir.normalized;
+        rb.AddForce(dir * collisionRepel, ForceMode.Impulse);
+        rb.AddForce(dir * collisionRepel, ForceMode.Force);
+    }
+
+    private void OnCollisionStay(Collision c)
+    {
+        Vector3 dir = c.contacts[0].point - transform.position;
+        dir = -dir.normalized;
+        rb.AddForce(dir * collisionRepel, ForceMode.Impulse);
+        rb.AddForce(dir * collisionRepel, ForceMode.Force);
+    }
+
     void Update()
     {
+        Debug.Log(pauseMovement);
         if (pauseMovement == false)
         {
             float x = 0;

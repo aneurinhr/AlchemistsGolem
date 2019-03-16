@@ -15,4 +15,15 @@ public class ItemDatabase : MonoBehaviour
 
         return null;
     }
+
+    public void UpdateFluctiatingPrices()
+    {
+        for (int i = 0; i < itemlist.Length; i++)
+        {
+            if (itemlist[i].usable == false)
+            {
+                itemlist[i].GetComponent<fluctuatingPriceItem>().TickPriceChange();
+            }
+        }
+    }
 }

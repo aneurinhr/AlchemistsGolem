@@ -13,6 +13,9 @@ public class SellSlot : Slot
     public Bank bank;
     public AudioSource sell;
 
+    public Text fluctPercentage;
+    public GameObject[] fluctSymbol;//1 = same
+
     private bool hovered = false;
 
     public override void Additional()
@@ -20,6 +23,11 @@ public class SellSlot : Slot
         int temp = selected.tempSlotPointers;
         int price = database.GetItem(temp).sellPrice;
         price = price * selected.tempSlotQuant;
+
+        if (database.GetItem(temp).usable == false)
+        {
+            database.GetItem(temp).GetComponent<fluctuatingPriceItem>().FluctuatePrice(selected.tempSlotQuant);
+        }
 
         //Add price from money
         bank.ChangeMoney(price);
@@ -41,6 +49,35 @@ public class SellSlot : Slot
 
                 if (temp != 999)
                 {
+                    int fluctSymbolPointer = 1;
+
+                    if (database.GetItem(temp).GetComponent<fluctuatingPriceItem>())
+                    {
+                        fluctuatingPriceItem tempItem = database.GetItem(temp).GetComponent<fluctuatingPriceItem>();
+                        int percentage = tempItem.currentPercentagePrice;
+                        fluctPercentage.text = percentage.ToString();
+
+                        fluctSymbolPointer = tempItem.state;
+
+                    }
+                    else
+                    {
+                        int defaultText = 100;
+                        fluctPercentage.text = defaultText.ToString();
+                    }
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (i == fluctSymbolPointer)
+                        {
+                            fluctSymbol[i].SetActive(true);
+                        }
+                        else
+                        {
+                            fluctSymbol[i].SetActive(false);
+                        }
+                    }
+
                     int price = database.GetItem(temp).sellPrice;
                     price = price * selected.tempSlotQuant;
 
@@ -54,6 +91,22 @@ public class SellSlot : Slot
         {
             sellPrice.text = "0";
             hovered = false;
+
+            int fluctSymbolPointer = 1;
+            int defaultText = 100;
+            fluctPercentage.text = defaultText.ToString();
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == fluctSymbolPointer)
+                {
+                    fluctSymbol[i].SetActive(true);
+                }
+                else
+                {
+                    fluctSymbol[i].SetActive(false);
+                }
+            }
         }
     }
 }

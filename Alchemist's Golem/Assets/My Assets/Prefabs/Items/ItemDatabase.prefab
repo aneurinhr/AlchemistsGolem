@@ -9,7 +9,7 @@ AudioSource:
   m_GameObject: {fileID: 5644662955239652967}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 083ac23a69026054582a366f1e4c2cc6,
+  OutputAudioMixerGroup: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: aa5a0f13020f1fd45830eeb7a6a2f816, type: 3}
   m_PlayOnAwake: 0
@@ -106,7 +106,7 @@ AudioSource:
   m_GameObject: {fileID: 5644662955360484231}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 083ac23a69026054582a366f1e4c2cc6,
+  OutputAudioMixerGroup: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c86e449b70915904daa0b29ef1093c8b, type: 3}
   m_PlayOnAwake: 0
@@ -203,7 +203,7 @@ AudioSource:
   m_GameObject: {fileID: 5644662955664077952}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 083ac23a69026054582a366f1e4c2cc6,
+  OutputAudioMixerGroup: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 45f452cd1a0f14940956ae1c2461ecdd, type: 3}
   m_PlayOnAwake: 0
@@ -300,8 +300,7 @@ AudioSource:
   m_GameObject: {fileID: 5644662955916486418}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 083ac23a69026054582a366f1e4c2cc6,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9ca6779b9be4a154298b35fa8e2edc30, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -449,11 +448,11 @@ MonoBehaviour:
   - {fileID: 5644662955360484229}
   - {fileID: 5644662955664077958}
   - {fileID: 6580073967357784397}
-  - {fileID: 1929443404798610951}
+  - {fileID: 4865149232298041532}
   - {fileID: 4599617268753377865}
-  - {fileID: 6911003894006500191}
+  - {fileID: 1454130231577964480}
   - {fileID: 6704512166315881095}
-  - {fileID: 8908035348456719321}
+  - {fileID: 6411813857078277428}
 --- !u!82 &5644662955513917650
 AudioSource:
   m_ObjectHideFlags: 0
@@ -463,7 +462,7 @@ AudioSource:
   m_GameObject: {fileID: 5644662956704446728}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 083ac23a69026054582a366f1e4c2cc6,
+  OutputAudioMixerGroup: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8b539a0ae165b68489d126362f1ffb0c, type: 3}
   m_PlayOnAwake: 0
@@ -620,6 +619,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5354418119074604097, guid: c658acde04b48724b8ffaf9444ff3d29,
         type: 3}
+      propertyPath: PurchasePrice
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354418119074604097, guid: c658acde04b48724b8ffaf9444ff3d29,
+        type: 3}
+      propertyPath: sellPrice
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354418119074604097, guid: c658acde04b48724b8ffaf9444ff3d29,
+        type: 3}
       propertyPath: useSound
       value: 
       objectReference: {fileID: 5644662955513917652}
@@ -715,6 +724,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197504097335814620, guid: 3ac055843a1239f4192fca3e8d1ebbc0,
+        type: 3}
+      propertyPath: PurchasePrice
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197504097335814620, guid: 3ac055843a1239f4192fca3e8d1ebbc0,
+        type: 3}
+      propertyPath: sellPrice
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6197504097335814620, guid: 3ac055843a1239f4192fca3e8d1ebbc0,
         type: 3}
@@ -893,6 +912,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 295389540581695344, guid: dc58a488e93bd704d81f10fb2c4bde46,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
+        type: 2}
+    - target: {fileID: 1880836567818789231, guid: dc58a488e93bd704d81f10fb2c4bde46,
+        type: 3}
+      propertyPath: PurchasePrice
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880836567818789231, guid: dc58a488e93bd704d81f10fb2c4bde46,
+        type: 3}
+      propertyPath: sellPrice
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1880836567818789231, guid: dc58a488e93bd704d81f10fb2c4bde46,
         type: 3}
@@ -1095,6 +1130,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8624072140706992327, guid: 338848a72dbdb5d4786fc78561bb12b5,
         type: 3}
+      propertyPath: PurchasePrice
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624072140706992327, guid: 338848a72dbdb5d4786fc78561bb12b5,
+        type: 3}
+      propertyPath: sellPrice
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624072140706992327, guid: 338848a72dbdb5d4786fc78561bb12b5,
+        type: 3}
       propertyPath: useSound
       value: 
       objectReference: {fileID: 5644662955513917651}
@@ -1190,6 +1235,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182437582290779999, guid: 5b8b12d830a51fb4b961d0c1b145e9d9,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
+        type: 2}
+    - target: {fileID: 7020530765653393728, guid: 5b8b12d830a51fb4b961d0c1b145e9d9,
+        type: 3}
+      propertyPath: PurchasePrice
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020530765653393728, guid: 5b8b12d830a51fb4b961d0c1b145e9d9,
+        type: 3}
+      propertyPath: sellPrice
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7020530765653393728, guid: 5b8b12d830a51fb4b961d0c1b145e9d9,
         type: 3}
@@ -1294,23 +1355,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5120286568131143312, guid: b4dd4aa571d8f8a4490d59ea209ed421,
+    - target: {fileID: 7235610911817863293, guid: b4dd4aa571d8f8a4490d59ea209ed421,
         type: 3}
-      propertyPath: sellPrice
-      value: 4
+      propertyPath: playerStock
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4dd4aa571d8f8a4490d59ea209ed421, type: 3}
---- !u!114 &8908035348456719321 stripped
+--- !u!114 &6411813857078277428 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5120286568131143312, guid: b4dd4aa571d8f8a4490d59ea209ed421,
+  m_CorrespondingSourceObject: {fileID: 7235610911817863293, guid: b4dd4aa571d8f8a4490d59ea209ed421,
     type: 3}
   m_PrefabInstance: {fileID: 4364370061344630089}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5ef7c13b7e7414a85fcc883c051356, type: 3}
+  m_Script: {fileID: 11500000, guid: cb76116d9a0f23448bb81eae54a67092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4206377511048441548 stripped
@@ -1386,24 +1447,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5935158839040012908, guid: d47a37c374043ef4397993af8bde658a,
+    - target: {fileID: 801449943727447255, guid: d47a37c374043ef4397993af8bde658a,
         type: 3}
-      propertyPath: itemImage
-      value: 
-      objectReference: {fileID: 21300988, guid: 09887104b27c9754eb0dd87d37362b31,
-        type: 3}
+      propertyPath: playerStock
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47a37c374043ef4397993af8bde658a, type: 3}
---- !u!114 &1929443404798610951 stripped
+--- !u!114 &4865149232298041532 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5935158839040012908, guid: d47a37c374043ef4397993af8bde658a,
+  m_CorrespondingSourceObject: {fileID: 801449943727447255, guid: d47a37c374043ef4397993af8bde658a,
     type: 3}
   m_PrefabInstance: {fileID: 5231820512820345963}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5ef7c13b7e7414a85fcc883c051356, type: 3}
+  m_Script: {fileID: 11500000, guid: cb76116d9a0f23448bb81eae54a67092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6573424156319474450 stripped
@@ -1478,6 +1538,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229597035383585778, guid: aa6d96e984f7c8c4ebfa0ccc2382fe94,
+        type: 3}
+      propertyPath: PurchasePrice
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 229597035383585778, guid: aa6d96e984f7c8c4ebfa0ccc2382fe94,
+        type: 3}
+      propertyPath: sellPrice
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 229597035383585778, guid: aa6d96e984f7c8c4ebfa0ccc2382fe94,
         type: 3}
@@ -1577,18 +1647,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8132845986369371922, guid: cefa9976586f4a7408326c60572a45d2,
+        type: 3}
+      propertyPath: playerStock
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefa9976586f4a7408326c60572a45d2, type: 3}
---- !u!114 &6911003894006500191 stripped
+--- !u!114 &1454130231577964480 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4259110592268524429, guid: cefa9976586f4a7408326c60572a45d2,
+  m_CorrespondingSourceObject: {fileID: 8132845986369371922, guid: cefa9976586f4a7408326c60572a45d2,
     type: 3}
   m_PrefabInstance: {fileID: 7274360032221565138}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5ef7c13b7e7414a85fcc883c051356, type: 3}
+  m_Script: {fileID: 11500000, guid: cb76116d9a0f23448bb81eae54a67092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &2168322212619118154 stripped
@@ -1664,6 +1739,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2334492067099559380, guid: 21e6a54a81b113241b79b03eeb14144f,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243847958337397150, guid: f16943c63cf9c0a43ad7a9c9d11b2ac7,
+        type: 2}
     - target: {fileID: 4496481350365510603, guid: 21e6a54a81b113241b79b03eeb14144f,
         type: 3}
       propertyPath: itemImage
@@ -1674,6 +1755,16 @@ PrefabInstance:
         type: 3}
       propertyPath: description
       value: Slime Bulb Seeds
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496481350365510603, guid: 21e6a54a81b113241b79b03eeb14144f,
+        type: 3}
+      propertyPath: PurchasePrice
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496481350365510603, guid: 21e6a54a81b113241b79b03eeb14144f,
+        type: 3}
+      propertyPath: sellPrice
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4496481350365510603, guid: 21e6a54a81b113241b79b03eeb14144f,
         type: 3}

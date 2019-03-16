@@ -28,6 +28,8 @@ public class TickAll : MonoBehaviour
     public bool punish = false;
     public float punishmentVal = 0.3f;
 
+    public ItemDatabase itemDatabase;
+
     private void Start()
     {
         currentTime = 1.0f;
@@ -158,5 +160,7 @@ public class TickAll : MonoBehaviour
         {
             plants[i].GetComponent<Crop>().Tick();
         }
+
+        itemDatabase.UpdateFluctiatingPrices();
     }
 }

@@ -154,11 +154,9 @@ public class TickAll : MonoBehaviour
 
     public void TickForAll()
     {
-        GameObject[] plants = GameObject.FindGameObjectsWithTag(tag);
-
-        for (int i = 0; i < plants.Length; i++)
+        for (int i = 0; i < plots.Length; i++)
         {
-            plants[i].GetComponent<Crop>().Tick();
+            plots[i].TickAll();
         }
 
         itemDatabase.UpdateFluctiatingPrices();

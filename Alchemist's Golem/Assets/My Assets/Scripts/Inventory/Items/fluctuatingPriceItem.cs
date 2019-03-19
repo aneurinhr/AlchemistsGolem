@@ -45,8 +45,6 @@ public class fluctuatingPriceItem : Item
             dif = -30.0f;
         }
 
-        Debug.Log(dif);
-
         currentPercentagePrice = 100 + (int)dif;
 
         int previousPrice = sellPrice;

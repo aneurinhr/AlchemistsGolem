@@ -9,6 +9,7 @@ public class PlotCollection : MonoBehaviour
 
     public int[] NutrientIncrease;
     public int WaterIncrease = 1;
+    public int growth = 1;
 
     //Upgrades
     public bool[] UpgradesUnlocked;
@@ -32,15 +33,34 @@ public class PlotCollection : MonoBehaviour
         switch (i)//0-4 e.g. 5 upgrades
         {
             case 0:
+                NutrientIncrease[0] = UpgradeNutrientValues[0];
                 break;
             case 1:
+                NutrientIncrease[1] = UpgradeNutrientValues[1];
                 break;
             case 2:
+                NutrientIncrease[2] = UpgradeNutrientValues[2];
                 break;
             case 3:
+                WaterIncrease = UpgradeWaterValues;
                 break;
             case 4:
+                growth = 2;
                 break;
+        }
+    }
+
+    public void TickAll()
+    {
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                if (map[i].mapCol[j].crop != null)
+                {
+                    map[i].mapCol[j].crop.Tick(growth);
+                }
+            }
         }
     }
 

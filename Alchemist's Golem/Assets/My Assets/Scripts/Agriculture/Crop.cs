@@ -50,7 +50,7 @@ public class Crop : MonoBehaviour
     //This will edit p_quality, detect if the plant is dying or dead
     //as well as changing the currentPhase gameobject (what it looks like)
     //Should also take nutrients and water from the plot
-    public void Tick()
+    public void Tick(int growth)
     {
         if (dead == false)
         {
@@ -101,7 +101,7 @@ public class Crop : MonoBehaviour
             {
                 if (canBeHarvested != true)
                 {
-                    p_currentTickToHarvest = p_currentTickToHarvest + 1;
+                    p_currentTickToHarvest = p_currentTickToHarvest + growth;
                 }
 
                 int oldPhase = currentPhase;

@@ -23,6 +23,7 @@ public class Upgrades : MonoBehaviour
     public Button[] UpgradeButtons;
     public Text[] Costs;
     public bool[] UpgradesBrought;
+    public GameObject[] physicalUpgrade;
     public int[] UpgradesCost;
 
     private void Start()
@@ -41,6 +42,7 @@ public class Upgrades : MonoBehaviour
         {
             UpgradeButtons[upgradeNum].interactable = false;
             UpgradesBrought[upgradeNum] = true;
+            physicalUpgrade[upgradeNum].SetActive(true);
             plotCollection.Upgrade(upgradeNum);
         }
     }
@@ -53,6 +55,14 @@ public class Upgrades : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (open == true)
+            {
+                UIOff();
+            }
+        }
+
         highlight.SetActive(false);
     }
 
@@ -60,7 +70,7 @@ public class Upgrades : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if ((open == false) && (canChange == true))
+            if ((open == false) && (canChange == true) && (beingLookedAt == true))
             {
                 UIOn();
             }
@@ -69,6 +79,8 @@ public class Upgrades : MonoBehaviour
                 UIOff();
             }
         }
+
+        beingLookedAt = false;
     }
 
     public void UIOn()

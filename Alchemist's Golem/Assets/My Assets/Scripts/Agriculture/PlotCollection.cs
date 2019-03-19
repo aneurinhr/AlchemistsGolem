@@ -10,11 +10,39 @@ public class PlotCollection : MonoBehaviour
     public int[] NutrientIncrease;
     public int WaterIncrease = 1;
 
+    //Upgrades
+    public bool[] UpgradesUnlocked;
+
+    public int[] UpgradeNutrientValues;
+    public int UpgradeWaterValues = 4;
+    //Upgrades
+
     public int[] NutrientMax;
     public int WaterMax = 7;
 
     public int DiffuseLimit = 1;
     public int minDifToDiffuse = 2;
+
+    // This is to allow the upgrade buttons to be a lot more modular
+    //Which allows for future additions easier
+    public void Upgrade(int i)
+    {
+        UpgradesUnlocked[i] = true;
+
+        switch (i)//0-4 e.g. 5 upgrades
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
 
     public void NaturalPlotIncrease()
     {

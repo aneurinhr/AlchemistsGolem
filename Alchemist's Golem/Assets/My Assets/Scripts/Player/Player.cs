@@ -93,6 +93,10 @@ public class Player : MonoBehaviour
                 {
                     lookingAt.GetComponent<TickAll>().BeingLookedAt();
                 }
+                else if (lookingAt.tag == "Upgrades")
+                {
+                    lookingAt.GetComponent<Upgrades>().BeingLookedAt();
+                }
             }
 
             if (highlightedPlot != null)

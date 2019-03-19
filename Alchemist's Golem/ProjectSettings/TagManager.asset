@@ -9,6 +9,7 @@ TagManager:
   - Chest
   - Shop
   - Charging
+  - Upgrades
   layers:
   - Default
   - TransparentFX

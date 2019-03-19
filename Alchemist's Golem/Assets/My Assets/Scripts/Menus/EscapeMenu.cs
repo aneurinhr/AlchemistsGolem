@@ -11,6 +11,7 @@ public class EscapeMenu : MonoBehaviour
     public bool UIon = false;
     public bool prevent = false;
 
+    public Upgrades upgrades;
     public Inventory invent;
     public Storage storage;
     public Shop shop;
@@ -28,6 +29,8 @@ public class EscapeMenu : MonoBehaviour
         storage.canChange = false;
         shop.ShopOff();
         shop.canChange = false;
+        upgrades.UIOff();
+        upgrades.canChange = false;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -44,6 +47,7 @@ public class EscapeMenu : MonoBehaviour
         invent.canChange = true;
         storage.canChange = true;
         shop.canChange = true;
+        upgrades.canChange = true;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

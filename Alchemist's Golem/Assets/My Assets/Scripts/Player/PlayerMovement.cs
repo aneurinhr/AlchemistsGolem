@@ -1,45 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
     public float sprintSpeed = 20.0f;
-    public float collisionRepel = 10.0f;
-
-    public float floatHeight = 2.0f;
-    public float floatStrenght = 30.0f;
-    public float overShootDrag = 5.0f;
-
     public GameObject cameraCenter;
     public bool pauseMovement = false;
 
-    public Rigidbody rb;
+    public NavMeshAgent agent;
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void OnCollisionEnter(Collision c)
-    {
-        Vector3 dir = c.contacts[0].point - transform.position;
-        dir = -dir.normalized;
-        rb.AddForce(dir * collisionRepel, ForceMode.Impulse);
-        rb.AddForce(dir * collisionRepel, ForceMode.Force);
-    }
-
-    private void OnCollisionStay(Collision c)
-    {
-        Vector3 dir = c.contacts[0].point - transform.position;
-        dir = -dir.normalized;
-        rb.AddForce(dir * collisionRepel, ForceMode.Impulse);
-        rb.AddForce(dir * collisionRepel, ForceMode.Force);
     }
 
     void Update()
@@ -73,34 +50,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Floating();
-    }
-
-    void Floating()
-    {
-        RaycastHit hit;
-        Vector3 down = transform.TransformDirection(Vector3.down);
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        Debug.Log(agent.isOnOffMeshLink);
+        if (agent.isOnOffMeshLink == true)
         {
-            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.blue);
-            //Debug.Log(hit.distance + " => " + hit.collider.name);
-        }
-
-        float heightDif = floatHeight - hit.distance;
-
-        if ((rb.velocity.y > 0) && (hit.distance > floatHeight))//checks if overshooting
-        {
-            rb.drag = overShootDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
-
-        if (heightDif >= 0)
-        {
-            rb.AddForce(0, heightDif*floatStrenght, 0);
+            agent.CompleteOffMeshLink();
         }
     }
 }

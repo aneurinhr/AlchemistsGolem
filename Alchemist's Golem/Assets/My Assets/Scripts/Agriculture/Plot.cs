@@ -10,6 +10,7 @@ public class Plot : MonoBehaviour
     public int WaterContent;
 
     public GameObject hightlight;
+    public Image highlightBorder;
 
     public Crop crop;
 
@@ -19,6 +20,11 @@ public class Plot : MonoBehaviour
     public Slider waterSlider;
 
     public PlotNutrientPointers pointers;
+
+    public Color unoccupied;
+    public Color harvest;
+    public Color growing;
+    public Color dead;
 
     public void UpdateSliders()
     {
@@ -82,6 +88,26 @@ public class Plot : MonoBehaviour
 
     public void Highlight(bool highlight)
     {
+        if (Occupied == true)
+        {
+            if (crop.canBeHarvested == true)
+            {
+                highlightBorder.color = harvest;
+            }
+            else if (crop.dead == true)
+            {
+                highlightBorder.color = dead;
+            }
+            else
+            {
+                highlightBorder.color = growing;
+            }
+        }
+        else
+        {
+            highlightBorder.color = unoccupied;
+        }
+
         hightlight.SetActive(highlight);
     }
 }

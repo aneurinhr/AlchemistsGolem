@@ -21,7 +21,6 @@ public class EscapeMenu : MonoBehaviour
 
     public void ToggleOn()
     {
-        rb.rb.isKinematic = true;
         invent.uiOFF();
         invent.canChange = false;
         storage.StorageOff();
@@ -40,7 +39,6 @@ public class EscapeMenu : MonoBehaviour
 
     public void ToggleOff()
     {
-        rb.rb.isKinematic = false;
         invent.canChange = true;
         storage.canChange = true;
         shop.canChange = true;

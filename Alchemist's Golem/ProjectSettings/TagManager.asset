@@ -10,6 +10,7 @@ TagManager:
   - Shop
   - Charging
   - Upgrades
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX

@@ -30,6 +30,11 @@ public class TickAll : MonoBehaviour
 
     public ItemDatabase itemDatabase;
 
+    public int day = 1;
+    public int maxDay = 28;
+    public Seasons seasons;
+    public Text dayDisplay;
+
     private void Start()
     {
         currentTime = 1.0f;
@@ -160,5 +165,14 @@ public class TickAll : MonoBehaviour
         }
 
         itemDatabase.UpdateFluctiatingPrices();
+
+        //Change Day
+        day = day + 1;
+        if (day > maxDay)
+        {
+            seasons.ChangeSeasons();
+            day = 1;
+        }
+        dayDisplay.text = day.ToString();
     }
 }

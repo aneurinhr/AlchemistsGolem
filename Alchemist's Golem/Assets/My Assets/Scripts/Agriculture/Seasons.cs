@@ -18,14 +18,18 @@ public class Seasons : MonoBehaviour
     public Image SeasonDisplay;
     public Sprite[] SeasonImages;
 
+    public Renderer terrain;
+    public Material[] seasonTerrain;
+
     private void Start()
     {
         for (int i = 0; i < treeLeaves.Length; i++)
         {
-            treeLeavesSpringSummer[i] = treeLeaves[i].color;
+            treeLeaves[i].color = treeLeavesSpringSummer[i];
         }
 
         SeasonDisplay.sprite = SeasonImages[0];
+        terrain.material = seasonTerrain[0];
     }
 
     public void ChangeSeasons()
@@ -59,12 +63,14 @@ public class Seasons : MonoBehaviour
         }
 
         Debug.Log("Spring");
+        terrain.material = seasonTerrain[0];
         SeasonDisplay.sprite = SeasonImages[0];
     }
 
     public void Summer()
     {
         Debug.Log("Summer");
+        terrain.material = seasonTerrain[1];
         SeasonDisplay.sprite = SeasonImages[1];
     }
 
@@ -76,6 +82,7 @@ public class Seasons : MonoBehaviour
         }
 
         Debug.Log("Autumn");
+        terrain.material = seasonTerrain[2];
         SeasonDisplay.sprite = SeasonImages[2];
     }
 
@@ -87,6 +94,7 @@ public class Seasons : MonoBehaviour
         }
 
         Debug.Log("Winter");
+        terrain.material = seasonTerrain[3];
         SeasonDisplay.sprite = SeasonImages[3];
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.PostProcessing;
 
 public class Seasons : MonoBehaviour
 {
@@ -21,15 +22,20 @@ public class Seasons : MonoBehaviour
     public Renderer terrain;
     public Material[] seasonTerrain;
 
+    public PostProcessingProfile[] seasonProfiles;
+    public PostProcessingBehaviour playerProfile;
+
     private void Start()
     {
         for (int i = 0; i < treeLeaves.Length; i++)
         {
-            treeLeaves[i].color = treeLeavesSpringSummer[i];
+            treeLeaves[i].color = treeLeavesWinter[i];
         }
 
-        SeasonDisplay.sprite = SeasonImages[0];
-        terrain.material = seasonTerrain[0];
+        SeasonDisplay.sprite = SeasonImages[3];
+        terrain.material = seasonTerrain[3];
+
+        playerProfile.profile = seasonProfiles[3];
     }
 
     public void ChangeSeasons()
@@ -65,6 +71,7 @@ public class Seasons : MonoBehaviour
         Debug.Log("Spring");
         terrain.material = seasonTerrain[0];
         SeasonDisplay.sprite = SeasonImages[0];
+        playerProfile.profile = seasonProfiles[0];
     }
 
     public void Summer()
@@ -72,6 +79,7 @@ public class Seasons : MonoBehaviour
         Debug.Log("Summer");
         terrain.material = seasonTerrain[1];
         SeasonDisplay.sprite = SeasonImages[1];
+        playerProfile.profile = seasonProfiles[1];
     }
 
     public void Autumn()
@@ -84,6 +92,7 @@ public class Seasons : MonoBehaviour
         Debug.Log("Autumn");
         terrain.material = seasonTerrain[2];
         SeasonDisplay.sprite = SeasonImages[2];
+        playerProfile.profile = seasonProfiles[2];
     }
 
     public void Winter()
@@ -96,5 +105,6 @@ public class Seasons : MonoBehaviour
         Debug.Log("Winter");
         terrain.material = seasonTerrain[3];
         SeasonDisplay.sprite = SeasonImages[3];
+        playerProfile.profile = seasonProfiles[4];
     }
 }

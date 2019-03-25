@@ -24,6 +24,9 @@ public class PlotCollection : MonoBehaviour
     public int DiffuseLimit = 1;
     public int minDifToDiffuse = 2;
 
+    public int seasonVal = 0;
+    public int seasonBonus = 4;
+
     // This is to allow the upgrade buttons to be a lot more modular
     //Which allows for future additions easier
     public void Upgrade(int i)
@@ -84,6 +87,22 @@ public class PlotCollection : MonoBehaviour
                 if (map[i].mapCol[j].WaterContent <= WaterMax)//if not greater than of equal to max limit
                 {
                     map[i].mapCol[j].ChangeWaterContent(WaterIncrease);//increase
+                }
+
+                switch (seasonVal)
+                {
+                    case 0://wind spring
+                        map[i].mapCol[j].ChangeNutrients(2, seasonBonus);
+                        break;
+                    case 1://fire summer
+                        map[i].mapCol[j].ChangeNutrients(1, seasonBonus);
+                        break;
+                    case 2://water autumn
+                        map[i].mapCol[j].ChangeWaterContent(seasonBonus);
+                        break;
+                    case 3://frost winter
+                        map[i].mapCol[j].ChangeNutrients(0, seasonBonus);
+                        break;
                 }
             }
         }

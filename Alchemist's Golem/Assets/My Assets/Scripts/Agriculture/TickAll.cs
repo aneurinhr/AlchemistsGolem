@@ -170,7 +170,13 @@ public class TickAll : MonoBehaviour
         day = day + 1;
         if (day > maxDay)
         {
-            seasons.ChangeSeasons();
+            int season = seasons.ChangeSeasons();
+
+            for (int i = 0; i < plots.Length; i++)
+            {
+                plots[i].seasonVal = season;
+            }
+
             day = 1;
         }
         dayDisplay.text = day.ToString();

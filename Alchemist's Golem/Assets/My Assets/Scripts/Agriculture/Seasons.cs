@@ -32,33 +32,39 @@ public class Seasons : MonoBehaviour
             treeLeaves[i].color = treeLeavesWinter[i];
         }
 
-        SeasonDisplay.sprite = SeasonImages[3];
-        terrain.material = seasonTerrain[3];
+        SeasonDisplay.sprite = SeasonImages[0];
+        terrain.material = seasonTerrain[0];
 
-        playerProfile.profile = seasonProfiles[3];
+        playerProfile.profile = seasonProfiles[0];
     }
 
-    public void ChangeSeasons()
+    public int ChangeSeasons()
     {
         switch(p_mySeason)
         {
             case CurrentSeason.Spring:
                 Summer();
                 p_mySeason = CurrentSeason.Summer;
+                return 1;
                 break;
             case CurrentSeason.Summer:
                 Autumn();
                 p_mySeason = CurrentSeason.Autumn;
+                return 2;
                 break;
             case CurrentSeason.Autumn:
                 Winter();
                 p_mySeason = CurrentSeason.Winter;
+                return 3;
                 break;
             case CurrentSeason.Winter:
                 Spring();
                 p_mySeason = CurrentSeason.Spring;
+                return 0;
                 break;
         }
+
+        return 999;
     }
 
     public void Spring()

@@ -40,7 +40,7 @@ public class PlayerFloat : MonoBehaviour
 
             if (heightDif >= 0)
             {
-                rb.AddForce(0, heightDif * floatStrenght, 0);
+                rb.AddForce(0, heightDif * floatStrenght * Time.timeScale, 0);
             }
         }
     }

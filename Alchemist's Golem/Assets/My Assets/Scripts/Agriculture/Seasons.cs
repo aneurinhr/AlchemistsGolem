@@ -29,7 +29,7 @@ public class Seasons : MonoBehaviour
     {
         for (int i = 0; i < treeLeaves.Length; i++)
         {
-            treeLeaves[i].color = treeLeavesWinter[i];
+            treeLeaves[i].color = treeLeavesSpringSummer[i];
         }
 
         SeasonDisplay.sprite = SeasonImages[0];

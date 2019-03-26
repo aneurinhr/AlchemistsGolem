@@ -28,6 +28,8 @@ public class TickAll : MonoBehaviour
     public bool punish = false;
     public float punishmentVal = 0.3f;
 
+    public bool pauseKeyPress = false;
+
     public ItemDatabase itemDatabase;
 
     public int day = 1;
@@ -71,6 +73,7 @@ public class TickAll : MonoBehaviour
             if (alpha <= 0.0f)//Faded Out
             {
                 fade = false;
+                pauseKeyPress = false;
                 player.pauseMovement = false;
 
                 pauseTimer = false;
@@ -135,8 +138,9 @@ public class TickAll : MonoBehaviour
     private void LateUpdate()
     {
 
-        if (Input.GetButtonDown("Interact") && (beingLookedAt == true) && ((fade == false) && (unfade == false)))
+        if (Input.GetButtonDown("Interact") && (beingLookedAt == true) && (pauseKeyPress == false))
         {
+            pauseKeyPress = true;
             unfade = true;
             player.pauseMovement = true;
             ticked = false;

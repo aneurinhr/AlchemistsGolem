@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(agent.isOnOffMeshLink);
+        //Debug.Log(agent.isOnOffMeshLink);
         if (agent.isOnOffMeshLink == true)
         {
             agent.CompleteOffMeshLink();

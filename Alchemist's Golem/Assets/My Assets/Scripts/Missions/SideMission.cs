@@ -8,6 +8,8 @@ public class SideMission : MonoBehaviour
     public int missionHolderID;
     public SideMissionManager manager;
     public ItemDatabase itemDatabase;
+    public MissionHandinSlot myHandinSlot;
+    public Bank bank;
 
     public Text nameDisplay;
     public Image personDisplay;
@@ -24,9 +26,10 @@ public class SideMission : MonoBehaviour
     public Button rejectButton;
     public Button acceptButton;
 
+
     public void AcceptMission()
     {
-        Debug.Log("Accepted Mission");
+        myHandinSlot.SetRequirements(p_itemID, p_numWanted);
 
         beforeAcceptGroup.SetActive(false);
         HandinGroup.SetActive(true);
@@ -34,19 +37,17 @@ public class SideMission : MonoBehaviour
 
     public void RejectMission()
     {
-        Debug.Log("Rejected Mission");
         manager.CanReject(missionHolderID);
     }
 
     public void CompleteMission()
     {
-        Debug.Log("Completed Mission");
+        bank.ChangeMoney(p_Reward);
+        manager.GenerateNewQuest(missionHolderID);
     }
 
     public void PopulateMission(string name, Sprite person, int num, int itemID, int gold)
     {
-        Debug.Log("Populated Mission: " + missionHolderID);
-
         p_numWanted = num;
         p_itemID = itemID;
         p_Reward = gold;

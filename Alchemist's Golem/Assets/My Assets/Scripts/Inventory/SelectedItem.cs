@@ -31,7 +31,8 @@ public class SelectedItem : MonoBehaviour
         dragImage.enabled = true;
         selectedSlot = newSlot;
 
-        dragImage.sprite = selectedSlot.hotBarDisplay.sprite;
+        if (selectedSlot.hotBarDisplay != null) {dragImage.sprite = selectedSlot.hotBarDisplay.sprite;}
+
         tempSlotPointers = selectedSlot.hotBarPointers;
         tempSlotQuant = selectedSlot.hotBarQuant;
     }

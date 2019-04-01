@@ -48,6 +48,8 @@ public class MissionHandinSlot : Slot
                 }
 
                 quantityDisplay.text = currentHandinNeeded.ToString();
+                hotBarPointers = 999;
+                hotBarQuant = 0;
             }
             else //Return item to inventory
             {

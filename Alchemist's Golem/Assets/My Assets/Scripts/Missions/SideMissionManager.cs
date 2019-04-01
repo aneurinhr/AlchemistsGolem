@@ -35,6 +35,11 @@ public class SideMissionManager : MonoBehaviour
         for (int i = 0; i < sideMissionSlots.Length; i++)
         {
             sideMissionSlots[i].rejectButton.interactable = true;
+
+            if (sideMissionSlots[i].completed == true)
+            {
+                GenerateNewQuest(i);
+            }
         }
 
         rejectionDisplay.text = rejectionCount.ToString();

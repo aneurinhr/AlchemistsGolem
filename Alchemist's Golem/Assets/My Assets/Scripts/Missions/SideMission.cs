@@ -22,10 +22,12 @@ public class SideMission : MonoBehaviour
 
     public GameObject beforeAcceptGroup;
     public GameObject HandinGroup;
+    public GameObject CompletedGroup;
 
     public Button rejectButton;
     public Button acceptButton;
 
+    public bool completed = false;
 
     public void AcceptMission()
     {
@@ -33,6 +35,9 @@ public class SideMission : MonoBehaviour
 
         beforeAcceptGroup.SetActive(false);
         HandinGroup.SetActive(true);
+        CompletedGroup.SetActive(false);
+
+        acceptButton.interactable = false;
     }
 
     public void RejectMission()
@@ -43,11 +48,20 @@ public class SideMission : MonoBehaviour
     public void CompleteMission()
     {
         bank.ChangeMoney(p_Reward);
-        manager.GenerateNewQuest(missionHolderID);
+
+        beforeAcceptGroup.SetActive(false);
+        HandinGroup.SetActive(false);
+        CompletedGroup.SetActive(true);
+
+        completed = true;
+        rejectButton.interactable = false;
+        acceptButton.interactable = false;
     }
 
     public void PopulateMission(string name, Sprite person, int num, int itemID, int gold)
     {
+        completed = false;
+
         p_numWanted = num;
         p_itemID = itemID;
         p_Reward = gold;
@@ -61,5 +75,8 @@ public class SideMission : MonoBehaviour
 
         beforeAcceptGroup.SetActive(true);
         HandinGroup.SetActive(false);
+        CompletedGroup.SetActive(false);
+
+        acceptButton.interactable = true;
     }
 }

@@ -31,6 +31,7 @@ public class TickAll : MonoBehaviour
     public bool pauseKeyPress = false;
 
     public ItemDatabase itemDatabase;
+    public SideMissionManager sideMissions;
 
     public int day = 1;
     public int maxDay = 28;
@@ -169,6 +170,7 @@ public class TickAll : MonoBehaviour
         }
 
         itemDatabase.UpdateFluctiatingPrices();
+        sideMissions.NewDay();
 
         //Change Day
         day = day + 1;
@@ -182,6 +184,7 @@ public class TickAll : MonoBehaviour
             }
 
             day = 1;
+            sideMissions.GenerateForAllQuestSlots();
         }
         dayDisplay.text = day.ToString();
     }

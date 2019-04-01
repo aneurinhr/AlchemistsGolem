@@ -18,22 +18,24 @@ public class SideMission : MonoBehaviour
     public Text goldRewardDisplay;
     private int p_Reward;
 
-    public bool AcceptedQuest = false;
     public GameObject beforeAcceptGroup;
     public GameObject HandinGroup;
 
-    public bool CanReject = true;
     public Button rejectButton;
     public Button acceptButton;
 
     public void AcceptMission()
     {
         Debug.Log("Accepted Mission");
+
+        beforeAcceptGroup.SetActive(false);
+        HandinGroup.SetActive(true);
     }
 
     public void RejectMission()
     {
         Debug.Log("Rejected Mission");
+        manager.CanReject(missionHolderID);
     }
 
     public void CompleteMission()

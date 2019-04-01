@@ -101,12 +101,10 @@ MonoBehaviour:
   numWantedDisplay: {fileID: 268769965027377637}
   itemDisplay: {fileID: 268769963591410016}
   goldRewardDisplay: {fileID: 268769964257695490}
-  AcceptedQuest: 0
   beforeAcceptGroup: {fileID: 268769963587351927}
   HandinGroup: {fileID: 268769963548748790}
-  CanReject: 1
-  rejectButton: {fileID: 268769963967100976}
-  acceptButton: {fileID: 268769964848312454}
+  rejectButton: {fileID: 268769964848312454}
+  acceptButton: {fileID: 268769963967100976}
 --- !u!1 &268769963475276208
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ TagManager:
   - Charging
   - Upgrades
   - PlayerCamera
+  - Missions
   layers:
   - Default
   - TransparentFX

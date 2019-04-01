@@ -14,6 +14,7 @@ public class EscapeMenu : MonoBehaviour
     public Inventory invent;
     public Storage storage;
     public Shop shop;
+    public MissionBoardInteractable missions;
 
     public Options options;
 
@@ -27,6 +28,8 @@ public class EscapeMenu : MonoBehaviour
         storage.canChange = false;
         shop.ShopOff();
         shop.canChange = false;
+        missions.MissionsOff();
+        missions.canChange = false;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -42,6 +45,7 @@ public class EscapeMenu : MonoBehaviour
         invent.canChange = true;
         storage.canChange = true;
         shop.canChange = true;
+        missions.canChange = true;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

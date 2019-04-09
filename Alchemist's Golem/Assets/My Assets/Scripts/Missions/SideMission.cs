@@ -18,7 +18,7 @@ public class SideMission : MonoBehaviour
     public Image itemDisplay;
     private int p_itemID;
     public Text goldRewardDisplay;
-    private int p_Reward;
+    public int Reward;
 
     public GameObject beforeAcceptGroup;
     public GameObject HandinGroup;
@@ -45,9 +45,9 @@ public class SideMission : MonoBehaviour
         manager.CanReject(missionHolderID);
     }
 
-    public void CompleteMission()
+    public virtual void CompleteMission()
     {
-        bank.ChangeMoney(p_Reward);
+        bank.ChangeMoney(Reward);
 
         beforeAcceptGroup.SetActive(false);
         HandinGroup.SetActive(false);
@@ -64,7 +64,7 @@ public class SideMission : MonoBehaviour
 
         p_numWanted = num;
         p_itemID = itemID;
-        p_Reward = gold;
+        Reward = gold;
 
         nameDisplay.text = name;
         personDisplay.sprite = person;

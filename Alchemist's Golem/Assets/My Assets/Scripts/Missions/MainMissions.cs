@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainMissions : MonoBehaviour
 {
     public MissionStrings[] missions;
+    public MissionCardData[] missionData;
     public int currentMission = 0;
     public int currentStringDisplay = 0;
 
@@ -14,19 +15,20 @@ public class MainMissions : MonoBehaviour
     public bool textIsDisplaying = false;
     public bool pauseSkip = true;
 
-    public PlayerMovement player;
+    public MainMissionCard missionSlot;
 
-    private void Start()
-    {
-        //Move when finished testing
-        StartNewMission(currentMission);
-    }
+    public PlayerMovement player;
+    public MissionBoardInteractable missionBoard;
 
     public void StartNewMission(int mission)
     {
         currentMission = mission;
 
-        StartStringDisplay();
+        if (currentMission < missions.Length)
+        {
+            StartStringDisplay();
+            missionData[currentMission].PopulateMissionSlot(missionSlot);
+        }
     }
 
     public void StartStringDisplay()
@@ -61,8 +63,7 @@ public class MainMissions : MonoBehaviour
 
     public void CompletedCurrentMission()//This needs to get called
     {
-        //Stuff
-
+        missionBoard.MissionsOff();
         StartNewMission(currentMission + 1);
     }
 
@@ -87,4 +88,20 @@ public class MainMissions : MonoBehaviour
 public class MissionStrings
 {
     public string[] Lines;
+}
+
+[System.Serializable]
+public class MissionCardData
+{
+    public string name;
+    public Sprite person;
+    public int num;
+    public int itemID;
+    public int gold;
+
+    public void PopulateMissionSlot(SideMission missionSlot)
+    {
+        missionSlot.PopulateMission(name, person, num, itemID, gold);
+        missionSlot.AcceptMission();
+    }
 }

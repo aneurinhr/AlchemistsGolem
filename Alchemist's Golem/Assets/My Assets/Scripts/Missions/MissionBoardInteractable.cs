@@ -44,7 +44,6 @@ public class MissionBoardInteractable : MonoBehaviour
             else if (open == true)
             {
                 MissionsOff();
-                inventory.uiOFF();
             }
         }
 
@@ -56,5 +55,6 @@ public class MissionBoardInteractable : MonoBehaviour
         open = false;
         missions.SetActive(false);
         inventory.canChange = true;
+        inventory.uiOFF();
     }
 }

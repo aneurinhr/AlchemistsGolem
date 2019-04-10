@@ -45,6 +45,12 @@ public class Crop : MonoBehaviour
                 phases[i].SetActive(false);
             }
         }
+
+        //if last stage, become harvestable
+        if (currentPhase == (phases.Length - 1))
+        {
+            canBeHarvested = true;
+        }
     }
 
     //This will edit p_quality, detect if the plant is dying or dead

@@ -26,6 +26,19 @@ public class Plot : MonoBehaviour
     public Color growing;
     public Color dead;
 
+    public int randomWeed = 30;
+    public CropMother Weed;
+
+    public void WeedTick()
+    {
+        int rand = Random.Range(0, (randomWeed + 1));
+
+        if (rand == randomWeed)
+        {
+            Weed.NewPlant(this);
+        }
+    }
+
     public void UpdateSliders()
     {
         frostSlider.value = QuantNutrients[0];

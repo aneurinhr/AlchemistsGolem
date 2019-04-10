@@ -20,6 +20,8 @@ public class CropMother : MonoBehaviour
     public int harvestItemID = 999;
     public Inventory inventory;
 
+    public int harvestLimit = 100;
+
     public void Start()
     {
         //initialize crop pool
@@ -34,7 +36,14 @@ public class CropMother : MonoBehaviour
 
     public void NewHarvest(int quant)
     {
-        inventory.AddItem(harvestItemID, quant);
+        int temp = quant;
+
+        if (temp > harvestLimit)
+        {
+            temp = harvestLimit;
+        }
+
+        inventory.AddItem(harvestItemID, temp);
     }
 
     public void NewPlant(Plot plantingArea) //Change from uml as the crop is not information the player script needs.

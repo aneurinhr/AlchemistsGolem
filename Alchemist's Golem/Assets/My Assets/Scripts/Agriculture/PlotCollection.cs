@@ -63,6 +63,10 @@ public class PlotCollection : MonoBehaviour
                 {
                     map[i].mapCol[j].crop.Tick(growth);
                 }
+                else
+                {
+                    map[i].mapCol[j].WeedTick();
+                }
             }
         }
     }

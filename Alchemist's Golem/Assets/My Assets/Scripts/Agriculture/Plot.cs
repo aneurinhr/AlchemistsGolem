@@ -26,16 +26,25 @@ public class Plot : MonoBehaviour
     public Color growing;
     public Color dead;
 
-    public int randomWeed = 30;
+    public int randomMinWeed = 90;
+    public int randomGoldWeed = 100;
     public CropMother Weed;
+    public CropMother GoldWeed;
 
     public void WeedTick()
     {
-        int rand = Random.Range(0, (randomWeed + 1));
+        int rand = Random.Range(0, (randomGoldWeed + 1));
 
-        if (rand == randomWeed)
+        if (rand >= randomMinWeed)
         {
-            Weed.NewPlant(this);
+            if (rand == randomGoldWeed)
+            {
+                GoldWeed.NewPlant(this);
+            }
+            else
+            {
+                Weed.NewPlant(this);
+            }
         }
     }
 

@@ -22,6 +22,13 @@ public class TickAll : MonoBehaviour
     public PlayerMovement player;
 
     public Image battery;
+    public Sprite NormalCharge;
+    public Sprite OverCharged;
+    public Sprite UnderCharged;
+    public bool OverCharging = false;
+    public bool UnderCharging = false;
+
+    public int RandomMax = 1;
     public float timeLimit = 300.0f;
     public float currentTime = 1.0f;
     public bool pauseTimer = true;
@@ -91,7 +98,9 @@ public class TickAll : MonoBehaviour
                     UpdatePlots();
                     ticked = true;
 
+                    RandomCharge();
                     currentTime = 1.0f;
+
                     if (punish == true)
                     {
                         currentTime = currentTime - punishmentVal;
@@ -105,6 +114,26 @@ public class TickAll : MonoBehaviour
         }
     }
 
+    public void RandomCharge()
+    {
+        OverCharging = false;
+        UnderCharging = false;
+        battery.sprite = NormalCharge;
+
+        int rand = Random.Range(0, (RandomMax+1));
+
+        if (rand == RandomMax)
+        {
+            OverCharging = true;
+            battery.sprite = OverCharged;
+        }
+        else if (rand == 0)
+        {
+            UnderCharging = true;
+            battery.sprite = UnderCharged;
+        }
+    }
+
     IEnumerator FadeAway()
     {
         yield return new WaitForSecondsRealtime(0.3f);
@@ -115,9 +144,20 @@ public class TickAll : MonoBehaviour
     {
         Fade();
 
-        if (pauseTimer == false)
+        if (pauseTimer == false) //Charge changing
         {
-            currentTime = currentTime - ((1.0f / timeLimit) * Time.deltaTime);
+            float mult = 1.0f;
+
+            if (UnderCharging == true)
+            {
+                mult = 2.0f;
+            }
+            else if (OverCharging == true)
+            {
+                mult = 0.5f;
+            }
+
+            currentTime = currentTime - ((1.0f / timeLimit) * Time.deltaTime * mult);
             battery.fillAmount = currentTime;
         }
 

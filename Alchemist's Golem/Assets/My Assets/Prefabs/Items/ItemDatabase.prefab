@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  itemImage: {fileID: 21300380, guid: 09887104b27c9754eb0dd87d37362b31, type: 3}
+  itemImage: {fileID: 21300000, guid: aad46dd5ba8219d4bb815a36aef72f5d, type: 3}
   description: Golden Weed
   PurchasePrice: 0
   sellPrice: 500
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  itemImage: {fileID: 21300392, guid: 09887104b27c9754eb0dd87d37362b31, type: 3}
+  itemImage: {fileID: 21300000, guid: 1498288b2e6b7a84895a499d33227e14, type: 3}
   description: Weed
   PurchasePrice: 0
   sellPrice: 1

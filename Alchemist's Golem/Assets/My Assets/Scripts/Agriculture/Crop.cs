@@ -53,6 +53,34 @@ public class Crop : MonoBehaviour
         }
     }
 
+    public void ForceFullGrow()
+    {
+        quality = p_baseQuality;
+        p_currentTickToHarvest = 999;
+
+        int oldPhase = currentPhase;
+        currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+
+        dyingPhase.SetActive(false);
+        deadPhase.SetActive(false);
+
+        dead = false;
+        canBeHarvested = true;
+
+        //Disable all apart from correct phase
+        for (int i = 0; i < phases.Length; i++)
+        {
+            if (i == (phases.Length - 1))
+            {
+                phases[i].SetActive(true);
+            }
+            else
+            {
+                phases[i].SetActive(false);
+            }
+        }
+    }
+
     //This will edit p_quality, detect if the plant is dying or dead
     //as well as changing the currentPhase gameobject (what it looks like)
     //Should also take nutrients and water from the plot

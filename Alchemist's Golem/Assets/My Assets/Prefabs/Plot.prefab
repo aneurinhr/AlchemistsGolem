@@ -1829,6 +1829,11 @@ MonoBehaviour:
   harvest: {r: 0.6556604, g: 1, b: 0.69268227, a: 1}
   growing: {r: 0.9942581, g: 1, b: 0.654902, a: 1}
   dead: {r: 1, g: 0.654902, b: 0.6630373, a: 1}
+  randomMinWeed: 90
+  randomGoldWeed: 100
+  Weed: {fileID: 0}
+  GoldWeed: {fileID: 0}
+  SliderMax: 10
 --- !u!1 &5192949287071246032
 GameObject:
   m_ObjectHideFlags: 0

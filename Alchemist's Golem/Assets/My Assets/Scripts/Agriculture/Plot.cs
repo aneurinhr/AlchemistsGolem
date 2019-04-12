@@ -31,6 +31,8 @@ public class Plot : MonoBehaviour
     public CropMother Weed;
     public CropMother GoldWeed;
 
+    public int SliderMax = 20;
+
     public void WeedTick()
     {
         int rand = Random.Range(0, (randomGoldWeed + 1));
@@ -54,6 +56,22 @@ public class Plot : MonoBehaviour
         heatSlider.value = QuantNutrients[1];
         windSlider.value = QuantNutrients[2];
         waterSlider.value = WaterContent;
+    }
+
+    public void Max()
+    {
+        QuantNutrients[0] = SliderMax;
+        QuantNutrients[1] = SliderMax;
+        QuantNutrients[2] = SliderMax;
+        WaterContent = SliderMax;
+    }
+
+    public void Min()
+    {
+        QuantNutrients[0] = 0;
+        QuantNutrients[1] = 0;
+        QuantNutrients[2] = 0;
+        WaterContent = 0;
     }
 
     public void NewCrop(int[] nutrients, int[] nutrientQuants, int water)

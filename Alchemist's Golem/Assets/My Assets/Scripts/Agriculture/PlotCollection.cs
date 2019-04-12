@@ -27,6 +27,15 @@ public class PlotCollection : MonoBehaviour
     public int seasonVal = 0;
     public int seasonBonus = 4;
 
+    public int randomMax = 100;
+    public int randomEnergise = 10;
+    public int randomDeEnergise = 10;
+    public int randomGrowth = 10;
+
+    public GameObject EnergyUp;
+    public GameObject EnergyDown;
+    public GameObject Growth;
+
     // This is to allow the upgrade buttons to be a lot more modular
     //Which allows for future additions easier
     public void Upgrade(int i)
@@ -73,6 +82,33 @@ public class PlotCollection : MonoBehaviour
 
     public void NaturalPlotIncrease()
     {
+        //Random Chances
+        int rand = Random.Range(0, randomMax);
+        int action = 0;
+
+        EnergyUp.SetActive(false);
+        EnergyDown.SetActive(false);
+        Growth.SetActive(false);
+
+        if (rand <= randomEnergise)
+        {
+            //Debug.Log("Full Energy");
+            action = 1;
+            EnergyUp.SetActive(true);
+        }
+        else if (rand <= (randomEnergise + randomDeEnergise))
+        {
+            //Debug.Log("No Energy");
+            action = 2;
+            EnergyDown.SetActive(true);
+        }
+        else if (rand <= (randomEnergise + randomDeEnergise + randomGrowth))
+        {
+            //Debug.Log("Full Growth");
+            action = 3;
+            Growth.SetActive(true);
+        }
+
         //Check for each plot in the map
         for (int i = 0; i < map.Length; i++)//row
         {
@@ -108,6 +144,24 @@ public class PlotCollection : MonoBehaviour
                         map[i].mapCol[j].ChangeNutrients(0, seasonBonus);
                         break;
                 }
+
+                switch (action)
+                {
+                    case 1://Full Energy
+                        map[i].mapCol[j].Max();
+                        break;
+                    case 2://No Energy
+                        map[i].mapCol[j].Min();
+                        break;
+                    case 3://Full Growth
+                        if (map[i].mapCol[j].crop != null)
+                        {
+                            map[i].mapCol[j].crop.ForceFullGrow();
+                        }
+                        break;
+                }
+
+                map[i].mapCol[j].UpdateSliders();
             }
         }
     }

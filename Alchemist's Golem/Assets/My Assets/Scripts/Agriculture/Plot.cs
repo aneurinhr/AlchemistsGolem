@@ -33,6 +33,13 @@ public class Plot : MonoBehaviour
 
     public int SliderMax = 20;
 
+    private void Start()
+    {
+        UpdateSliders();
+
+        Weed.NewPlant(this);
+    }
+
     public void WeedTick()
     {
         int rand = Random.Range(0, (randomGoldWeed + 1));
@@ -87,11 +94,6 @@ public class Plot : MonoBehaviour
     public void NoCrop()
     {
         pointers.Deactivate();
-    }
-
-    private void Start()
-    {
-        UpdateSliders();
     }
 
     public bool ChangeNutrients(int nutrient, int quantity)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CropMother : MonoBehaviour
 {
-
     public int[] TicksPerPhase;
 
     public int[] NutrientsNeeded;
@@ -22,7 +21,7 @@ public class CropMother : MonoBehaviour
 
     public int harvestLimit = 100;
 
-    public void Start()
+    public void Awake()
     {
         //initialize crop pool
         p_cropPool = new List<GameObject>();

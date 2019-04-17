@@ -20,19 +20,28 @@ public class MainMissions : MonoBehaviour
     public PlayerMovement player;
     public MissionBoardInteractable missionBoard;
 
+    public EscapeMenu escp;
+
     public void StartNewMission(int mission)
     {
         currentMission = mission;
+        escp.prevent = true;
 
         if (currentMission < missions.Length)
         {
             StartStringDisplay();
-            missionData[currentMission].PopulateMissionSlot(missionSlot);
+
+            if (currentMission < missionData.Length)
+            {
+                missionData[currentMission].PopulateMissionSlot(missionSlot);
+            }
         }
     }
 
     public void StartStringDisplay()
     {
+        escp.prevent = true;
+
         currentStringDisplay = 0;
         player.pauseMovement = true;
 
@@ -45,6 +54,7 @@ public class MainMissions : MonoBehaviour
 
     public void NextStringDisplay()
     {
+        escp.prevent = true;
         currentStringDisplay = currentStringDisplay + 1;
 
         if (currentStringDisplay <= (missions[currentMission].Lines.Length - 1))
@@ -58,6 +68,7 @@ public class MainMissions : MonoBehaviour
             TextDisplay.SetActive(false);
             player.pauseMovement = false;
             textIsDisplaying = false;
+            escp.prevent = false; 
         }
     }
 

@@ -58,7 +58,7 @@ public class EscapeMenu : MonoBehaviour
         options.ToggleOff();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if ((Input.GetButtonDown(EscapeButtonName)) && (prevent == false))
         {

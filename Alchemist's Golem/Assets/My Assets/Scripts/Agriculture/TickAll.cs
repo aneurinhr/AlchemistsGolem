@@ -45,6 +45,8 @@ public class TickAll : MonoBehaviour
     public Seasons seasons;
     public Text dayDisplay;
 
+    public GameObject warpPoint;
+
     private void Start()
     {
         currentTime = 1.0f;
@@ -107,6 +109,8 @@ public class TickAll : MonoBehaviour
                         punish = false;
                     }
                     battery.fillAmount = currentTime;
+
+                    player.WarpPlayer(warpPoint.transform.position);
                 }
 
                 StartCoroutine(FadeAway());

@@ -19,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void WarpPlayer(Vector3 location)
+    {
+        agent.Warp(location);
+    }
+
     void Update()
     {
         if (pauseMovement == false)

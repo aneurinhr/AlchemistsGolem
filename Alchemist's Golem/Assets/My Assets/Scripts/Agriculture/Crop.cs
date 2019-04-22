@@ -157,8 +157,9 @@ public class Crop : MonoBehaviour
                 }
 
                 //if last stage, become harvestable
-                if (currentPhase == (phases.Length - 1))
+                if (currentPhase >= (phases.Length - 1))
                 {
+                    currentPhase = (phases.Length - 1);
                     canBeHarvested = true;
                 }
 

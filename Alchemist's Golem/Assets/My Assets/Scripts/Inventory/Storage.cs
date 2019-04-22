@@ -19,6 +19,29 @@ public class Storage : MonoBehaviour
 
     public bool canChange = true;
 
+    public List<SlotSaveData> SaveInfo()
+    {
+        List<SlotSaveData> saveData = new List<SlotSaveData>();
+
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++)
+            {
+                SlotSaveData temp = inventorySlotRows[i].rowSlots[k].SaveInfo();
+                temp.ID[0] = i;
+                temp.ID[1] = k;
+                saveData.Add(temp);
+            }
+        }
+
+        return saveData;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
+
     private void Start()
     {
         UpdateStorage();

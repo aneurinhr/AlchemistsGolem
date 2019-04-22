@@ -23,6 +23,20 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private Button p_meButton;
 
+    public SlotSaveData SaveInfo()
+    {
+        SlotSaveData saveData = new SlotSaveData();
+        saveData.hotBarPointers = hotBarPointers;
+        saveData.hotBarQuantDisplay = hotBarQuant;
+
+        return saveData;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
+
     private void Start()
     {
         p_meButton = gameObject.GetComponent<Button>();
@@ -61,4 +75,11 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         hoveredOver = false;
     }
 
+}
+
+public class SlotSaveData
+{
+    public int[] ID = {999, 999};
+    public int hotBarPointers;
+    public int hotBarQuantDisplay;
 }

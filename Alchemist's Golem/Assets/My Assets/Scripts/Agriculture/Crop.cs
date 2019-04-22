@@ -23,7 +23,22 @@ public class Crop : MonoBehaviour
 
     public Plot plotOn;
 
-    //Inventory
+    public string SaveInfo()
+    {
+        CropSaveData saveData = new CropSaveData();
+        saveData.quality = quality;
+        saveData.currentTickToHarvest = p_currentTickToHarvest;
+        saveData.plantType = mother.name;//to id plant it is
+
+        string temp = JsonUtility.ToJson(saveData);
+
+        return temp;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
 
     private void OnEnable()
     {
@@ -55,8 +70,12 @@ public class Crop : MonoBehaviour
 
     public void ForceFullGrow()
     {
-        quality = p_baseQuality;
-        p_currentTickToHarvest = 999;
+        ForceGrow(999);
+    }
+
+    public void ForceGrow(int phase)
+    {
+        p_currentTickToHarvest = phase;
 
         int oldPhase = currentPhase;
         currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
@@ -70,7 +89,7 @@ public class Crop : MonoBehaviour
         //Disable all apart from correct phase
         for (int i = 0; i < phases.Length; i++)
         {
-            if (i == (phases.Length - 1))
+            if (i == currentPhase)
             {
                 phases[i].SetActive(true);
             }
@@ -200,4 +219,11 @@ public class Crop : MonoBehaviour
 
         return false;
     }
+}
+
+public class CropSaveData
+{
+    public string plantType;
+    public int quality;
+    public int currentTickToHarvest;
 }

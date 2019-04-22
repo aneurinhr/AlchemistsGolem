@@ -16,6 +16,20 @@ public class fluctuatingPriceItem : Item
 
     public int state = 1; //0 price down, 1 price same, 2 price up
 
+    public FluctuationSaveData SaveInfo()
+    {
+        FluctuationSaveData saveData = new FluctuationSaveData();
+        saveData.saveState = state;
+        saveData.saveStock = playerStock;
+
+        return saveData;
+    }
+
+    public void LoadInfo(FluctuationSaveData info)
+    {
+
+    }
+
     private void Start()
     {
         usable = false;
@@ -77,4 +91,11 @@ public class fluctuatingPriceItem : Item
         UpdatePrice();
     }
 
+}
+
+public class FluctuationSaveData
+{
+    public int ID;
+    public int saveState;
+    public int saveStock;
 }

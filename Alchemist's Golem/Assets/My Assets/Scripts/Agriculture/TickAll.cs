@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TickAll : MonoBehaviour
 {
+    public enum CurrentSeason { Spring, Summer, Autumn, Winter };
+
     public string tag = "Crop";
     public GameObject highlight;
     public bool beingLookedAt = false;
@@ -46,6 +48,25 @@ public class TickAll : MonoBehaviour
     public Text dayDisplay;
 
     public GameObject warpPoint;
+
+    public SaveAndLoad save;
+
+    public TickSaveData SaveInfo()
+    {
+        TickSaveData saveData = new TickSaveData();
+        saveData.day = day;
+        saveData.punish = punish;
+        saveData.OverCharging = OverCharging;
+        saveData.UnderCharging = UnderCharging;
+        saveData.season = seasons.SaveInfo();
+
+        return saveData;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
 
     private void Start()
     {
@@ -109,6 +130,8 @@ public class TickAll : MonoBehaviour
                         punish = false;
                     }
                     battery.fillAmount = currentTime;
+
+                    save.SaveGame();
 
                     player.WarpPlayer(warpPoint.transform.position);
                 }
@@ -232,4 +255,13 @@ public class TickAll : MonoBehaviour
         }
         dayDisplay.text = day.ToString();
     }
+}
+
+public class TickSaveData
+{
+    public int day;
+    public bool OverCharging;
+    public bool UnderCharging;
+    public bool punish;
+    public CurrentSeason season;
 }

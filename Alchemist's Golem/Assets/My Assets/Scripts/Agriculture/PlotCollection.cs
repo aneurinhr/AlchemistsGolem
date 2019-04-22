@@ -36,6 +36,40 @@ public class PlotCollection : MonoBehaviour
     public GameObject EnergyDown;
     public GameObject Growth;
 
+    public CollectionSaveData SaveInfo()
+    {
+        CollectionSaveData saveData = new CollectionSaveData();
+
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                PlotSaveData temp = map[i].mapCol[j].SaveInfo();
+                temp.ID[0] = i;
+                temp.ID[1] = j;
+
+                string plotStringData = JsonUtility.ToJson(temp);
+                //Debug.Log(plotStringData);
+
+                saveData.plotData.Add(plotStringData);
+            }
+        }
+
+        saveData.UpgradesUnlocked = UpgradesUnlocked;
+
+        saveData.Events = new bool[3];
+        saveData.Events[0] = EnergyUp.activeSelf;
+        saveData.Events[1] = EnergyDown.activeSelf;
+        saveData.Events[2] = Growth.activeSelf;
+
+        return saveData;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
+
     // This is to allow the upgrade buttons to be a lot more modular
     //Which allows for future additions easier
     public void Upgrade(int i)
@@ -308,4 +342,11 @@ public class PlotCollection : MonoBehaviour
 public class MapRow
 {
     public Plot[] mapCol;
+}
+
+public class CollectionSaveData
+{
+    public List<string> plotData = new List<string>();
+    public bool[] UpgradesUnlocked;
+    public bool[] Events;
 }

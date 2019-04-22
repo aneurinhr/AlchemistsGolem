@@ -6,15 +6,13 @@ using UnityEngine.PostProcessing;
 
 public class Seasons : MonoBehaviour
 {
-    enum CurrentSeason { Spring, Summer, Autumn, Winter };
-
     public Material[] treeLeaves;
 
     public Color[] treeLeavesSpringSummer;
     public Color[] treeLeavesAutumn;
     public Color[] treeLeavesWinter;
 
-    private CurrentSeason p_mySeason = CurrentSeason.Spring;
+    public CurrentSeason mySeason = CurrentSeason.Spring;
 
     public Image SeasonDisplay;
     public Sprite[] SeasonImages;
@@ -24,6 +22,16 @@ public class Seasons : MonoBehaviour
 
     public PostProcessingProfile[] seasonProfiles;
     public PostProcessingBehaviour playerProfile;
+
+    public CurrentSeason SaveInfo()
+    {
+        return mySeason;
+    }
+
+    public void LoadInfo(CurrentSeason info)
+    {
+
+    }
 
     private void Start()
     {
@@ -40,26 +48,26 @@ public class Seasons : MonoBehaviour
 
     public int ChangeSeasons()
     {
-        switch(p_mySeason)
+        switch(mySeason)
         {
             case CurrentSeason.Spring:
                 Summer();
-                p_mySeason = CurrentSeason.Summer;
+                mySeason = CurrentSeason.Summer;
                 return 1;
                 break;
             case CurrentSeason.Summer:
                 Autumn();
-                p_mySeason = CurrentSeason.Autumn;
+                mySeason = CurrentSeason.Autumn;
                 return 2;
                 break;
             case CurrentSeason.Autumn:
                 Winter();
-                p_mySeason = CurrentSeason.Winter;
+                mySeason = CurrentSeason.Winter;
                 return 3;
                 break;
             case CurrentSeason.Winter:
                 Spring();
-                p_mySeason = CurrentSeason.Spring;
+                mySeason = CurrentSeason.Spring;
                 return 0;
                 break;
         }
@@ -114,3 +122,6 @@ public class Seasons : MonoBehaviour
         playerProfile.profile = seasonProfiles[4];
     }
 }
+
+public enum CurrentSeason{ Spring, Summer, Autumn, Winter}
+

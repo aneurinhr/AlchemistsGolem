@@ -33,6 +33,30 @@ public class Plot : MonoBehaviour
 
     public int SliderMax = 20;
 
+    public PlotSaveData SaveInfo()
+    {
+        PlotSaveData saveData = new PlotSaveData();
+        saveData.Occupied = Occupied;
+        saveData.QuantNutrients = QuantNutrients;
+        saveData.WaterContent = WaterContent;
+
+        if (Occupied == true)
+        {
+            saveData.crop = crop.SaveInfo();
+        }
+        else
+        {
+            saveData.crop = "";
+        }
+
+        return saveData;
+    }
+
+    public void LoadInfo(string info)
+    {
+
+    }
+
     private void Start()
     {
         UpdateSliders();
@@ -152,4 +176,15 @@ public class Plot : MonoBehaviour
 
         hightlight.SetActive(highlight);
     }
+}
+
+public class PlotSaveData
+{
+    public int[] ID = { 999, 999 };
+
+    public bool Occupied;
+    public int[] QuantNutrients;
+    public int WaterContent;
+
+    public string crop;
 }

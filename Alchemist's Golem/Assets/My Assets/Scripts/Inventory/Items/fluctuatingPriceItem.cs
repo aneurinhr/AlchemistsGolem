@@ -30,16 +30,21 @@ public class fluctuatingPriceItem : Item
         state = info.saveState;
         playerStock = info.saveStock;
 
+
         UpdatePrice();
+    }
+
+    private void Start()
+    {
+        usable = false;
+        basePrice = sellPrice;
+
+        p_difperStock = ((float)percentageMaxDif * 2.0f) / (float)stockNumForMaxDecrease;
     }
 
     public void NewGame()
     {
-        usable = false;
-        basePrice = sellPrice;
         state = 1;
-
-        p_difperStock = ((float)percentageMaxDif * 2.0f) / (float)stockNumForMaxDecrease;
     }
 
     public void FluctuatePrice(int numSold)

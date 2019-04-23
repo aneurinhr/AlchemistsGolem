@@ -29,6 +29,52 @@ public class SideMission : MonoBehaviour
 
     public bool completed = false;
 
+    public SideMissionSaveData SaveGame()
+    {
+        MissionSaveData temp = myHandinSlot.SaveGame();
+        temp.TurnInItemID = p_itemID;
+        temp.totalNeeded = p_numWanted;
+
+        SideMissionSaveData saveData = new SideMissionSaveData();
+        saveData.missionSaveData = JsonUtility.ToJson(temp);
+
+        saveData.name = nameDisplay.text;
+        saveData.reward = Reward;
+        saveData.beforeAcceptGroup = beforeAcceptGroup.activeSelf;
+        saveData.HandinGroup = HandinGroup.activeSelf;
+        saveData.CompletedGroup = CompletedGroup.activeSelf;
+
+        return saveData;
+    }
+
+    public void LoadGame(SideMissionSaveData info, Sprite personInfo)
+    {
+        MissionSaveData temp = JsonUtility.FromJson<MissionSaveData>(info.missionSaveData);
+        myHandinSlot.LoadGame(temp);
+
+        p_numWanted = temp.totalNeeded;
+        p_itemID = temp.TurnInItemID;
+        Reward = info.reward;
+
+        nameDisplay.text = info.name;
+        personDisplay.sprite = personInfo;
+        numWantedDisplay.text = p_numWanted.ToString();
+        Item tempItem = itemDatabase.GetItem(p_itemID);
+        itemDisplay.sprite = tempItem.itemImage;
+        goldRewardDisplay.text = Reward.ToString();
+
+        beforeAcceptGroup.SetActive(info.beforeAcceptGroup);
+        HandinGroup.SetActive(info.HandinGroup);
+        CompletedGroup.SetActive(info.CompletedGroup);
+        
+        if (info.beforeAcceptGroup == false)
+        {
+            myHandinSlot.SetRequirements(p_itemID, temp.currentHandinNeeded);
+            myHandinSlot.overlayImage.sprite = tempItem.itemImage;
+            acceptButton.interactable = false;
+        }
+    }
+
     public void AcceptMission()
     {
         myHandinSlot.SetRequirements(p_itemID, p_numWanted);
@@ -79,4 +125,15 @@ public class SideMission : MonoBehaviour
 
         acceptButton.interactable = true;
     }
+}
+
+public class SideMissionSaveData
+{
+    public string missionSaveData;
+    public string name;
+    public int reward;
+
+    public bool beforeAcceptGroup;
+    public bool HandinGroup;
+    public bool CompletedGroup;
 }

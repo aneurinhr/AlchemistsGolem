@@ -13,6 +13,8 @@ public class SaveAndLoad : MonoBehaviour
     public TickAll tickAll; //For day and season
     public PlotCollection[] plotCollections; //For plot nutrients and crops
     public Bank bank; //For money
+    public MainMissions mainMissions;
+    public SideMissionManager sideMissions;
 
     public string gameDataFileName = "data.json";
     public string path;
@@ -78,6 +80,16 @@ public class SaveAndLoad : MonoBehaviour
 
         dataArray.Add("BREAK");
 
+        string mainMissionData = JsonUtility.ToJson(mainMissions.SaveGame());
+        dataArray.Add(mainMissionData.ToString());
+
+        dataArray.Add("BREAK");
+
+        string sideMissionData = JsonUtility.ToJson(sideMissions.SaveGame());
+        dataArray.Add(sideMissionData.ToString());
+
+        dataArray.Add("BREAK");
+
         for (int i = 0; i < plotCollections.Length; i++)
         {
             CollectionSaveData collectionSaveData = plotCollections[i].SaveInfo();//Plot Save Data
@@ -103,11 +115,20 @@ public class SaveAndLoad : MonoBehaviour
         storage.NewGame();
         inventory.NewGame();
         tickAll.NewGame();
+        sideMissions.NewGame();
 
         for (int i = 0; i < plotCollections.Length; i++)
         {
             plotCollections[i].NewGame();
         }
+
+        StartCoroutine(DelayedMissions());
+    }
+
+    IEnumerator DelayedMissions()
+    {
+        yield return new WaitForSeconds(0.3f);
+        mainMissions.StartNewMission(0);
     }
 
     public void LoadGame()
@@ -127,6 +148,8 @@ public class SaveAndLoad : MonoBehaviour
             TickSaveData tickSaveData = new TickSaveData();//Day Save Data
             List<CollectionSaveData> collectionSaveData = new List<CollectionSaveData>();
             int bankData = 0;
+            MainMissionSaveData mainMissionSaveData = new MainMissionSaveData();
+            SideMissionManagerSaveData sideMissionSaveData = new SideMissionManagerSaveData();
 
             int phase = 0;
 
@@ -156,6 +179,12 @@ public class SaveAndLoad : MonoBehaviour
                         case 4://tick
                             bankData = int.Parse(line);
                             break;
+                        case 5://Main Missions
+                            mainMissionSaveData = JsonUtility.FromJson<MainMissionSaveData>(line);
+                            break;
+                        case 6://Side Missions
+                            sideMissionSaveData = JsonUtility.FromJson<SideMissionManagerSaveData>(line);
+                            break;
                         default://Plots e.g. anything thats not the first 4 fixed things
                             CollectionSaveData tempC = JsonUtility.FromJson<CollectionSaveData>(line);
                             collectionSaveData.Add(tempC);
@@ -178,6 +207,10 @@ public class SaveAndLoad : MonoBehaviour
             tickAll.LoadInfo(tickSaveData);
 
             bank.LoadGame(bankData);
+
+            mainMissions.LoadGame(mainMissionSaveData);
+
+            sideMissions.LoadGame(sideMissionSaveData);
 
             for (int i = 0; i < plotCollections.Length; i++)
             {

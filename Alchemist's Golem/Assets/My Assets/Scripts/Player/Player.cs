@@ -17,13 +17,6 @@ public class Player : MonoBehaviour
 
     public AudioSource interact;
 
-    public MainMissions missions;
-
-    private void OnEnable()
-    {
-        missions.StartNewMission(0);
-    }
-
     public void UseItemOnPlot()
     {
         if (selectedItem.usable == true)

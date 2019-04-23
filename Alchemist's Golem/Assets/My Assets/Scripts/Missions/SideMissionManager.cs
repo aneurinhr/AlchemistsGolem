@@ -21,7 +21,44 @@ public class SideMissionManager : MonoBehaviour
     public int rejectionMax = 3;
     public Text rejectionDisplay;
 
-    private void Start()
+    public SideMissionManagerSaveData SaveGame()
+    {
+        SideMissionManagerSaveData saveData = new SideMissionManagerSaveData();
+
+        for (int i = 0; i < sideMissionSlots.Length; i++)
+        {
+            SideMissionSaveData temp = sideMissionSlots[i].SaveGame();
+            saveData.sideMissionSaveData.Add(JsonUtility.ToJson(temp));
+        }
+
+        saveData.rejectionCount = rejectionCount;
+
+        return saveData;
+    }
+
+    public void LoadGame(SideMissionManagerSaveData saveData)
+    {
+        rejectionCount = saveData.rejectionCount;
+        
+        for (int i = 0; i < saveData.sideMissionSaveData.Count; i++)
+        {
+            SideMissionSaveData temp = JsonUtility.FromJson<SideMissionSaveData>(saveData.sideMissionSaveData[i]);
+            string nameOfPerson = temp.name;
+            Sprite missionSprite = null;
+
+            for (int j = 0; j < possiblePeopleRequesting.Length; j++)
+            {
+                if (possiblePeopleRequesting[j] == nameOfPerson)
+                {
+                    missionSprite = peopleSprites[j];
+                }
+            }
+
+            sideMissionSlots[i].LoadGame(temp, missionSprite);
+        }
+    }
+
+    public void NewGame()
     {
         GenerateForAllQuestSlots();
         rejectionCount = rejectionMax;
@@ -96,4 +133,10 @@ public class SideMissionManager : MonoBehaviour
             GenerateNewQuest(i);
         }
     }
+}
+
+public class SideMissionManagerSaveData
+{
+    public List<string> sideMissionSaveData = new List<string>();
+    public int rejectionCount;
 }

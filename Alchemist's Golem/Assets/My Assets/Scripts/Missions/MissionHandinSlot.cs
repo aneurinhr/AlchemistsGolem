@@ -16,6 +16,23 @@ public class MissionHandinSlot : Slot
     public ItemDatabase database;
     public SideMission mission;
 
+    public MissionSaveData SaveGame()
+    {
+        MissionSaveData saveData = new MissionSaveData();
+        saveData.currentHandinNeeded = currentHandinNeeded;
+
+        return saveData;
+    }
+
+    public void LoadGame(MissionSaveData saveData)
+    {
+        TurnInItemID = saveData.TurnInItemID;
+        totalNeeded = saveData.totalNeeded;
+        currentHandinNeeded = saveData.currentHandinNeeded;
+
+        quantityDisplay.text = currentHandinNeeded.ToString();
+    }
+
     public void SetRequirements(int TurnIn, int QTurnIn)
     {
         TurnInItemID = TurnIn;
@@ -61,4 +78,11 @@ public class MissionHandinSlot : Slot
         }
     }
 
+}
+
+public class MissionSaveData
+{
+    public int TurnInItemID;
+    public int totalNeeded;
+    public int currentHandinNeeded;
 }

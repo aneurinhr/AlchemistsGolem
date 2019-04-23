@@ -22,6 +22,28 @@ public class MainMissions : MonoBehaviour
 
     public EscapeMenu escp;
 
+    public Sprite alchemistMaster;
+
+    public MainMissionSaveData SaveGame()
+    {
+        SideMissionSaveData temp = missionSlot.SaveGame();
+        MainMissionSaveData saveData = new MainMissionSaveData();
+        saveData.missionSaveData = JsonUtility.ToJson(temp);
+        saveData.currentMission = currentMission;
+        saveData.currentStringDisplay = currentStringDisplay;
+
+        return saveData;
+    }
+
+    public void LoadGame(MainMissionSaveData info)
+    {
+        SideMissionSaveData temp = JsonUtility.FromJson<SideMissionSaveData>(info.missionSaveData);
+        missionSlot.LoadGame(temp, alchemistMaster);
+
+        currentMission = info.currentMission;
+        currentStringDisplay = info.currentStringDisplay;
+    }
+
     public void StartNewMission(int mission)
     {
         currentMission = mission;
@@ -115,4 +137,11 @@ public class MissionCardData
         missionSlot.PopulateMission(name, person, num, itemID, gold);
         missionSlot.AcceptMission();
     }
+}
+
+public class MainMissionSaveData
+{
+    public string missionSaveData;
+    public int currentMission = 0;
+    public int currentStringDisplay = 0;
 }

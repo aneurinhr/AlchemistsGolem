@@ -37,12 +37,20 @@ public class Storage : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(List<SlotSaveData> info)
     {
+        for (int j = 0; j < info.Count; j++)
+        {
+            int i = info[j].ID[0];
+            int k = info[j].ID[1];
 
+            inventorySlotRows[i].rowSlots[k].LoadInfo(info[j]);
+        }
+
+        UpdateStorage();
     }
 
-    private void Start()
+    public void NewGame()
     {
         UpdateStorage();
     }

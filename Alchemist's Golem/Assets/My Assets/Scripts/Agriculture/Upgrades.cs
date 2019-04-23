@@ -26,6 +26,20 @@ public class Upgrades : MonoBehaviour
     public GameObject[] physicalUpgrade;
     public int[] UpgradesCost;
 
+    public void LoadGame(bool[] upgradesUnlocked)
+    {
+        for (int i = 0; i < upgradesUnlocked.Length; i++)
+        {
+            if (upgradesUnlocked[i] == true)
+            {
+                UpgradeButtons[i].interactable = false;
+                UpgradesBrought[i] = true;
+                physicalUpgrade[i].SetActive(true);
+                plotCollection.Upgrade(i);
+            }
+        }
+    }
+
     private void Start()
     {
         for (int i = 0; i < Costs.Length; i++)

@@ -33,6 +33,8 @@ public class Plot : MonoBehaviour
 
     public int SliderMax = 20;
 
+    public CropMotherMangager motherManager;
+
     public PlotSaveData SaveInfo()
     {
         PlotSaveData saveData = new PlotSaveData();
@@ -52,12 +54,32 @@ public class Plot : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(PlotSaveData info)
     {
+        Occupied = info.Occupied;
+        QuantNutrients = info.QuantNutrients;
+        WaterContent = info.WaterContent;
 
+        UpdateSliders();
+
+        if (info.Occupied == true)
+        {
+            CropSaveData temp = JsonUtility.FromJson<CropSaveData>(info.crop);
+
+            string cropMother = temp.plantType;
+
+            //Find Crop Mother
+            CropMother cropToPlant = motherManager.FindMotherOnName(cropMother);
+
+            //Plant Crop
+            cropToPlant.NewPlant(this);
+
+            //Edit Crop info
+            crop.LoadInfo(temp);
+        }
     }
 
-    private void Start()
+    public void NewGame()
     {
         UpdateSliders();
 

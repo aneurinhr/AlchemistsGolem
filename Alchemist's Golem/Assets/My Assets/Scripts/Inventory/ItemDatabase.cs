@@ -23,9 +23,29 @@ public class ItemDatabase : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(List<FluctuationSaveData> info)
     {
+        int infoCount = 0;
 
+        for (int i = 0; i < itemlist.Length; i++)
+        {
+            if (itemlist[i].usable == false)
+            {
+                itemlist[i].GetComponent<fluctuatingPriceItem>().LoadInfo(info[infoCount]);
+                infoCount = infoCount + 1;
+            }
+        }
+    }
+
+    public void NewGame()
+    {
+        for (int i = 0; i < itemlist.Length; i++)
+        {
+            if (itemlist[i].usable == false)
+            {
+                itemlist[i].GetComponent<fluctuatingPriceItem>().NewGame();
+            }
+        }
     }
 
     public Item GetItem(int pointer)

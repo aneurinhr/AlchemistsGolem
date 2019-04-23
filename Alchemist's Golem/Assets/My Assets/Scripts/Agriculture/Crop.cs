@@ -29,15 +29,19 @@ public class Crop : MonoBehaviour
         saveData.quality = quality;
         saveData.currentTickToHarvest = p_currentTickToHarvest;
         saveData.plantType = mother.name;//to id plant it is
+        saveData.unhealthy = dyingPhase.activeSelf;
 
         string temp = JsonUtility.ToJson(saveData);
 
         return temp;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(CropSaveData info)
     {
+        quality = info.quality;
+        int tick = info.currentTickToHarvest;
 
+        ForceGrow(tick, info.unhealthy);
     }
 
     private void OnEnable()
@@ -70,33 +74,66 @@ public class Crop : MonoBehaviour
 
     public void ForceFullGrow()
     {
-        ForceGrow(999);
+        ForceGrow(999, false);
     }
 
-    public void ForceGrow(int phase)
+    public void ForceGrow(int phase, bool unhealthy)
     {
         p_currentTickToHarvest = phase;
 
-        int oldPhase = currentPhase;
-        currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
-
-        dyingPhase.SetActive(false);
-        deadPhase.SetActive(false);
-
-        dead = false;
-        canBeHarvested = true;
-
-        //Disable all apart from correct phase
-        for (int i = 0; i < phases.Length; i++)
+        if ((unhealthy == false) &&(dead == false))
         {
-            if (i == currentPhase)
+            //If quality hits 0 plant is dead
+            if (quality <= 0)
             {
-                phases[i].SetActive(true);
+                dead = true;
+                canBeHarvested = false;
+
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(true);
             }
-            else
+
+            int oldPhase = currentPhase;
+            currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+
+            dyingPhase.SetActive(false);
+
+            //Disable all apart from correct phase
+            for (int i = 0; i < phases.Length; i++)
+            {
+                if (currentPhase == i)
+                {
+                    phases[i].SetActive(true);
+                }
+                else
+                {
+                    phases[i].SetActive(false);
+                }
+            }
+
+            //if last stage, become harvestable
+            if (currentPhase >= (phases.Length - 1))
+            {
+                currentPhase = (phases.Length - 1);
+                canBeHarvested = true;
+            }
+
+
+
+        }
+        else if (unhealthy == true)// unhealthy
+        {
+            for (int i = 0; i < phases.Length; i++)// disable all
             {
                 phases[i].SetActive(false);
             }
+            deadPhase.SetActive(false);
+            dyingPhase.SetActive(true);
         }
     }
 
@@ -226,4 +263,5 @@ public class CropSaveData
     public string plantType;
     public int quality;
     public int currentTickToHarvest;
+    public bool unhealthy;
 }

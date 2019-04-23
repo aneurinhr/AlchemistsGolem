@@ -32,9 +32,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(SlotSaveData info)
     {
-
+        hotBarPointers = info.hotBarPointers;
+        hotBarQuant = info.hotBarQuantDisplay;
     }
 
     private void Start()

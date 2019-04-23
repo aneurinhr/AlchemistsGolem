@@ -61,12 +61,28 @@ public class Inventory : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(List<SlotSaveData> info)
     {
+        for (int j = 0; j < info.Count; j++)
+        {
+            int i = info[j].ID[0];
+            int k = info[j].ID[1];
 
+            if (k == 999)
+            {
+                hotbarSlots[i].LoadInfo(info[j]);
+            }
+            else
+            {
+                inventorySlotRows[i].rowSlots[k].LoadInfo(info[j]);
+            }
+        }
+
+        UpdateInventory();
+        highlightedSlot = null;
     }
 
-    private void Start()
+    public void NewGame()
     {
         UpdateInventory();
         highlightedSlot = null;

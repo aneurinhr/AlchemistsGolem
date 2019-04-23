@@ -27,10 +27,13 @@ public class fluctuatingPriceItem : Item
 
     public void LoadInfo(FluctuationSaveData info)
     {
+        state = info.saveState;
+        playerStock = info.saveStock;
 
+        UpdatePrice();
     }
 
-    private void Start()
+    public void NewGame()
     {
         usable = false;
         basePrice = sellPrice;

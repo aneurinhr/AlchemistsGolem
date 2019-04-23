@@ -8,6 +8,16 @@ public class Bank : MonoBehaviour
     public int money = 10;
     public Text display;
 
+    public int SaveGame()
+    {
+        return money;
+    }
+
+    public void LoadGame(int newMoney)
+    {
+        money = newMoney;
+    }
+
     private void Start()
     {
         display.text = money.ToString();

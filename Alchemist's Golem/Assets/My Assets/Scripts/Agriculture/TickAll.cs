@@ -63,15 +63,45 @@ public class TickAll : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void LoadInfo(TickSaveData info)
     {
+        day = info.day;
+        dayDisplay.text = day.ToString();
 
+        punish = info.punish;
+        OverCharging = info.OverCharging;
+        UnderCharging = info.UnderCharging;
+
+        seasons.LoadInfo(info.season);
+
+        currentTime = 1.0f;
+        if (punish == true)
+        {
+            currentTime = currentTime - punishmentVal;
+            punish = false;
+        }
+        battery.fillAmount = currentTime;
+
+        if (OverCharging == true)
+        {
+            battery.sprite = OverCharged;
+        }
+        else if (UnderCharging == true)
+        {
+            battery.sprite = UnderCharged;
+        }
+        else
+        {
+            battery.sprite = NormalCharge;
+        }
     }
 
-    private void Start()
+    public void NewGame()
     {
         currentTime = 1.0f;
         pauseTimer = true;
+
+        seasons.NewGame();
     }
 
     public void BeingLookedAt()

@@ -13,6 +13,7 @@ public class PlotCollection : MonoBehaviour
 
     //Upgrades
     public bool[] UpgradesUnlocked;
+    public Upgrades upgrades;
 
     public int[] UpgradeNutrientValues;
     public int UpgradeWaterValues = 4;
@@ -65,9 +66,52 @@ public class PlotCollection : MonoBehaviour
         return saveData;
     }
 
-    public void LoadInfo(string info)
+    public void NewGame()
     {
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                map[i].mapCol[j].NewGame();
+            }
+        }
+    }
 
+    public void LoadInfo(CollectionSaveData info)
+    {
+        UpgradesUnlocked = info.UpgradesUnlocked;
+        upgrades.LoadGame(UpgradesUnlocked);
+
+        bool EnergyUpActive = info.Events[0];
+        bool EnergyDownActive = info.Events[1];
+        bool GrowthActive = info.Events[2];
+
+        for (int k = 0; k < info.plotData.Count; k++)
+        {
+            PlotSaveData temp = JsonUtility.FromJson<PlotSaveData>(info.plotData[k]);
+
+            int i = temp.ID[0];
+            int j = temp.ID[1];
+
+            map[i].mapCol[j].LoadInfo(temp);
+        }
+
+        EnergyUp.SetActive(false);
+        EnergyDown.SetActive(false);
+        Growth.SetActive(false);
+
+        if (EnergyUpActive == true)
+        {
+            EnergyUp.SetActive(true);
+        }
+        else if (EnergyDownActive)
+        {
+            EnergyDown.SetActive(true);
+        }
+        else if (GrowthActive)
+        {
+            Growth.SetActive(true);
+        }
     }
 
     // This is to allow the upgrade buttons to be a lot more modular

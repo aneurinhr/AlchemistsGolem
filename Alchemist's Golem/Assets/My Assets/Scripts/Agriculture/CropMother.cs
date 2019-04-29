@@ -75,8 +75,8 @@ public class CropMother : MonoBehaviour
                 return i;
             }
         }
-
-        return 0;
+        Debug.Log("Hit here so full grown");
+        return TicksPerPhase[TicksPerPhase.Length - 1];
     }
 
 }

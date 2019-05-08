@@ -20,6 +20,8 @@ public class MainMissions : MonoBehaviour
     public PlayerMovement player;
     public MissionBoardInteractable missionBoard;
 
+    public AudioSource Speech;
+
     public EscapeMenu escp;
 
     public Sprite alchemistMaster;
@@ -62,6 +64,8 @@ public class MainMissions : MonoBehaviour
 
     public void StartStringDisplay()
     {
+        Speech.Play();
+
         escp.prevent = true;
 
         currentStringDisplay = 0;
@@ -71,11 +75,20 @@ public class MainMissions : MonoBehaviour
         TextDisplay.SetActive(true);
         DispText.text = missions[currentMission].Lines[currentStringDisplay];
 
+        StartCoroutine(DelayedStop());
         StartCoroutine(PauseSkip());
+    }
+
+    IEnumerator DelayedStop()
+    {
+        yield return new WaitForSeconds(2.5f);
+        Speech.Stop();
     }
 
     public void NextStringDisplay()
     {
+        StartCoroutine(DelayedStop());
+
         escp.prevent = true;
         currentStringDisplay = currentStringDisplay + 1;
 
@@ -83,6 +96,7 @@ public class MainMissions : MonoBehaviour
         {
             TextDisplay.SetActive(true);
             DispText.text = missions[currentMission].Lines[currentStringDisplay];
+            StopCoroutine(PauseSkip());
             StartCoroutine(PauseSkip());
         }
         else
@@ -90,7 +104,8 @@ public class MainMissions : MonoBehaviour
             TextDisplay.SetActive(false);
             player.pauseMovement = false;
             textIsDisplaying = false;
-            escp.prevent = false; 
+            escp.prevent = false;
+            Speech.Stop();
         }
     }
 
@@ -110,9 +125,13 @@ public class MainMissions : MonoBehaviour
 
     IEnumerator PauseSkip()
     {
+        StopCoroutine(DelayedStop());
+
         pauseSkip = true;
+        Speech.Stop();
         yield return new WaitForSeconds(0.3f);
         pauseSkip = false;
+        Speech.Play();
     }
 
 }

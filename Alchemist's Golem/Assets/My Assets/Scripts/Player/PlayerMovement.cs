@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool pauseMovement = false;
 
     public NavMeshAgent agent;
+    public AudioSource hover;
 
     private void Start()
     {

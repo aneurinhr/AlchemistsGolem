@@ -11,6 +11,8 @@ public class TickAll : MonoBehaviour
     public GameObject highlight;
     public bool beingLookedAt = false;
 
+    public AudioSource recharge;
+
     public PlotCollection[] plots;
     public Image fadeTo;
 
@@ -193,6 +195,9 @@ public class TickAll : MonoBehaviour
 
     IEnumerator FadeAway()
     {
+        recharge.time = 1.05f;
+        recharge.Play();
+
         yield return new WaitForSecondsRealtime(0.3f);
         fade = true;
     }

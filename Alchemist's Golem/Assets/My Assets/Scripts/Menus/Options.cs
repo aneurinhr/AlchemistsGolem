@@ -18,6 +18,7 @@ public class Options : MonoBehaviour
     public Slider master;
     public Slider sfx;
     public Slider ui;
+    public Slider music;
 
     private Resolution[] resolutionsArray;
 
@@ -68,6 +69,10 @@ public class Options : MonoBehaviour
         float uitemp = 0;
         masterMixer.GetFloat("uiVol", out uitemp);
         ui.value = 0;
+
+        float musictemp = 0;
+        masterMixer.GetFloat("musicVol", out musictemp);
+        music.value = 0;
     }
     //End of start
 
@@ -114,5 +119,10 @@ public class Options : MonoBehaviour
     public void ChangeUIVol(float volume)
     {
         masterMixer.SetFloat("uiVol", volume);
+    }
+
+    public void ChangeMusicVol(float volume)
+    {
+        masterMixer.SetFloat("musicVol", volume);
     }
 }

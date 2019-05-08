@@ -40,6 +40,7 @@ public class MissionBoardInteractable : MonoBehaviour
                 missions.SetActive(true);
                 inventory.uiON();
                 inventory.canChange = false;
+                openMissions.Play();
             }
             else if (open == true)
             {
@@ -56,5 +57,6 @@ public class MissionBoardInteractable : MonoBehaviour
         missions.SetActive(false);
         inventory.canChange = true;
         inventory.uiOFF();
+        openMissions.Play();
     }
 }

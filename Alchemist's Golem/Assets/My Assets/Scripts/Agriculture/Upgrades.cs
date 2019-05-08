@@ -10,8 +10,6 @@ public class Upgrades : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public AudioSource openUpgrades;
-    public AudioSource upgrade;
-    public AudioSource notEnoughMoney;
 
     public GameObject highlight;
     public GameObject upgradeMenu;
@@ -102,6 +100,7 @@ public class Upgrades : MonoBehaviour
         open = true;
         upgradeMenu.SetActive(true);
         playerMovement.pauseMovement = true;
+        openUpgrades.Play();
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -112,6 +111,7 @@ public class Upgrades : MonoBehaviour
         open = false;
         upgradeMenu.SetActive(false);
         playerMovement.pauseMovement = false;
+        openUpgrades.Play();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

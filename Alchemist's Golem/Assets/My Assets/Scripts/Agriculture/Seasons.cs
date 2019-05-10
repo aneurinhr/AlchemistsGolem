@@ -131,7 +131,7 @@ public class Seasons : MonoBehaviour
 
         terrain.material = seasonTerrain[3];
         SeasonDisplay.sprite = SeasonImages[3];
-        playerProfile.profile = seasonProfiles[4];
+        playerProfile.profile = seasonProfiles[3];
     }
 }
 

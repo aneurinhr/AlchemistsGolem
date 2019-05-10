@@ -230,6 +230,19 @@ public class Crop : MonoBehaviour
                 dyingPhase.SetActive(true);
             }
         }//not dead
+
+        if (canBeHarvested == true)
+        {
+            for (int i = 0; i < phases.Length; i++)// disable all
+            {
+                phases[i].SetActive(false);
+            }
+
+            dyingPhase.SetActive(false);
+            deadPhase.SetActive(false);
+
+            phases[phases.Length - 1].SetActive(true);
+        }
     }
 
     public bool Harvest() //Should directly deposite to inventory

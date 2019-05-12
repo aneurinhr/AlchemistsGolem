@@ -6,7 +6,23 @@ using UnityEngine.UI;
 public class Bank : MonoBehaviour
 {
     public int money = 10;
-    public Text display;
+    public Text display;  
+
+    public void NewGame()
+    {
+        money = 0;
+        display.text = money.ToString();
+    }
+
+    public int SaveGame()
+    {
+        return money;
+    }
+
+    public void LoadGame(int newMoney)
+    {
+        money = newMoney;
+    }
 
     private void Start()
     {

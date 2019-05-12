@@ -49,6 +49,6 @@ MonoBehaviour:
   RequiredWaterContent: -4
   RequirementsSensitivity: 0
   Crop: {fileID: 5642037490829905134, guid: 36c768c46f079814e969d29c1f551da2, type: 3}
-  cropPoolSize: 200
+  cropPoolSize: 150
   harvestItemID: 7
   inventory: {fileID: 0}

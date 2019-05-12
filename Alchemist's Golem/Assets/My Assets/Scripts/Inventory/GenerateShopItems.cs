@@ -10,6 +10,7 @@ public class GenerateShopItems : MonoBehaviour
     public ItemDatabase database;
 
     public float startY = -50.0f;
+    public float x = 170.0f;
     public float yDif = 80.0f;
 
     private int numUsable = 0;
@@ -23,7 +24,7 @@ public class GenerateShopItems : MonoBehaviour
             if (temp.usable == true)//if true it is also a buyable item
             {
                 float y = startY - (yDif * numUsable);
-                Vector3 newPosition = new Vector3(0, y, 0);
+                Vector3 newPosition = new Vector3(x, y, 0);
 
                 GameObject shopItem = Instantiate(itemTemplate, newPosition, parent.transform.rotation);
                 shopItem.transform.SetParent(parent.transform, false);

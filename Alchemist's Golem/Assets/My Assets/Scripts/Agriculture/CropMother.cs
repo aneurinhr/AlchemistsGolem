@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CropMother : MonoBehaviour
 {
-
     public int[] TicksPerPhase;
 
     public int[] NutrientsNeeded;
@@ -20,7 +19,9 @@ public class CropMother : MonoBehaviour
     public int harvestItemID = 999;
     public Inventory inventory;
 
-    public void Start()
+    public int harvestLimit = 100;
+
+    public void Awake()
     {
         //initialize crop pool
         p_cropPool = new List<GameObject>();
@@ -34,7 +35,14 @@ public class CropMother : MonoBehaviour
 
     public void NewHarvest(int quant)
     {
-        inventory.AddItem(harvestItemID, quant);
+        int temp = quant;
+
+        if (temp > harvestLimit)
+        {
+            temp = harvestLimit;
+        }
+
+        inventory.AddItem(harvestItemID, temp);
     }
 
     public void NewPlant(Plot plantingArea) //Change from uml as the crop is not information the player script needs.
@@ -67,8 +75,7 @@ public class CropMother : MonoBehaviour
                 return i;
             }
         }
-
-        return 0;
+        return TicksPerPhase[TicksPerPhase.Length - 1];
     }
 
 }

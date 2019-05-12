@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969921182645659767}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -49,6 +49,6 @@ MonoBehaviour:
   RequiredWaterContent: -6
   RequirementsSensitivity: 0
   Crop: {fileID: 7013118711572585792, guid: d0e152ca8eb1b2d40803bba15636c282, type: 3}
-  cropPoolSize: 200
+  cropPoolSize: 150
   harvestItemID: 9
   inventory: {fileID: 0}

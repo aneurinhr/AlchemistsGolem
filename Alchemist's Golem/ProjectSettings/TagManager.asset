@@ -9,6 +9,9 @@ TagManager:
   - Chest
   - Shop
   - Charging
+  - Upgrades
+  - PlayerCamera
+  - Missions
   layers:
   - Default
   - TransparentFX

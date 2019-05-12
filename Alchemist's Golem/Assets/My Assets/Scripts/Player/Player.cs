@@ -93,6 +93,14 @@ public class Player : MonoBehaviour
                 {
                     lookingAt.GetComponent<TickAll>().BeingLookedAt();
                 }
+                else if (lookingAt.tag == "Upgrades")
+                {
+                    lookingAt.GetComponent<Upgrades>().BeingLookedAt();
+                }
+                else if (lookingAt.tag == "Missions")
+                {
+                    lookingAt.GetComponent<MissionBoardInteractable>().BeingLookedAt();
+                }
             }
 
             if (highlightedPlot != null)

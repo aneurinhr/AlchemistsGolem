@@ -10,6 +10,7 @@ public class Plot : MonoBehaviour
     public int WaterContent;
 
     public GameObject hightlight;
+    public Image highlightBorder;
 
     public Crop crop;
 
@@ -20,12 +21,120 @@ public class Plot : MonoBehaviour
 
     public PlotNutrientPointers pointers;
 
+    public Color unoccupied;
+    public Color harvest;
+    public Color growing;
+    public Color dead;
+
+    public int randomMinWeed = 90;
+    public int randomGoldWeed = 100;
+    public CropMother Weed;
+    public CropMother GoldWeed;
+
+    public int SliderMax = 20;
+
+    public CropMotherMangager motherManager;
+
+    public PlotSaveData SaveInfo()
+    {
+        PlotSaveData saveData = new PlotSaveData();
+        saveData.Occupied = Occupied;
+        saveData.QuantNutrients = QuantNutrients;
+        saveData.WaterContent = WaterContent;
+
+        if (Occupied == true)
+        {
+            saveData.crop = crop.SaveInfo();
+        }
+        else
+        {
+            saveData.crop = "";
+        }
+
+        return saveData;
+    }
+
+    public void LoadInfo(PlotSaveData info)
+    {
+        Occupied = info.Occupied;
+        QuantNutrients = info.QuantNutrients;
+        WaterContent = info.WaterContent;
+
+        UpdateSliders();
+
+        if (info.Occupied == true)
+        {
+            CropSaveData temp = JsonUtility.FromJson<CropSaveData>(info.crop);
+
+            string cropMother = temp.plantType;
+
+            //Find Crop Mother
+            CropMother cropToPlant = motherManager.FindMotherOnName(cropMother);
+
+            //Plant Crop
+            cropToPlant.NewPlant(this);
+
+            //Edit Crop info
+            crop.LoadInfo(temp);
+        }
+    }
+
+    public void NewGame()
+    {
+        if (Occupied == true)
+        {
+            crop.Kill();
+        }
+
+        QuantNutrients[0] = 7;
+        QuantNutrients[1] = 7;
+        QuantNutrients[2] = 7;
+        WaterContent = 7;
+
+        UpdateSliders();
+
+        Weed.NewPlant(this);
+    }
+
+    public void WeedTick()
+    {
+        int rand = Random.Range(0, (randomGoldWeed + 1));
+
+        if (rand >= randomMinWeed)
+        {
+            if (rand == randomGoldWeed)
+            {
+                GoldWeed.NewPlant(this);
+            }
+            else
+            {
+                Weed.NewPlant(this);
+            }
+        }
+    }
+
     public void UpdateSliders()
     {
         frostSlider.value = QuantNutrients[0];
         heatSlider.value = QuantNutrients[1];
         windSlider.value = QuantNutrients[2];
         waterSlider.value = WaterContent;
+    }
+
+    public void Max()
+    {
+        QuantNutrients[0] = SliderMax;
+        QuantNutrients[1] = SliderMax;
+        QuantNutrients[2] = SliderMax;
+        WaterContent = SliderMax;
+    }
+
+    public void Min()
+    {
+        QuantNutrients[0] = 0;
+        QuantNutrients[1] = 0;
+        QuantNutrients[2] = 0;
+        WaterContent = 0;
     }
 
     public void NewCrop(int[] nutrients, int[] nutrientQuants, int water)
@@ -41,11 +150,6 @@ public class Plot : MonoBehaviour
     public void NoCrop()
     {
         pointers.Deactivate();
-    }
-
-    private void Start()
-    {
-        UpdateSliders();
     }
 
     public bool ChangeNutrients(int nutrient, int quantity)
@@ -82,6 +186,37 @@ public class Plot : MonoBehaviour
 
     public void Highlight(bool highlight)
     {
+        if (Occupied == true)
+        {
+            if (crop.canBeHarvested == true)
+            {
+                highlightBorder.color = harvest;
+            }
+            else if (crop.dead == true)
+            {
+                highlightBorder.color = dead;
+            }
+            else
+            {
+                highlightBorder.color = growing;
+            }
+        }
+        else
+        {
+            highlightBorder.color = unoccupied;
+        }
+
         hightlight.SetActive(highlight);
     }
+}
+
+public class PlotSaveData
+{
+    public int[] ID = { 999, 999 };
+
+    public bool Occupied;
+    public int[] QuantNutrients;
+    public int WaterContent;
+
+    public string crop;
 }

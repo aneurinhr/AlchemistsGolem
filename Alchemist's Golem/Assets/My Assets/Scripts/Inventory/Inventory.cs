@@ -34,8 +34,69 @@ public class Inventory : MonoBehaviour
 
     public EventSystem m_EventSystem;
 
-    private void Start()
+    public List<SlotSaveData> SaveInfo()
     {
+        List<SlotSaveData> saveData = new List<SlotSaveData>();
+
+        //Hotbar
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            SlotSaveData temp = hotbarSlots[i].SaveInfo();
+            temp.ID[0] = i;
+            temp.ID[1] = 999;
+            saveData.Add(temp);
+        }
+
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++)
+            {
+                SlotSaveData temp = inventorySlotRows[i].rowSlots[k].SaveInfo();
+                temp.ID[0] = i;
+                temp.ID[1] = k;
+                saveData.Add(temp);
+            }
+        }
+
+        return saveData;
+    }
+
+    public void LoadInfo(List<SlotSaveData> info)
+    {
+        for (int j = 0; j < info.Count; j++)
+        {
+            int i = info[j].ID[0];
+            int k = info[j].ID[1];
+
+            if (k == 999)
+            {
+                hotbarSlots[i].LoadInfo(info[j]);
+            }
+            else
+            {
+                inventorySlotRows[i].rowSlots[k].LoadInfo(info[j]);
+            }
+        }
+
+        UpdateInventory();
+        highlightedSlot = null;
+    }
+
+    public void NewGame()
+    {
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            hotbarSlots[i].ResetThis();
+        }
+
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++)
+            {
+                inventorySlotRows[i].rowSlots[k].ResetThis();
+            }
+        }
+
         UpdateInventory();
         highlightedSlot = null;
     }
@@ -292,43 +353,96 @@ public class Inventory : MonoBehaviour
         {
             if (scroll == true)
             {
-                float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-
-                if (scrollWheel > 0f)
+                bool change = false;
+                //Button press - 11 slots
+                if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    // scroll up
-                    highlightedHotbarSlot = highlightedHotbarSlot + 1;
-
-                    if (highlightedHotbarSlot >= hotbarSlots.Length)
-                    {
-                        highlightedHotbarSlot = 0;
-                    }
-
-                    for (int i = 0; i < hotbarSlots.Length; i++)
-                    {
-                        if (highlightedHotbarSlot == i)
-                        {
-                            hotbarSlots[highlightedHotbarSlot].HighlightDisplay.SetActive(true);
-                            player.selectedItem = GetItemFromHotbars(highlightedHotbarSlot);
-                        }
-                        else
-                        {
-                            hotbarSlots[i].HighlightDisplay.SetActive(false);
-                        }
-                    }
-
-                    scrollInteraction.Play();
+                    highlightedHotbarSlot = 0;
+                    change = true;
                 }
-                else if (scrollWheel < 0f)
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    // scroll down
-                    highlightedHotbarSlot = highlightedHotbarSlot - 1;
+                    highlightedHotbarSlot = 1;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    highlightedHotbarSlot = 2;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    highlightedHotbarSlot = 3;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    highlightedHotbarSlot = 4;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    highlightedHotbarSlot = 5;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha7))
+                {
+                    highlightedHotbarSlot = 6;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha8))
+                {
+                    highlightedHotbarSlot = 7;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha9))
+                {
+                    highlightedHotbarSlot = 8;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha0))
+                {
+                    highlightedHotbarSlot = 9;
+                    change = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Minus))
+                {
+                    highlightedHotbarSlot = 10;
+                    change = true;
+                }
+                else //scroll if button not pressed
+                {
 
-                    if (highlightedHotbarSlot < 0)
+                    float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+
+                    if (scrollWheel > 0f)
                     {
-                        highlightedHotbarSlot = hotbarSlots.Length - 1;
-                    }
+                        // scroll up
+                        highlightedHotbarSlot = highlightedHotbarSlot + 1;
 
+                        if (highlightedHotbarSlot >= hotbarSlots.Length)
+                        {
+                            highlightedHotbarSlot = 0;
+                        }
+
+                        change = true;
+                    }
+                    else if (scrollWheel < 0f)
+                    {
+                        // scroll down
+                        highlightedHotbarSlot = highlightedHotbarSlot - 1;
+
+                        if (highlightedHotbarSlot < 0)
+                        {
+                            highlightedHotbarSlot = hotbarSlots.Length - 1;
+                        }
+
+                        change = true;
+                    }
+                }
+
+                if (change == true)
+                {
                     for (int i = 0; i < hotbarSlots.Length; i++)
                     {
                         if (highlightedHotbarSlot == i)

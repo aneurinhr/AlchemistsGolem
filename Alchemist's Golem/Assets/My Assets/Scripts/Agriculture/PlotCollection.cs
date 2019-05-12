@@ -7,8 +7,19 @@ public class PlotCollection : MonoBehaviour
 
     public MapRow[] map;
 
+    private int[] p_baseValues;
     public int[] NutrientIncrease;
+    private int p_baseWater;
     public int WaterIncrease = 1;
+    public int growth = 1;
+
+    //Upgrades
+    public bool[] UpgradesUnlocked;
+    public Upgrades upgrades;
+
+    public int[] UpgradeNutrientValues;
+    public int UpgradeWaterValues = 4;
+    //Upgrades
 
     public int[] NutrientMax;
     public int WaterMax = 7;
@@ -16,8 +27,184 @@ public class PlotCollection : MonoBehaviour
     public int DiffuseLimit = 1;
     public int minDifToDiffuse = 2;
 
+    public int seasonVal = 0;
+    public int seasonBonus = 4;
+
+    public int randomMax = 100;
+    public int randomEnergise = 10;
+    public int randomDeEnergise = 10;
+    public int randomGrowth = 10;
+
+    public GameObject EnergyUp;
+    public GameObject EnergyDown;
+    public GameObject Growth;
+
+    private void Awake()
+    {
+        p_baseValues = NutrientIncrease;
+        p_baseWater = WaterIncrease;
+    }
+
+    public CollectionSaveData SaveInfo()
+    {
+        CollectionSaveData saveData = new CollectionSaveData();
+
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                PlotSaveData temp = map[i].mapCol[j].SaveInfo();
+                temp.ID[0] = i;
+                temp.ID[1] = j;
+
+                string plotStringData = JsonUtility.ToJson(temp);
+                //Debug.Log(plotStringData);
+
+                saveData.plotData.Add(plotStringData);
+            }
+        }
+
+        saveData.UpgradesUnlocked = UpgradesUnlocked;
+
+        saveData.Events = new bool[3];
+        saveData.Events[0] = EnergyUp.activeSelf;
+        saveData.Events[1] = EnergyDown.activeSelf;
+        saveData.Events[2] = Growth.activeSelf;
+
+        return saveData;
+    }
+
+    public void NewGame()
+    {
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                map[i].mapCol[j].NewGame();
+            }
+        }
+
+        NutrientIncrease = p_baseValues;
+        WaterIncrease = p_baseWater;
+
+        for (int i = 0; i < UpgradesUnlocked.Length; i++)
+        {
+            UpgradesUnlocked[i] = false;
+        }
+
+        upgrades.NewGame();
+    }
+
+    public void LoadInfo(CollectionSaveData info)
+    {
+        UpgradesUnlocked = info.UpgradesUnlocked;
+        upgrades.LoadGame(UpgradesUnlocked);
+
+        bool EnergyUpActive = info.Events[0];
+        bool EnergyDownActive = info.Events[1];
+        bool GrowthActive = info.Events[2];
+
+        for (int k = 0; k < info.plotData.Count; k++)
+        {
+            PlotSaveData temp = JsonUtility.FromJson<PlotSaveData>(info.plotData[k]);
+
+            int i = temp.ID[0];
+            int j = temp.ID[1];
+
+            map[i].mapCol[j].LoadInfo(temp);
+        }
+
+        EnergyUp.SetActive(false);
+        EnergyDown.SetActive(false);
+        Growth.SetActive(false);
+
+        if (EnergyUpActive == true)
+        {
+            EnergyUp.SetActive(true);
+        }
+        else if (EnergyDownActive)
+        {
+            EnergyDown.SetActive(true);
+        }
+        else if (GrowthActive)
+        {
+            Growth.SetActive(true);
+        }
+    }
+
+    // This is to allow the upgrade buttons to be a lot more modular
+    //Which allows for future additions easier
+    public void Upgrade(int i)
+    {
+        UpgradesUnlocked[i] = true;
+
+        switch (i)//0-4 e.g. 5 upgrades
+        {
+            case 0:
+                NutrientIncrease[0] = UpgradeNutrientValues[0];
+                break;
+            case 1:
+                NutrientIncrease[1] = UpgradeNutrientValues[1];
+                break;
+            case 2:
+                NutrientIncrease[2] = UpgradeNutrientValues[2];
+                break;
+            case 3:
+                WaterIncrease = UpgradeWaterValues;
+                break;
+            case 4:
+                growth = 2;
+                break;
+        }
+    }
+
+    public void TickAll()
+    {
+        for (int i = 0; i < map.Length; i++)//row
+        {
+            for (int j = 0; j < map[i].mapCol.Length; j++)//col
+            {
+                if (map[i].mapCol[j].crop != null)
+                {
+                    map[i].mapCol[j].crop.Tick(growth);
+                }
+                else
+                {
+                    map[i].mapCol[j].WeedTick();
+                }
+            }
+        }
+    }
+
     public void NaturalPlotIncrease()
     {
+        //Random Chances
+        int rand = Random.Range(0, randomMax);
+        int action = 0;
+
+        EnergyUp.SetActive(false);
+        EnergyDown.SetActive(false);
+        Growth.SetActive(false);
+
+        if (rand <= randomEnergise)
+        {
+            //Debug.Log("Full Energy");
+            action = 1;
+            EnergyUp.SetActive(true);
+        }
+        else if (rand <= (randomEnergise + randomDeEnergise))
+        {
+            //Debug.Log("No Energy");
+            action = 2;
+            EnergyDown.SetActive(true);
+        }
+        else if (rand <= (randomEnergise + randomDeEnergise + randomGrowth))
+        {
+            //Debug.Log("Full Growth");
+            action = 3;
+            Growth.SetActive(true);
+        }
+
         //Check for each plot in the map
         for (int i = 0; i < map.Length; i++)//row
         {
@@ -37,6 +224,40 @@ public class PlotCollection : MonoBehaviour
                 {
                     map[i].mapCol[j].ChangeWaterContent(WaterIncrease);//increase
                 }
+
+                switch (seasonVal)
+                {
+                    case 0://wind spring
+                        map[i].mapCol[j].ChangeNutrients(2, seasonBonus);
+                        break;
+                    case 1://fire summer
+                        map[i].mapCol[j].ChangeNutrients(1, seasonBonus);
+                        break;
+                    case 2://water autumn
+                        map[i].mapCol[j].ChangeWaterContent(seasonBonus);
+                        break;
+                    case 3://frost winter
+                        map[i].mapCol[j].ChangeNutrients(0, seasonBonus);
+                        break;
+                }
+
+                switch (action)
+                {
+                    case 1://Full Energy
+                        map[i].mapCol[j].Max();
+                        break;
+                    case 2://No Energy
+                        map[i].mapCol[j].Min();
+                        break;
+                    case 3://Full Growth
+                        if (map[i].mapCol[j].crop != null)
+                        {
+                            map[i].mapCol[j].crop.ForceFullGrow();
+                        }
+                        break;
+                }
+
+                map[i].mapCol[j].UpdateSliders();
             }
         }
     }
@@ -183,4 +404,11 @@ public class PlotCollection : MonoBehaviour
 public class MapRow
 {
     public Plot[] mapCol;
+}
+
+public class CollectionSaveData
+{
+    public List<string> plotData = new List<string>();
+    public bool[] UpgradesUnlocked;
+    public bool[] Events;
 }

@@ -23,7 +23,26 @@ public class Crop : MonoBehaviour
 
     public Plot plotOn;
 
-    //Inventory
+    public string SaveInfo()
+    {
+        CropSaveData saveData = new CropSaveData();
+        saveData.quality = quality;
+        saveData.currentTickToHarvest = p_currentTickToHarvest;
+        saveData.plantType = mother.name;//to id plant it is
+        saveData.unhealthy = dyingPhase.activeSelf;
+
+        string temp = JsonUtility.ToJson(saveData);
+
+        return temp;
+    }
+
+    public void LoadInfo(CropSaveData info)
+    {
+        quality = info.quality;
+        int tick = info.currentTickToHarvest;
+
+        ForceGrow(tick, info.unhealthy);
+    }
 
     private void OnEnable()
     {
@@ -33,6 +52,9 @@ public class Crop : MonoBehaviour
 
         canBeHarvested = false;
         dead = false;
+        dyingPhase.SetActive(false);
+        deadPhase.SetActive(false);
+
         //Disable all apart from correct phase
         for (int i = 0; i < phases.Length; i++)
         {
@@ -45,12 +67,92 @@ public class Crop : MonoBehaviour
                 phases[i].SetActive(false);
             }
         }
+
+        if (currentPhase == (phases.Length - 1))
+        {
+            canBeHarvested = true;
+        }
+    }
+
+    public void ForceFullGrow()
+    {
+        ForceGrow(999, false);
+    }
+
+    public void ForceGrow(int phase, bool unhealthy)
+    {
+        p_currentTickToHarvest = phase;
+
+        if ((unhealthy == false) &&(dead == false))
+        {
+            //If quality hits 0 plant is dead
+            if (quality <= 0)
+            {
+                dead = true;
+                canBeHarvested = false;
+
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(true);
+            }
+
+            int oldPhase = currentPhase;
+            currentPhase = mother.CurrentPhase(p_currentTickToHarvest);
+
+            dyingPhase.SetActive(false);
+
+            //Disable all apart from correct phase
+            for (int i = 0; i < phases.Length; i++)
+            {
+                if (currentPhase == i)
+                {
+                    phases[i].SetActive(true);
+                }
+                else
+                {
+                    phases[i].SetActive(false);
+                }
+            }
+
+            //if last stage, become harvestable
+            if (currentPhase >= (phases.Length - 1))
+            {
+                currentPhase = (phases.Length - 1);
+                canBeHarvested = true;
+            }
+
+            if (canBeHarvested == true)
+            {
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(false);
+
+                phases[phases.Length - 1].SetActive(true);
+            }
+        }
+        else if (unhealthy == true)// unhealthy
+        {
+            for (int i = 0; i < phases.Length; i++)// disable all
+            {
+                phases[i].SetActive(false);
+            }
+            deadPhase.SetActive(false);
+            dyingPhase.SetActive(true);
+        }
     }
 
     //This will edit p_quality, detect if the plant is dying or dead
     //as well as changing the currentPhase gameobject (what it looks like)
     //Should also take nutrients and water from the plot
-    public void Tick()
+    public void Tick(int growth)
     {
         if (dead == false)
         {
@@ -101,7 +203,7 @@ public class Crop : MonoBehaviour
             {
                 if (canBeHarvested != true)
                 {
-                    p_currentTickToHarvest = p_currentTickToHarvest + 1;
+                    p_currentTickToHarvest = p_currentTickToHarvest + growth;
                 }
 
                 int oldPhase = currentPhase;
@@ -123,8 +225,9 @@ public class Crop : MonoBehaviour
                 }
 
                 //if last stage, become harvestable
-                if (currentPhase == (phases.Length - 1))
+                if (currentPhase >= (phases.Length - 1))
                 {
+                    currentPhase = (phases.Length - 1);
                     canBeHarvested = true;
                 }
 
@@ -137,6 +240,19 @@ public class Crop : MonoBehaviour
                 }
 
                 dyingPhase.SetActive(true);
+            }
+
+            if (canBeHarvested == true)
+            {
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(false);
+
+                phases[phases.Length - 1].SetActive(true);
             }
         }//not dead
     }
@@ -165,4 +281,19 @@ public class Crop : MonoBehaviour
 
         return false;
     }
+
+    public void Kill()
+    {
+        plotOn.crop = null;
+        plotOn.Occupied = false;
+        gameObject.SetActive(false);
+    }
+}
+
+public class CropSaveData
+{
+    public string plantType;
+    public int quality;
+    public int currentTickToHarvest;
+    public bool unhealthy;
 }

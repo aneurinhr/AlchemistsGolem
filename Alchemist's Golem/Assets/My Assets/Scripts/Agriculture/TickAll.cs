@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class TickAll : MonoBehaviour
 {
+    public enum CurrentSeason { Spring, Summer, Autumn, Winter };
+
     public string tag = "Crop";
     public GameObject highlight;
     public bool beingLookedAt = false;
+
+    public AudioSource recharge;
 
     public PlotCollection[] plots;
     public Image fadeTo;
@@ -22,16 +26,92 @@ public class TickAll : MonoBehaviour
     public PlayerMovement player;
 
     public Image battery;
+    public Sprite NormalCharge;
+    public Sprite OverCharged;
+    public Sprite UnderCharged;
+    public bool OverCharging = false;
+    public bool UnderCharging = false;
+
+    public int RandomMax = 1;
     public float timeLimit = 300.0f;
     public float currentTime = 1.0f;
     public bool pauseTimer = true;
     public bool punish = false;
     public float punishmentVal = 0.3f;
 
-    private void Start()
+    public bool pauseKeyPress = false;
+
+    public ItemDatabase itemDatabase;
+    public SideMissionManager sideMissions;
+
+    public int day = 1;
+    public int maxDay = 28;
+    public Seasons seasons;
+    public Text dayDisplay;
+
+    public GameObject warpPoint;
+
+    public SaveAndLoad save;
+
+    public TickSaveData SaveInfo()
+    {
+        TickSaveData saveData = new TickSaveData();
+        saveData.day = day;
+        saveData.punish = punish;
+        saveData.OverCharging = OverCharging;
+        saveData.UnderCharging = UnderCharging;
+        saveData.season = seasons.SaveInfo();
+
+        return saveData;
+    }
+
+    public void LoadInfo(TickSaveData info)
+    {
+        day = info.day;
+        dayDisplay.text = day.ToString();
+
+        punish = info.punish;
+        OverCharging = info.OverCharging;
+        UnderCharging = info.UnderCharging;
+
+        seasons.LoadInfo(info.season);
+
+        currentTime = 1.0f;
+        if (punish == true)
+        {
+            currentTime = currentTime - punishmentVal;
+            punish = false;
+        }
+        battery.fillAmount = currentTime;
+
+        if (OverCharging == true)
+        {
+            battery.sprite = OverCharged;
+        }
+        else if (UnderCharging == true)
+        {
+            battery.sprite = UnderCharged;
+        }
+        else
+        {
+            battery.sprite = NormalCharge;
+        }
+    }
+
+    public void NewGame()
     {
         currentTime = 1.0f;
+        battery.sprite = NormalCharge;
+        battery.fillAmount = currentTime;
+
+        day = 1;
+        dayDisplay.text = day.ToString();
+
+        player.WarpPlayer(warpPoint.transform.position);
+
         pauseTimer = true;
+
+        seasons.NewGame();
     }
 
     public void BeingLookedAt()
@@ -64,6 +144,7 @@ public class TickAll : MonoBehaviour
             if (alpha <= 0.0f)//Faded Out
             {
                 fade = false;
+                pauseKeyPress = false;
                 player.pauseMovement = false;
 
                 pauseTimer = false;
@@ -80,13 +161,19 @@ public class TickAll : MonoBehaviour
                     UpdatePlots();
                     ticked = true;
 
+                    RandomCharge();
                     currentTime = 1.0f;
+
                     if (punish == true)
                     {
                         currentTime = currentTime - punishmentVal;
                         punish = false;
                     }
                     battery.fillAmount = currentTime;
+
+                    save.SaveGame();
+
+                    player.WarpPlayer(warpPoint.transform.position);
                 }
 
                 StartCoroutine(FadeAway());
@@ -94,8 +181,31 @@ public class TickAll : MonoBehaviour
         }
     }
 
+    public void RandomCharge()
+    {
+        OverCharging = false;
+        UnderCharging = false;
+        battery.sprite = NormalCharge;
+
+        int rand = Random.Range(0, (RandomMax+1));
+
+        if (rand == RandomMax)
+        {
+            OverCharging = true;
+            battery.sprite = OverCharged;
+        }
+        else if (rand == 0)
+        {
+            UnderCharging = true;
+            battery.sprite = UnderCharged;
+        }
+    }
+
     IEnumerator FadeAway()
     {
+        recharge.time = 1.05f;
+        recharge.Play();
+
         yield return new WaitForSecondsRealtime(0.3f);
         fade = true;
     }
@@ -104,9 +214,20 @@ public class TickAll : MonoBehaviour
     {
         Fade();
 
-        if (pauseTimer == false)
+        if (pauseTimer == false) //Charge changing
         {
-            currentTime = currentTime - ((1.0f / timeLimit) * Time.deltaTime);
+            float mult = 1.0f;
+
+            if (UnderCharging == true)
+            {
+                mult = 2.0f;
+            }
+            else if (OverCharging == true)
+            {
+                mult = 0.5f;
+            }
+
+            currentTime = currentTime - ((1.0f / timeLimit) * Time.deltaTime * mult);
             battery.fillAmount = currentTime;
         }
 
@@ -128,8 +249,9 @@ public class TickAll : MonoBehaviour
     private void LateUpdate()
     {
 
-        if (Input.GetButtonDown("Interact") && (beingLookedAt == true) && ((fade == false) && (unfade == false)))
+        if (Input.GetButtonDown("Interact") && (beingLookedAt == true) && (pauseKeyPress == false))
         {
+            pauseKeyPress = true;
             unfade = true;
             player.pauseMovement = true;
             ticked = false;
@@ -152,11 +274,37 @@ public class TickAll : MonoBehaviour
 
     public void TickForAll()
     {
-        GameObject[] plants = GameObject.FindGameObjectsWithTag(tag);
-
-        for (int i = 0; i < plants.Length; i++)
+        for (int i = 0; i < plots.Length; i++)
         {
-            plants[i].GetComponent<Crop>().Tick();
+            plots[i].TickAll();
         }
+
+        itemDatabase.UpdateFluctiatingPrices();
+        sideMissions.NewDay();
+
+        //Change Day
+        day = day + 1;
+        if (day > maxDay)
+        {
+            int season = seasons.ChangeSeasons();
+
+            for (int i = 0; i < plots.Length; i++)
+            {
+                plots[i].seasonVal = season;
+            }
+
+            day = 1;
+            sideMissions.GenerateForAllQuestSlots();
+        }
+        dayDisplay.text = day.ToString();
     }
+}
+
+public class TickSaveData
+{
+    public int day;
+    public bool OverCharging;
+    public bool UnderCharging;
+    public bool punish;
+    public CurrentSeason season;
 }

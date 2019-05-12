@@ -52,6 +52,13 @@ public class Storage : MonoBehaviour
 
     public void NewGame()
     {
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++)
+            {
+                inventorySlotRows[i].rowSlots[k].ResetThis();
+            }
+        }
         UpdateStorage();
     }
 

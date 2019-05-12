@@ -101,6 +101,14 @@ public class TickAll : MonoBehaviour
     public void NewGame()
     {
         currentTime = 1.0f;
+        battery.sprite = NormalCharge;
+        battery.fillAmount = currentTime;
+
+        day = 1;
+        dayDisplay.text = day.ToString();
+
+        player.WarpPlayer(warpPoint.transform.position);
+
         pauseTimer = true;
 
         seasons.NewGame();

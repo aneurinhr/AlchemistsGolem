@@ -23,6 +23,12 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private Button p_meButton;
 
+    public void ResetThis()
+    {
+        hotBarPointers = 999;
+        hotBarQuant = 0;
+    }
+
     public SlotSaveData SaveInfo()
     {
         SlotSaveData saveData = new SlotSaveData();

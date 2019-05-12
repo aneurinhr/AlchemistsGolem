@@ -52,6 +52,9 @@ public class Crop : MonoBehaviour
 
         canBeHarvested = false;
         dead = false;
+        dyingPhase.SetActive(false);
+        deadPhase.SetActive(false);
+
         //Disable all apart from correct phase
         for (int i = 0; i < phases.Length; i++)
         {
@@ -65,7 +68,6 @@ public class Crop : MonoBehaviour
             }
         }
 
-        //if last stage, become harvestable
         if (currentPhase == (phases.Length - 1))
         {
             canBeHarvested = true;
@@ -123,8 +125,18 @@ public class Crop : MonoBehaviour
                 canBeHarvested = true;
             }
 
+            if (canBeHarvested == true)
+            {
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
 
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(false);
 
+                phases[phases.Length - 1].SetActive(true);
+            }
         }
         else if (unhealthy == true)// unhealthy
         {
@@ -229,20 +241,20 @@ public class Crop : MonoBehaviour
 
                 dyingPhase.SetActive(true);
             }
-        }//not dead
 
-        if (canBeHarvested == true)
-        {
-            for (int i = 0; i < phases.Length; i++)// disable all
+            if (canBeHarvested == true)
             {
-                phases[i].SetActive(false);
+                for (int i = 0; i < phases.Length; i++)// disable all
+                {
+                    phases[i].SetActive(false);
+                }
+
+                dyingPhase.SetActive(false);
+                deadPhase.SetActive(false);
+
+                phases[phases.Length - 1].SetActive(true);
             }
-
-            dyingPhase.SetActive(false);
-            deadPhase.SetActive(false);
-
-            phases[phases.Length - 1].SetActive(true);
-        }
+        }//not dead
     }
 
     public bool Harvest() //Should directly deposite to inventory
@@ -268,6 +280,13 @@ public class Crop : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Kill()
+    {
+        plotOn.crop = null;
+        plotOn.Occupied = false;
+        gameObject.SetActive(false);
     }
 }
 

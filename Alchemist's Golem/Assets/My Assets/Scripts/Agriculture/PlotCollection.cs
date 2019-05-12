@@ -7,7 +7,9 @@ public class PlotCollection : MonoBehaviour
 
     public MapRow[] map;
 
+    private int[] p_baseValues;
     public int[] NutrientIncrease;
+    private int p_baseWater;
     public int WaterIncrease = 1;
     public int growth = 1;
 
@@ -36,6 +38,12 @@ public class PlotCollection : MonoBehaviour
     public GameObject EnergyUp;
     public GameObject EnergyDown;
     public GameObject Growth;
+
+    private void Awake()
+    {
+        p_baseValues = NutrientIncrease;
+        p_baseWater = WaterIncrease;
+    }
 
     public CollectionSaveData SaveInfo()
     {
@@ -75,6 +83,16 @@ public class PlotCollection : MonoBehaviour
                 map[i].mapCol[j].NewGame();
             }
         }
+
+        NutrientIncrease = p_baseValues;
+        WaterIncrease = p_baseWater;
+
+        for (int i = 0; i < UpgradesUnlocked.Length; i++)
+        {
+            UpgradesUnlocked[i] = false;
+        }
+
+        upgrades.NewGame();
     }
 
     public void LoadInfo(CollectionSaveData info)

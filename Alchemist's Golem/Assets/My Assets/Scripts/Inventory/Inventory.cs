@@ -84,6 +84,19 @@ public class Inventory : MonoBehaviour
 
     public void NewGame()
     {
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            hotbarSlots[i].ResetThis();
+        }
+
+        for (int i = 0; i < inventorySlotRows.Length; i++)
+        {
+            for (int k = 0; k < inventorySlotRows[i].rowSlots.Length; k++)
+            {
+                inventorySlotRows[i].rowSlots[k].ResetThis();
+            }
+        }
+
         UpdateInventory();
         highlightedSlot = null;
     }

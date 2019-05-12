@@ -111,6 +111,7 @@ public class SaveAndLoad : MonoBehaviour
 
     public void NewGame()
     {
+        bank.NewGame();
         itemDatabase.NewGame();
         storage.NewGame();
         inventory.NewGame();

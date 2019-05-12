@@ -81,6 +81,16 @@ public class Plot : MonoBehaviour
 
     public void NewGame()
     {
+        if (Occupied == true)
+        {
+            crop.Kill();
+        }
+
+        QuantNutrients[0] = 7;
+        QuantNutrients[1] = 7;
+        QuantNutrients[2] = 7;
+        WaterContent = 7;
+
         UpdateSliders();
 
         Weed.NewPlant(this);

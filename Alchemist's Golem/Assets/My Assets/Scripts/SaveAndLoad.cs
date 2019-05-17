@@ -134,6 +134,8 @@ public class SaveAndLoad : MonoBehaviour
 
     public void LoadGame()
     {
+        NewGame();
+
         //load from file
         string filePath = path + "/" + gameDataFileName;
 

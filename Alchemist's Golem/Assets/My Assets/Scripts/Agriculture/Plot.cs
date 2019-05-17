@@ -62,6 +62,11 @@ public class Plot : MonoBehaviour
 
         UpdateSliders();
 
+        if (Occupied == true)
+        {
+            crop.Kill();
+        }
+
         if (info.Occupied == true)
         {
             CropSaveData temp = JsonUtility.FromJson<CropSaveData>(info.crop);
